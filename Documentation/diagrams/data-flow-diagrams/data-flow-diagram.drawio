@@ -103,19 +103,19 @@
             <mxPoint x="43" y="-12" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="hTGGIrF8rQ3D2reMKzPM-3" value="" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;entryX=0;entryY=0;entryDx=32.5;entryDy=100;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;" parent="1" target="q63gI_Fwjk9fpuUXVtqA-7" edge="1">
+        <mxCell id="hTGGIrF8rQ3D2reMKzPM-3" value="" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;entryX=0.25;entryY=1;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" parent="1" target="q63gI_Fwjk9fpuUXVtqA-2" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="395" y="199" as="sourcePoint" />
             <mxPoint x="161" y="145" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="395" y="232" />
-              <mxPoint x="-104" y="232" />
+              <mxPoint x="395" y="233" />
+              <mxPoint x="116" y="233" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="hTGGIrF8rQ3D2reMKzPM-4" value="JSON Web Token" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" parent="hTGGIrF8rQ3D2reMKzPM-3" vertex="1" connectable="0">
           <mxGeometry x="-0.8498" y="3" relative="1" as="geometry">
-            <mxPoint x="-24" y="-12" as="offset" />
+            <mxPoint x="-52" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="hTGGIrF8rQ3D2reMKzPM-9" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="z2jl9_Elbo3O-PhKAKKN-5" target="q63gI_Fwjk9fpuUXVtqA-2" edge="1">
