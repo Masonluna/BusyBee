@@ -314,6 +314,9 @@
             <mxPoint x="50" y="-66" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="69Bt8prux-WzrRiuDXp2-116" value="Component Diagram" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="70" y="70" width="240" height="100" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
