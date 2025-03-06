@@ -1,0 +1,19 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  
+}
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px solid black;
+}
+
+
