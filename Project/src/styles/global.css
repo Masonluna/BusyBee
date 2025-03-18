@@ -4,6 +4,11 @@
   --success-color: green;
   
 }
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
 .pageContainer {
   display: flex;
   flex-direction: column;

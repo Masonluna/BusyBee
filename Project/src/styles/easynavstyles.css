@@ -1,0 +1,23 @@
+.navContainer{
+    border: 2px solid black;
+    width: 180px;
+    height: 280px;
+    position: absolute;
+    top: 250px;
+    left: 0px;
+    align-items: center;
+}
+.linkList{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+.listItem{
+    margin: 10px;
+    padding: 10px;
+}
+.link{
+    font-size: 2em;
+}
