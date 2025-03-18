@@ -65,6 +65,8 @@ const LoginForm: React.FC = () => {
             <form onSubmit={handleLoginSubmission}>
                 <input type="email" placeholder="Email" name="loginEmail" />
                 <input type="password" placeholder="Password" name="loginPassword" />
+                
+                {/*error/red*/}
                 <p id='loginErrorNotification' className='errorNotificationText'></p>
                 <button type="submit">Login</button>
             </form>
