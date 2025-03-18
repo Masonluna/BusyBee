@@ -1,26 +1,36 @@
-import { useState } from 'react';
-import LoginForm from '../components/LoginForm';
-import SignUpForm from '../components/SignUpForm';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import supabase from '../utils/supabase';
 
-function LandingPage() {
-    const [showingLogin, setShowingLogin] = useState(true);
+const LandingPage: React.FC = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const checkAuthStatus = async () => {
+            try {
+                const { data: { user } } = await supabase.auth.getUser();
+
+                if (user) {
+                    navigate('/home');
+                }
+                else{
+                    navigate('/login');
+                }
+            }
+            catch (err) {
+                console.error('Unexpected Error checking if user is authenticated: ', err);
+                navigate('/login');
+            }
+        };
+        checkAuthStatus();
+    }, [navigate]);
 
     return (
-        <>
-        <div className="pageContainer">
-            <div className="formContainer">
-                {showingLogin && <LoginForm />}
-                {showingLogin && <p>Don't have an account? <button type='button' onClick={() => setShowingLogin(false)}>Sign Up instead</button> </p>}
+        <div>
+            <h1>Busybee</h1>
 
-                {!showingLogin && <SignUpForm />}
-                {!showingLogin && <p>Already have an account? <button type='button' onClick={() => setShowingLogin(true)}>Login instead</button></p>}
-            </div>
-            
         </div>
-        </>
     )
-
 }
-
 
 export default LandingPage;

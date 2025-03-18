@@ -1,5 +1,7 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --error-color: red;
+  --success-color: green;
   
 }
 .pageContainer {
@@ -14,6 +16,20 @@
   align-items: center;
   justify-content: space-evenly;
   border: 1px solid black;
+}
+
+a{
+  text-decoration: underline;
+}
+a:hover{
+  cursor: pointer;
+}
+
+.errorNotificationText {
+  color: var(--error-color)
+}
+.successNotificationText {
+  color: var(--success-color)
 }
 
 

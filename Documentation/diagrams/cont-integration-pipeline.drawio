@@ -1,0 +1,121 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0" version="26.0.16">
+  <diagram name="Page-1" id="LbQ_XojJOean2syMoILW">
+    <mxGraphModel dx="1188" dy="664" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-12" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="640" y="300" width="60" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-10" value="" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#3B8DF1;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.repository" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-12">
+          <mxGeometry width="60" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-11" value="GitHub&lt;div&gt;Repository&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-12">
+          <mxGeometry y="100" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-27" value="" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=1.019;exitY=0.652;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.533;entryY=-0.007;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="fcMwwvrvWFmppYAYFn9U-12" source="fcMwwvrvWFmppYAYFn9U-10" target="fcMwwvrvWFmppYAYFn9U-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-210" y="100" as="sourcePoint" />
+            <mxPoint x="-160" y="50" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="100" y="-230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-19" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="140" y="250" width="305" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-2" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-19">
+          <mxGeometry width="305" height="239.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-8" value="Vercel" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-19">
+          <mxGeometry x="110.43103448275862" y="32.72727272727273" width="63.10344827586207" height="32.72727272727273" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-26" value="busybee (react code)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-19">
+          <mxGeometry x="100" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-20" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="560" y="560" width="213" height="94.20000000000005" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-13" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-20">
+          <mxGeometry x="110" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-15" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_Wireless.svg;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-20">
+          <mxGeometry x="150" width="63" height="64.2" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-16" value="Developers" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-20">
+          <mxGeometry y="64.20000000000005" width="203" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-17" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-20">
+          <mxGeometry x="7" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-18" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_Wireless.svg;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-20">
+          <mxGeometry x="47" width="63" height="64.2" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-21" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Busybee - CI/CD Pipeline&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="250" y="180" width="360" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-22" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="fcMwwvrvWFmppYAYFn9U-11">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="670" y="558" as="sourcePoint" />
+            <mxPoint x="500" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-23" value="git push/pull origin dev" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" vertex="1" connectable="0" parent="fcMwwvrvWFmppYAYFn9U-22">
+          <mxGeometry x="0.018" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-24" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=-0.008;exitY=0.685;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.875;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="fcMwwvrvWFmppYAYFn9U-10" target="fcMwwvrvWFmppYAYFn9U-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="400" as="sourcePoint" />
+            <mxPoint x="480" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-25" value="main branch" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" vertex="1" connectable="0" parent="fcMwwvrvWFmppYAYFn9U-24">
+          <mxGeometry x="0.0031" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-28" value="when dev branch is at a stable release, submit pull request&lt;br&gt;base: main&lt;br&gt;compare: dev" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="730" y="190" width="110" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-37" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="150" y="520" width="305" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-31" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-37">
+          <mxGeometry width="305" height="239.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-32" value="Supabase" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-37">
+          <mxGeometry x="110.4310344827586" y="32.72727272727275" width="63.10344827586207" height="32.72727272727273" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-34" value="PostgreSQL&lt;div&gt;DB&lt;/div&gt;" style="shape=datastore;whiteSpace=wrap;html=1;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-37">
+          <mxGeometry x="60" y="90" width="80" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-35" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/security/Multifactor_Authentication.svg;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-37">
+          <mxGeometry x="180" y="91" width="55.400000000000006" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-36" value="authentication" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="fcMwwvrvWFmppYAYFn9U-37">
+          <mxGeometry x="180" y="160" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-39" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=0.49;exitY=0.091;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="fcMwwvrvWFmppYAYFn9U-31" target="fcMwwvrvWFmppYAYFn9U-26">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="550" as="sourcePoint" />
+            <mxPoint x="480" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-40" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.916;entryY=0.358;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="fcMwwvrvWFmppYAYFn9U-17" target="fcMwwvrvWFmppYAYFn9U-31">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="470" as="sourcePoint" />
+            <mxPoint x="480" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fcMwwvrvWFmppYAYFn9U-41" value="update policies&lt;div&gt;directly&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" vertex="1" connectable="0" parent="fcMwwvrvWFmppYAYFn9U-40">
+          <mxGeometry x="-0.0435" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
