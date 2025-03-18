@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import EasyNav from '../components/EasyNav';
+import Footer from '../components/Footer';
 
 
 export type User = {
@@ -29,11 +30,13 @@ const HomePage: React.FC = () => {
         
     }, [navigate, location]);
 
-
+    //only one return element (div)
     return (
         <div>
+
             { (authUser.first_name!=="" && authUser.date_created === authUser.last_accessed) ? <h1>Welcome to Busybee {authUser.first_name}</h1> : <h1>Welcome back {authUser.first_name}</h1>}
             <EasyNav />
+            <Footer></Footer>
         </div>
     )
 }
