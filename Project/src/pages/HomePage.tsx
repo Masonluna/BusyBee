@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
         <div>
             <WelcomeMessage authUser={authUser} /> 
             <EasyNav />
-            <Footer></Footer>
+            <Footer />
         </div>
     )
 }
