@@ -30,7 +30,7 @@ a:hover{
   cursor: pointer;
 }
 
-.errorNotificationText {
+.errorMessage {
   color: var(--error-color)
 }
 .successNotificationText {

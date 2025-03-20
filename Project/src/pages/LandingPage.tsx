@@ -27,7 +27,8 @@ const LandingPage: React.FC = () => {
 
     return (
         <div>
-            <h1>Busybee</h1>
+            <h1>Welcome to Busybee</h1>
+            <h2>Loading...</h2>
 
         </div>
     )

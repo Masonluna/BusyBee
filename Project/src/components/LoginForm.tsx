@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import supabase from '../utils/supabase';
 import { useNavigate } from 'react-router-dom';
+import ErrorMessage from './ErrorMessage';
 
 
 const LoginForm: React.FC = () => {
+    const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
     const handleLoginSubmission = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -11,8 +14,8 @@ const LoginForm: React.FC = () => {
         const form = event.currentTarget;
         const email = form.loginEmail.value;
         const password = form.loginPassword.value;
-        const errorNotification = document.getElementById("loginErrorNotification");
-        if (errorNotification === null) return;
+        
+        
         try{
             const { data, error } = await supabase.auth.signInWithPassword({
                 email: email,
@@ -21,10 +24,10 @@ const LoginForm: React.FC = () => {
             if (error){
                 console.log("Bad login: ", error.code);
                 if (error.code === 'invalid_credentials'){
-                    errorNotification.innerText = 'Invalid credentials, please check your email and password and try again';
+                    setErrorMessage('Invalid credentials, please check your email and password and try again');
                 }
                 else{
-                    errorNotification.innerText = 'Could not log in, double check that you have the correct credentials, or create an account instead.';
+                    setErrorMessage('Could not log in, double check that you have the correct credentials, or create an account instead.');
                 }
                 return;
             }
@@ -36,13 +39,10 @@ const LoginForm: React.FC = () => {
                 if (userError){
                     console.log(`could not find ${data.user.email} in public.user...`);
                     console.log('error: ', userError.code);
-                    errorNotification.innerText = `Could not find ${data.user.email} in public.user...`;
+                    setErrorMessage(`Could not find ${data.user.email} in public.user...`);
                     return;
                 }
                 else if (userData){
-                    console.log(`successfully found ${userData[0].email} in public.user...`);
-                    console.log(`date_created=${userData[0].date_created}`);
-                    console.log(`last_accessed=${userData[0].last_accessed}`);
                     //update last_accessed
                     const new_last_accessed_timestamp = new Date().toISOString();
                     const { error: updateError } = await supabase.from("users").update({ last_accessed: new_last_accessed_timestamp}).eq("user_id", user_id)
@@ -65,7 +65,7 @@ const LoginForm: React.FC = () => {
             <form onSubmit={handleLoginSubmission}>
                 <input type="email" placeholder="Email" name="loginEmail" />
                 <input type="password" placeholder="Password" name="loginPassword" />
-                <p id='loginErrorNotification' className='errorNotificationText'></p>
+                {errorMessage !== "" && <ErrorMessage message={errorMessage}/> }
                 <button type="submit">Login</button>
             </form>
         </div>
