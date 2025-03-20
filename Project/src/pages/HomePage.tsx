@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import EasyNav from '../components/EasyNav';
+import Footer from '../components/Footer';
 import supabase from '../utils/supabase';
 import ErrorMessage from '../components/ErrorMessage';
 import type { User, Job, Group } from '../utils/types';
@@ -71,12 +72,13 @@ const HomePage: React.FC = () => {""
         }
     }, [navigate, location]);
 
-
+    //only one return element (div)
     return (
         <div>
             { errorMessage !== "" && <ErrorMessage message={errorMessage} /> }
             { (authUser.first_name!=="" && authUser.date_created === authUser.last_accessed) ? <h1>Welcome to Busybee {authUser.first_name}</h1> : <h1>Welcome back {authUser.first_name}</h1>}
             <EasyNav />
+            <Footer></Footer>
         </div>
     )
 }
