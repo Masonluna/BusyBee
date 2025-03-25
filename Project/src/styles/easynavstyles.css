@@ -2,7 +2,7 @@
     border: 2px solid black;
     width: 180px;
     height: 280px;
-    position: absolute;
+    position:static;
     top: 250px;
     left: 0px;
     align-items: center;
