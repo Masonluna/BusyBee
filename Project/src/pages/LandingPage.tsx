@@ -8,10 +8,10 @@ const LandingPage: React.FC = () => {
     useEffect(() => {
         const checkAuthStatus = async () => {
             try {
-                const { data: { user } } = await supabase.auth.getUser();
+                const { data: user } = await supabase.auth.getUser();
 
                 if (user) {
-                    navigate('/home');
+                    navigate('/dashboard');
                 }
                 else{
                     navigate('/login');

@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import { useState } from 'react';
-=======
 import '../styles/login.css';
->>>>>>> c38293d0bedb130c88e861603d53fcb551561c37
 import supabase from '../utils/supabase';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from './ErrorMessage';
@@ -69,13 +66,7 @@ const LoginForm: React.FC = () => {
             <form onSubmit={handleLoginSubmission}>
                 <input type="email" placeholder="Email" name="loginEmail" />
                 <input type="password" placeholder="Password" name="loginPassword" />
-<<<<<<< HEAD
                 {errorMessage !== "" && <ErrorMessage message={errorMessage}/> }
-=======
-
-                {/*error/red*/}
-                <p id='loginErrorNotification' className='errorNotificationText'></p>
->>>>>>> c38293d0bedb130c88e861603d53fcb551561c37
                 <button type="submit">Login</button>
             </form>
         </div>
