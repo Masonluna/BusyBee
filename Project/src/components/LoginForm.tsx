@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../styles/login.css';
 import supabase from '../utils/supabase';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from './ErrorMessage';
