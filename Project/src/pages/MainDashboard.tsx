@@ -11,7 +11,7 @@ import JobsQuickView from '../components/JobsQuickView';
 
 
 
-const HomePage: React.FC = () => {""
+const HomePage: React.FC = () => {
     const navigate = useNavigate();
     
 
@@ -21,6 +21,7 @@ const HomePage: React.FC = () => {""
     const [jobs, setJobs] = useState<Job[] | null>(null);
     const [renderJobs, setRenderJobs] = useState<boolean>(false);
     const [groups, setGroups] = useState<Group[] | null>(null);
+    const [statusMap, setStatusMap] = useState({});
     
 
     //this hook runs onMount, checks the authentication, and sets the user state variable
@@ -52,6 +53,42 @@ const HomePage: React.FC = () => {""
         }
         checkAuthentication();
     },[navigate]);
+
+    useEffect(() => {
+        const toggleRenderJobQuickView = () => {
+            if (jobs) {
+                setRenderJobs(true);
+            }
+        }
+        toggleRenderJobQuickView();
+    }, [jobs, statusMap]);
+
+    useEffect(() => {
+        const fetchStatusMap = async () => {
+            const { data: statusData, error: statusError } = await supabase.from("status").select('*');
+            if (statusError){
+                console.log('Error: Could not pull status data.');
+            }
+            else if(statusData){
+                let statMap: {[key: number] : string} = {}
+                for (let i = 0; i < statusData.length; i++){
+                    statMap[i+1] = statusData[i].status_name;
+                    console.log(`setting statusMap[${i+1}] = ${statusData[i].status_name}`)
+                }
+                return statMap;
+            }
+            else{
+                console.log('An unexpected error occurred while trying to pull status data');
+            }
+            return {};
+        };
+
+        const setTheStatusMap = async () => {
+            const statusMapResult = await fetchStatusMap();
+            setStatusMap(statusMapResult);
+        }
+        setTheStatusMap();
+    }, []);
 
     //this hook runs onMount and when the user.user_id changes
     useEffect(() => {
@@ -89,14 +126,7 @@ const HomePage: React.FC = () => {""
 
     }, [user.user_id]);
 
-    useEffect(() => {
-        const toggleRenderJobQuickView = () => {
-            if (jobs) {
-                setRenderJobs(true);
-            }
-        }
-        toggleRenderJobQuickView();
-    }, [jobs]);
+    
     
     
     
@@ -107,7 +137,7 @@ const HomePage: React.FC = () => {""
             { errorMessage !== "" && <ErrorMessage message={errorMessage} /> }
             { (user.first_name!=="" && user.date_created === user.last_accessed) ? <h1>Welcome to Busybee {user.first_name}</h1> : <h1>Welcome back {user.first_name}</h1>}
             <EasyNav />
-            { renderJobs && <JobsQuickView jobs={jobs} groups={groups} /> }
+            { renderJobs && <JobsQuickView jobs={jobs} groups={groups} statusMap={statusMap}/> }
             <Footer></Footer>
         </div>
     )

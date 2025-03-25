@@ -4,11 +4,14 @@ import type { Job, Group } from '../utils/types';
 type JobsQuickViewProps = {
     jobs: Job[] | null;
     groups: Group[] | null;
+    statusMap: {[key: number] : string}
 }
 
-const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs, groups }) => {
+const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs, groups, statusMap }) => {
 
-
+    for(let i = 1; i <= 6; i++){
+        console.log(`from jobquickview, statusMap[${i}]=${statusMap[i]}`);
+    }
 
 
     return (
@@ -17,7 +20,7 @@ const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs, groups }) => {
             <ol>
                 { jobs && jobs.map(job => (
                     <li key={job.job_id}>
-                        {job.company_name}  {job.job_title}  {job.status_id}
+                        {job.company_name}  {job.job_title}  ({statusMap[job.status_id]})
                     </li>
                 ))}    
             </ol>  
