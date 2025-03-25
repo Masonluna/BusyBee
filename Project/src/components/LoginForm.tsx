@@ -71,11 +71,11 @@ const LoginForm: React.FC = () => {
                 <input type="password" placeholder="Password" name="loginPassword" />
 <<<<<<< HEAD
                 {errorMessage !== "" && <ErrorMessage message={errorMessage}/> }
-=========
+=======
 
                 {/*error/red*/}
                 <p id='loginErrorNotification' className='errorNotificationText'></p>
->>>>>>>>> Temporary merge branch 2
+>>>>>>> c38293d0bedb130c88e861603d53fcb551561c37
                 <button type="submit">Login</button>
             </form>
         </div>
