@@ -106,7 +106,7 @@ const HomePage: React.FC = () => {""
         <div>
             { errorMessage !== "" && <ErrorMessage message={errorMessage} /> }
             { (user.first_name!=="" && user.date_created === user.last_accessed) ? <h1>Welcome to Busybee {user.first_name}</h1> : <h1>Welcome back {user.first_name}</h1>}
-            <EasyNav />
+            <EasyNav jobs={jobs} groups={groups} />
             { renderJobs && <JobsQuickView jobs={jobs} groups={groups} /> }
             <Footer></Footer>
         </div>
