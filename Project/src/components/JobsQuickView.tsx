@@ -9,10 +9,6 @@ type JobsQuickViewProps = {
 
 const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs, groups, statusMap }) => {
 
-    for(let i = 1; i <= 6; i++){
-        console.log(`from jobquickview, statusMap[${i}]=${statusMap[i]}`);
-    }
-
 
     return (
         <>

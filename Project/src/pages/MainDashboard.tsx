@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 import EasyNav from '../components/EasyNav';
 import Footer from '../components/Footer';
-import supabase from '../utils/supabase';
 import ErrorMessage from '../components/ErrorMessage';
 import type { User, Job, Group } from '../utils/types';
 import JobsQuickView from '../components/JobsQuickView';
-
+import { getUserWithAuthenticationCheck, getStatusMap, getJobs, getGroups } from '../utils/supabaseService';
 
 
 
@@ -26,32 +25,19 @@ const HomePage: React.FC = () => {
 
     //this hook runs onMount, checks the authentication, and sets the user state variable
     useEffect(() => {
-        const checkAuthentication = async () => {
-            const { data: authUser, error: authError } = await supabase.auth.getUser();
-            if (authError) {
-                console.log(`Error: Must be authenticated to access the Main Dashboard... Redirecting to login.`);
-                navigate('/login');
-            }
-            else if (authUser) {
-                const { data: actualUserData, error: actualUserError } = await supabase.from('users').select('*').eq('user_id', authUser.user.id);
-                if (actualUserError){
-                    console.log(`Error: Could not find that user in public.Users. The user is authenticated tho... This is an internal error. Please try logging in again. If the issue continues, contact support.`);
-                    navigate('/login');
-                }
-                else if(actualUserData && actualUserData.length > 0){
-                    setUser(actualUserData[0] as User);
-                }
-                else{
-                    console.log('An unexpected error occurred while pulling the user from public.Users... this is an unexpected, internal error');
-                    navigate('/login');
+        const checkUserAuth = async () => {
+            try {
+                const potentialUserObj: User | undefined = await getUserWithAuthenticationCheck();
+                if (potentialUserObj) {
+                    setUser(potentialUserObj);
                 }
             }
-            else{
-                console.log('An unexpected error occurred while checking authentication status for access to the Main Dashboard... Redirecting to login.');
-                navigate('/login');
+            catch (error){
+                console.log('Error checking authentication: ', error);
+                navigate('/');
             }
         }
-        checkAuthentication();
+        checkUserAuth();
     },[navigate]);
 
     useEffect(() => {
@@ -64,66 +50,40 @@ const HomePage: React.FC = () => {
     }, [jobs, statusMap]);
 
     useEffect(() => {
-        const fetchStatusMap = async () => {
-            const { data: statusData, error: statusError } = await supabase.from("status").select('*');
-            if (statusError){
-                console.log('Error: Could not pull status data.');
+        const initStatMap = async () => {
+            const potentialStatusMap: {[key: number] : string} | null = await getStatusMap();
+            if (potentialStatusMap) {
+                setStatusMap(potentialStatusMap);
             }
-            else if(statusData){
-                let statMap: {[key: number] : string} = {}
-                for (let i = 0; i < statusData.length; i++){
-                    statMap[i+1] = statusData[i].status_name;
-                    console.log(`setting statusMap[${i+1}] = ${statusData[i].status_name}`)
-                }
-                return statMap;
+            else {
+                setErrorMessage('Error fetching statuses, please refresh. If the problem persists, contact us.');
             }
-            else{
-                console.log('An unexpected error occurred while trying to pull status data');
-            }
-            return {};
-        };
-
-        const setTheStatusMap = async () => {
-            const statusMapResult = await fetchStatusMap();
-            setStatusMap(statusMapResult);
         }
-        setTheStatusMap();
+        initStatMap();
     }, []);
 
     //this hook runs onMount and when the user.user_id changes
     useEffect(() => {
-        const fetchJobs = async () => {
-            const { data: jobsData, error: jobsError } = await supabase.from('jobs').select('*').eq("user_id", user.user_id);
-            if (jobsError){
-                setErrorMessage("Error fetching users jobs...");
+        const fetchUsersData = async (userId: string) => {
+            const potentialJobs = await getJobs(userId);
+            if (potentialJobs){
+                setJobs(potentialJobs);
             }
-            else if (jobsData){
-                setJobs(jobsData as Job[]);
+            const potentialGroups = await getGroups(userId);
+            if (potentialGroups){
+                setGroups(potentialGroups);
             }
-            else {
-                setErrorMessage("Unexpected error while fetching the users jobs...");
-            }
-        }
-        const fetchGroups = async () => {
-            const { data: groupsData, error: groupsError} = await supabase.from('groups').select('*').eq("user_id", user.user_id);
-            if (groupsError){
-                setErrorMessage("Error fetching users groups...");
-            }
-            else if (groupsData){
-                setGroups(groupsData as Group[]);
-            }
-            else{
-                setErrorMessage("An unexpected error occured while fetching users groups...")
+            if (!potentialJobs || !potentialGroups){
+                setErrorMessage('Error fetching groups and jobs, please refresh. If the problem persists, contact us.');
             }
         }
+            
         if (!user.user_id){
             return;
         }
         else{
-            fetchJobs();
-            fetchGroups();
+            fetchUsersData(user.user_id);
         }
-
     }, [user.user_id]);
 
     
