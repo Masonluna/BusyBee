@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import '../styles/easynavstyles.css';
 
 const EasyNav = () => {
@@ -7,9 +8,10 @@ const EasyNav = () => {
         <div className="navContainer">
             <nav>
                 <ul className='linkList'>
-                    <li className='listItem'><a className='link'>Jobs</a></li>
-                    <li className='listItem'><a className='link'>Groups</a></li>
-                    <li className='listItem'><a className='link'>Docs</a></li>
+                    <li className='listItem'><Link className='link' to="/jobs">Jobs</Link></li>
+                    <li className='listItem'><Link className='link' to="/stats">Stats</Link></li>
+                    <li className='listItem'><Link className='link' to="/docs">Docs</Link></li>
+                    <li className='listItem'><Link className='link' to="/groups">Groups</Link></li>
                 </ul>
             </nav>
         </div>
