@@ -1,26 +1,20 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import supabase from '../utils/supabase';
+import { getUserWithAuthenticationCheck } from '../service/supabaseService';
+
+
 
 const LandingPage: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
         const checkAuthStatus = async () => {
-            try {
-                const { data: user } = await supabase.auth.getUser();
-
-                if (user) {
-                    navigate('/dashboard');
-                }
-                else{
-                    navigate('/login');
-                }
+            const potentialUser = await getUserWithAuthenticationCheck();
+            if (!potentialUser){
+                console.log("Not authenticated.");
+                navigate("/login");
             }
-            catch (err) {
-                console.error('Unexpected Error checking if user is authenticated: ', err);
-                navigate('/login');
-            }
+            navigate("/dashboard");
         };
         checkAuthStatus();
     }, [navigate]);

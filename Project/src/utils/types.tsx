@@ -36,3 +36,9 @@ export type Status = {
     status_id: number,
     status_name: string
 }
+
+export type GroupJob = {
+    group_job_id: number,
+    group_id: number,
+    job_id: number
+}

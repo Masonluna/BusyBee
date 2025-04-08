@@ -1,4 +1,4 @@
-import type { Job, Group } from '../utils/types';
+import type { Job } from '../utils/types';
 
 
 type JobsQuickViewProps = {
