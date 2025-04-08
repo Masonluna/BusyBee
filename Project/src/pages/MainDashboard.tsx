@@ -114,7 +114,7 @@ const HomePage: React.FC = () => {
             </header>
             <DashboardLabel/>
             <EasyNav jobs={jobs} groups={groups} />
-            { renderJobs && <JobsQuickView jobs={jobs} groups={groups} statusMap={statusMap} /> }
+            { renderJobs && <JobsQuickView jobs={jobs}  statusMap={statusMap} /> }
             <Footer></Footer>
         </div>
     )
