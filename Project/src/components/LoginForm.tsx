@@ -3,6 +3,7 @@ import '../styles/login.css';
 import supabase from '../utils/supabase';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from './ErrorMessage';
+import '../styles/button.css';
 
 
 const LoginForm: React.FC = () => {
@@ -25,10 +26,10 @@ const LoginForm: React.FC = () => {
             if (error){
                 console.log("Bad login: ", error.code);
                 if (error.code === 'invalid_credentials'){
-                    setErrorMessage('Invalid credentials, please check your email and password and try again');
+                    setErrorMessage('*Invalid email or password. Try Again.');
                 }
                 else{
-                    setErrorMessage('Could not log in, double check that you have the correct credentials, or create an account instead.');
+                    setErrorMessage('*Try Again. Double check credentials, or create an account instead.');
                 }
                 return;
             }
@@ -61,13 +62,21 @@ const LoginForm: React.FC = () => {
 
     return(
         <>
-        <div>
-            <h1>Login Form</h1>
-            <form onSubmit={handleLoginSubmission}>
-                <input type="email" placeholder="Email" name="loginEmail" />
-                <input type="password" placeholder="Password" name="loginPassword" />
-                {errorMessage !== "" && <ErrorMessage message={errorMessage}/> }
-                <button type="submit">Login</button>
+        <div className="lgnComponentLocation">
+            <h1 className="welcomeMessage">Welcome to Busybee</h1>
+            <form onSubmit={handleLoginSubmission} className="center">
+                <p className="errorMSG">{errorMessage !== "" && <ErrorMessage message={errorMessage}/> }</p>
+                <p><label className="labelEmail">Email</label></p>
+                <input type="email" placeholder="Email" name="loginEmail" className="loginInput"/>
+
+                <div>
+                    <p><label className="labelPassword">Password</label></p>
+                    <input type="password" placeholder="Password" name="loginPassword" className="loginInput"/>
+                    
+                    <p className='forgotPasword'><a onClick={() => navigate('')}>Forgot Password?</a></p>
+                </div>
+
+                <button type="submit" className="button">Login</button>
             </form>
         </div>
         </>
