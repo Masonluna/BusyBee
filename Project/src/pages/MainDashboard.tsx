@@ -113,8 +113,8 @@ const HomePage: React.FC = () => {
 
             </header>
             <DashboardLabel/>
-            <EasyNav />
-            { renderJobs && <JobsQuickView jobs={jobs} groups={groups} /> }
+            <EasyNav jobs={jobs} groups={groups} />
+            { renderJobs && <JobsQuickView jobs={jobs} groups={groups} statusMap={statusMap} /> }
             <Footer></Footer>
         </div>
     )
