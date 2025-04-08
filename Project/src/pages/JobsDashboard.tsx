@@ -1,9 +1,15 @@
 import {useEffect, useState} from 'react';
 import { getUserWithAuthenticationCheck } from '../service/supabaseService';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../utils/types';
+import { User, Job, GroupToJobsDto } from '../utils/types';
 
-const JobsDashboard: React.FC = () => {
+
+type JobsDashboardProps = {
+    groupsToJobs: GroupToJobsDto[],
+    independentJobs: Job[]
+}
+
+const JobsDashboard: React.FC<JobsDashboardProps> = ({groupsToJobs, independentJobs}) => {
     const navigate = useNavigate();
 
     const [user, setUser] = useState<User | null>(null);
@@ -23,10 +29,13 @@ const JobsDashboard: React.FC = () => {
     },[navigate]);
 
 
+
+
     return (
         <>
         <h1>Your Jobs</h1>
 
+        
 
         {/*Just an example here of how to conditionally use the user fields*/}
         {user && <h2>Lets get you hired {user.first_name}</h2>}

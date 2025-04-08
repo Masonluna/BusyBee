@@ -13,8 +13,12 @@ const LandingPage: React.FC = () => {
             if (!potentialUser){
                 console.log("Not authenticated.");
                 navigate("/login");
+                return;
             }
-            navigate("/dashboard");
+            else{
+                navigate("/dashboard");
+                return;
+            }
         };
         checkAuthStatus();
     }, [navigate]);

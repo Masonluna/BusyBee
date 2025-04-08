@@ -3,13 +3,13 @@ import { useNavigate} from 'react-router-dom';
 import EasyNav from '../components/EasyNav';
 import Footer from '../components/Footer';
 import ErrorMessage from '../components/ErrorMessage';
-import type { User, Job, Group, GroupJob } from '../utils/types';
+import type { User, Job, Group, GroupJob, GroupToJobsDto } from '../utils/types';
 import JobsQuickView from '../components/JobsQuickView';
 import image from '../assets/Busybee-logo.png';
 import '../styles/header.css';
 import profile from '../assets/PFP.png';
 import DashboardLabel from '../components/DashboardLabel';
-import { getUserWithAuthenticationCheck, getStatusMap, getJobs, getGroups, getGroupJobs } from '../service/supabaseService';
+import { getUserWithAuthenticationCheck, getStatusMap, getJobs, getGroups, getGroupJobsByGroupIds } from '../service/supabaseService';
 
 
 
@@ -58,9 +58,10 @@ const HomePage: React.FC = () => {
 
     //this hook runs onMount and when the user.user_id changes
     useEffect(() => {
+        setErrorMessage("");
         const fetchUsersData = async (userId: string) => {
             const potentialJobs = await getJobs(userId);
-            if (potentialJobs){
+            if (!potentialJobs){
                 console.log("Error fetching jobs");
                 setErrorMessage("There was an error retrieving your jobs, please refresh. If the problem persists, contact us.");
             }
@@ -71,11 +72,14 @@ const HomePage: React.FC = () => {
             if (!potentialGroups){
                 console.log("Error fetching groups");
                 setErrorMessage("There was an error retrieving your groups, please refresh. If the problem persists, contact us.");
+                //we terminate the process here because if they have no groups, then they have no group_jobs
+                return;
             }
             const actualGroups = potentialGroups;
             setGroups(actualGroups);
 
-            const potentialGroupJobs = await getGroupJobs(userId);
+            const groupIds: number[] = actualGroups.map(group => group.group_id);
+            const potentialGroupJobs = await getGroupJobsByGroupIds(groupIds);
             if (!potentialGroupJobs){
                 console.log("Error fetching group jobs");
                 setErrorMessage("There was an error retrieving your group-job associations, please refresh. If the problem persists, contact us.");
@@ -93,6 +97,14 @@ const HomePage: React.FC = () => {
             fetchUsersData(user.user_id);
         }
     }, [user]);
+
+
+    useEffect(() => {
+        //now build dtos using these
+        if (jobs && groups && groupJobs){
+            const groupsToJobs: GroupToJobsDto[] = compileGroupsToJobs();
+        }
+    }, [jobs, groups, groupJobs]);
 
     
     
@@ -122,10 +134,6 @@ const HomePage: React.FC = () => {
             <EasyNav jobs={jobs} groups={groups} />
             { jobs && <JobsQuickView jobs={jobs}  statusMap={statusMap} /> }
 
-            {/*just for testing*/}
-            { groupJobs && groupJobs.map(groupJob => (
-                <p key={groupJob.group_job_id}>GroupId: {groupJob.group_id}, JobId: {groupJob.job_id}</p>
-            ))}
             <Footer></Footer>
         </div>
     )

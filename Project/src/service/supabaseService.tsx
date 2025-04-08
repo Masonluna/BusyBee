@@ -130,9 +130,9 @@ export async function getGroups(userId: string) {
     return null;
 }
 
-export async function getGroupJobs(userId: string){
+export async function getGroupJobsByGroupIds(groupIds: number[]){
     try{
-        const { data: groupJobsData, error: groupJobsError } = await supabase.from('group_jobs').select("*").eq("user_id", userId);
+        const { data: groupJobsData, error: groupJobsError } = await supabase.from('group_jobs').select("*").in("group_id", groupIds);
         if (groupJobsError){
             console.log("Error getting users group jobs data: ", groupJobsError);
         }

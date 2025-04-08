@@ -42,3 +42,8 @@ export type GroupJob = {
     group_id: number,
     job_id: number
 }
+
+export type GroupToJobsDto = {
+    group_name: string,
+    jobs: Job[]
+}
