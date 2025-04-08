@@ -1,6 +1,7 @@
 import '../styles/header.css';
 import type {User} from '../pages/HomePage';
 
+
 type WelcomeMessageProps = {
     authUser: User;
 }

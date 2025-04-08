@@ -1,14 +1,15 @@
 import LoginForm from '../components/LoginForm';
 import { useNavigate } from 'react-router-dom';
+import image from '../assets/Busybee-logo.png';
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
 
     return (
         <div>
-            <h1>Login</h1>
+            <img src={image} alt='yellow bee' className="imgSize"></img>
             <LoginForm />
-            <p>Dont have an account? <a onClick={() => navigate('/signup')}>Sign Up</a> instead</p>
+            <p className="signUpCTA">Dont have an account? <a onClick={() => navigate('/signup')}>Sign Up</a> instead</p>
         </div>
     )
 }
