@@ -3,13 +3,14 @@ import { useNavigate} from 'react-router-dom';
 import EasyNav from '../components/EasyNav';
 import Footer from '../components/Footer';
 import ErrorMessage from '../components/ErrorMessage';
-import type { User, Job, Group, GroupJob, GroupToJobsDto } from '../utils/types';
+import type { User, Job, JobDto, Group, GroupJob, GroupToJobsDto } from '../utils/types';
 import JobsQuickView from '../components/JobsQuickView';
 import image from '../assets/Busybee-logo.png';
 import '../styles/header.css';
 import profile from '../assets/PFP.png';
 import DashboardLabel from '../components/DashboardLabel';
-import { getUserWithAuthenticationCheck, getStatusMap, getJobs, getGroups, getGroupJobsByGroupIds } from '../service/supabaseService';
+import { getUserWithAuthenticationCheck, getJobs, getGroups, getGroupJobsByGroupIds } from '../service/supabaseService';
+import { compileJobDtos, compileGroupToJobsList, compileIndependentJobs } from '../service/objectConversionService';
 
 
 
@@ -21,10 +22,11 @@ const HomePage: React.FC = () => {
     //homepage state variables
     const [user, setUser] = useState<User | null>(null);
     const [errorMessage, setErrorMessage] = useState<string>("");
-    const [jobs, setJobs] = useState<Job[] | null>(null);
+    const [jobs, setJobs] = useState<JobDto[] | null>(null);
     const [groups, setGroups] = useState<Group[] | null>(null);
     const [groupJobs, setGroupJobs] = useState<GroupJob[] | null>(null);
-    const [statusMap, setStatusMap] = useState({});
+    const [independentJobs, setIndependentJobs] = useState<JobDto[] | null>(null);
+    const [groupsToJobsList, setGroupsToJobsList] = useState<GroupToJobsDto[] | null>(null);
     
 
     //this hook runs onMount, checks the authentication, and sets the user state variable
@@ -43,30 +45,25 @@ const HomePage: React.FC = () => {
     },[navigate]);
 
 
-    useEffect(() => {
-        const initStatMap = async () => {
-            const potentialStatusMap: {[key: number] : string} | null = await getStatusMap();
-            if (!potentialStatusMap) {
-                setErrorMessage('Error fetching statuses, please refresh. If the problem persists, contact us.');
-                return;
-            }
-            const actualStatusMap: {[key: number] : string} = potentialStatusMap;
-            setStatusMap(actualStatusMap);
-        }
-        initStatMap();
-    }, []);
 
     //this hook runs onMount and when the user.user_id changes
     useEffect(() => {
         setErrorMessage("");
         const fetchUsersData = async (userId: string) => {
-            const potentialJobs = await getJobs(userId);
+            const potentialJobs: Job[] | null = await getJobs(userId);
             if (!potentialJobs){
                 console.log("Error fetching jobs");
                 setErrorMessage("There was an error retrieving your jobs, please refresh. If the problem persists, contact us.");
             }
-            const actualJobs = potentialJobs;
-            setJobs(actualJobs);
+            else{
+                const actualJobs: Job[] = potentialJobs;
+                const jobDtos: JobDto[] | null = await compileJobDtos(actualJobs);
+                if (!jobDtos){
+                    console.log("Error compiling job dtos");
+                }
+                setJobs(jobDtos);
+            }
+
 
             const potentialGroups = await getGroups(userId);
             if (!potentialGroups){
@@ -86,8 +83,12 @@ const HomePage: React.FC = () => {
             }
             const actualGroupJobs = potentialGroupJobs;
             setGroupJobs(actualGroupJobs);
-            //at this point, the state is loaded with the users jobs, groups, and group_jobs
-            //now we can use them to process stats, create dtos for sub dashboard pages, and for the quickViews
+            
+            if ( jobs && groupJobs){
+                const independentJobs: JobDto[] = compileIndependentJobs(jobs, groupJobs);
+                setIndependentJobs(independentJobs);
+            }
+            //here we have all the data processes and loaded into state
         }
             
         if (!user){
@@ -102,7 +103,8 @@ const HomePage: React.FC = () => {
     useEffect(() => {
         //now build dtos using these
         if (jobs && groups && groupJobs){
-            const groupsToJobs: GroupToJobsDto[] = compileGroupsToJobs();
+            const groupsToJobs: GroupToJobsDto[] = compileGroupToJobsList(groups, jobs, groupJobs);
+            setGroupsToJobsList(groupsToJobs);
         }
     }, [jobs, groups, groupJobs]);
 
@@ -131,8 +133,8 @@ const HomePage: React.FC = () => {
 
             </header>
             <DashboardLabel/>
-            <EasyNav jobs={jobs} groups={groups} />
-            { jobs && <JobsQuickView jobs={jobs}  statusMap={statusMap} /> }
+            <EasyNav groups={groups} independentJobs={independentJobs} groupToJobsList={groupsToJobsList} />
+            { jobs && <JobsQuickView  jobs={jobs} /> }
 
             <Footer></Footer>
         </div>

@@ -23,6 +23,22 @@ export type Job = {
     notes: string,
     user_id: string
 }
+export type JobDto = {
+    job_id: number,
+    company_name: string,
+    job_title: string,
+    remote: boolean,
+    job_city: string,
+    job_state: string,
+    job_country: string,
+    date_posted: string,
+    date_applied: string,
+    platform: string,
+    estimated_annual_salary: number,
+    status_name: string, //status name is here, instead of the ID
+    notes: string,
+    user_id: string
+}
 
 export type Group = {
     group_id: number,
@@ -30,6 +46,10 @@ export type Group = {
     group_start_date: string,
     group_end_datee: string,
     user_id: number
+}
+export type GroupDto = {
+    group_id: number,
+    group_name: string
 }
 
 export type Status = {
@@ -43,7 +63,8 @@ export type GroupJob = {
     job_id: number
 }
 
+
 export type GroupToJobsDto = {
-    group_name: string,
-    jobs: Job[]
+    groupDto: GroupDto,
+    jobs: JobDto[]
 }

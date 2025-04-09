@@ -1,12 +1,11 @@
-import type { Job } from '../utils/types';
+import type { JobDto } from '../utils/types';
 
 
 type JobsQuickViewProps = {
-    jobs: Job[] | null;
-    statusMap: {[key: number] : string}
+    jobs: JobDto[] | null;
 }
 
-const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs, statusMap }) => {
+const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs}) => {
 
 
     return (
@@ -15,7 +14,7 @@ const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs, statusMap }) => {
             <ol>
                 { jobs && jobs.map(job => (
                     <li key={job.job_id}>
-                        {job.company_name}  {job.job_title}  ({statusMap[job.status_id]})
+                        {job.company_name}  {job.job_title}  ({job.status_name})
                     </li>
                 ))}    
             </ol>  
