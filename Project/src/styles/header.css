@@ -3,11 +3,11 @@
     display: flex;
     justify-content: space-between; 
     align-items: baseline; 
-    padding: 20px 20px 20px 20px;
-    border-bottom: 6px solid black; 
+    padding: 20px 20px 10px 20px;
+    border-bottom: 3px solid black; 
 }
 .imgSizeHP{
-    width: 100px; 
+    width: 80px; 
     height: auto;
     vertical-align: middle; 
     display: inline-block;
@@ -19,7 +19,7 @@
 }
 
 .profile{
-    width: 80px; 
+    width: 60px; 
     height: auto;
 }
 
@@ -31,7 +31,7 @@
 .dashboard-label{
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 50px;
 }
 
 @media (max-width: 768px) {
@@ -46,6 +46,7 @@
         height: 60px;
     }
     .dashboard-label{
-        font-size: 1rem; 
+        font-size: 1rem;
+        margin-left: 25px;
     }
 }

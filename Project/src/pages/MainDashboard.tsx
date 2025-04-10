@@ -5,11 +5,10 @@ import Footer from '../components/Footer';
 import ErrorMessage from '../components/ErrorMessage';
 import type { User, Job, Group } from '../utils/types';
 import JobsQuickView from '../components/JobsQuickView';
-import image from '../assets/Busybee-logo.png';
 import '../styles/header.css';
-import profile from '../assets/PFP.png';
 import DashboardLabel from '../components/DashboardLabel';import { getUserWithAuthenticationCheck, getStatusMap, getJobs, getGroups } from '../utils/supabaseService';
-
+import Header from '../components/Header';
+import '../styles/quickview.css';
 
 
 
@@ -89,32 +88,21 @@ const HomePage: React.FC = () => {
         }
     }, [user.user_id]);
 
-    
-    
-    
-    
 
-    //only one return element (div)
     return (
         <div>
             { errorMessage !== "" && <ErrorMessage message={errorMessage} /> }
             
-            <header className="header">
-                
-                <div className='left-container'>
-                  <img src={image} alt='yellow bee' className="imgSizeHP"></img>
-            
-                    <span>
-                        { (user.first_name!=="" && user.date_created === user.last_accessed) ? <h1 className="welcomeText">Welcome to Busybee {user.first_name}</h1> : <h1 className="welcomeText">Welcome back {user.first_name}</h1>}
-                    </span>
-                </div>
-
-                <img src={profile} alt='profile picture icon' className="profile"></img>
-
-            </header>
+            <Header user={user}/>
             <DashboardLabel/>
+            
+            
+            <div className="main-container">
+                
             <EasyNav jobs={jobs} groups={groups} />
             { renderJobs && <JobsQuickView jobs={jobs} groups={groups} statusMap={statusMap} /> }
+            </div>
+            
             <Footer></Footer>
         </div>
     )

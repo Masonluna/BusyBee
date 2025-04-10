@@ -1,0 +1,79 @@
+.plus-sign-size{
+    width: 20px;
+    height: auto;
+}
+
+.jobs-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    gap: 16px; 
+    margin-left: 30px;
+}
+
+.add-job-CTA {
+    width: 100%;
+}
+
+.add-job-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.jobs-list{
+    margin: 10px;
+    padding: 10px;
+    background-color: transparent; 
+    border: 2px solid #ffd679;    
+    border-radius: 30px;
+    padding: 5px 20px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    list-style: none;
+}
+.jobs-list-container {
+    max-height: 200px; /* adjust to your preferred height */
+    overflow-y: auto;
+    border: 1px solid #ccc; /* optional, just for visual box */
+    padding: 8px;
+    border-radius: 8px;
+    width: 100%; /* or set a fixed width if needed */
+}
+
+@media (max-width: 768px) {
+    .plus-sign-size{
+        width: 20px;
+        height: auto;
+    }
+    
+    .jobs-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+        gap: 16px; 
+    }
+    
+    .add-job-CTA {
+        width: 100%; 
+    }
+    
+    .add-job-content {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .jobs-list{
+        margin: 10px;
+        padding: 10px;
+        background-color: transparent; 
+        border: 2px solid #ffd679;    
+        border-radius: 30px;
+        padding: 5px 20px;
+        margin-left: 40px;
+        margin-bottom: 20px;
+        list-style: none;
+    }
+    
+}
