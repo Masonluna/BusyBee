@@ -97,7 +97,7 @@ const HomePage: React.FC = () => {
         else{
             fetchUsersData(user.user_id);
         }
-    }, [user]);
+    }, [user, jobs, groupJobs]);
 
 
     useEffect(() => {
@@ -108,10 +108,6 @@ const HomePage: React.FC = () => {
         }
     }, [jobs, groups, groupJobs]);
 
-    
-    
-    
-    
 
     //only one return element (div)
     return (

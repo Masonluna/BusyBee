@@ -1,0 +1,62 @@
+
+.jobDashboardContainer{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.createButton{
+    background-color: green;
+    color: white;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid green;
+}
+.createButton:hover{
+    background-color: #00c000;
+    cursor: pointer;
+}
+
+.groupBar{
+    display: flex;
+    list-style: none;
+}
+
+.selectedGroup{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    width: 100px;
+    height: 50px;
+}
+.unselectedGroup{
+    background-color: white;
+    color: black;
+    padding: 10px;
+    width: 100px;
+    height: 50px;
+}
+.selectedGroup:hover, .unselectedGroup:hover{
+    cursor: pointer;
+    border: 1px solid gray;
+}
+
+.jobListContainer{
+    width: 90%;
+}
+
+.jobList{
+    list-style: none;
+    width: 100%;
+}
+.jobListing{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    border-bottom: 1px solid yellow;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+

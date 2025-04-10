@@ -2,17 +2,21 @@ import { JobDto } from "../utils/types";
 
 type JobListProps = {
     jobs: JobDto[];
+    jobListTitle: string;
 }
 
-const JobList: React.FC<JobListProps> = ({jobs}) => {
+const JobList: React.FC<JobListProps> = ({jobs, jobListTitle}) => {
 
 
     return <>
-        <div>
-            <ul>
+        <div className="jobListContainer">
+            <h2>{jobListTitle}</h2>
+            <ul className='jobList'>
                 {jobs && jobs.map(job => (
-                    <li key={job.job_id}>
-                        {job.company_name} - {job.status_name}
+                    <li key={job.job_id}
+                        className='jobListing'
+                    >
+                        <p>{job.company_name}</p><p>{job.job_title}</p><p>{job.status_name}</p>
                     </li>
                 ))}
             </ul>
