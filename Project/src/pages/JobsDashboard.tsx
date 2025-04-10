@@ -2,8 +2,8 @@ import {useEffect, useState} from 'react';
 import { getUserWithAuthenticationCheck } from '../service/supabaseService';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { User, GroupToJobsDto, JobDto } from '../utils/types';
-import JobList from '../components/JobList';
-import CreateJobForm from '../components/CreateJobForm';
+import JobList from '../components/jobDash/JobList';
+import CreateJobForm from '../components/jobDash/CreateJobForm';
 import '../styles/jobsdashboard.css';
 
 
