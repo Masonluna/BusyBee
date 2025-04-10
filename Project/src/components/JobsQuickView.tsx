@@ -1,14 +1,14 @@
 import type { Job, Group } from '../utils/types';
 import '../styles/jobs-quickview.css';
 import plusSign from '../assets/Busybee-plus-02.png';
+import type { JobDto } from '../utils/types';
+
 
 type JobsQuickViewProps = {
-    jobs: Job[] | null;
-    groups: Group[] | null;
-    statusMap: {[key: number] : string}
+    jobs: JobDto[] | null;
 }
 
-const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs, groups, statusMap }) => {
+const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs}) => {
 
 
     return (
@@ -43,6 +43,15 @@ const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs, groups, statusMap }
                     </li>
                 ))}
             </ol>  
+        <h3>Your Jobs</h3>
+            <ol>
+                { jobs && jobs.map(job => (
+                    <li key={job.job_id}>
+                        {job.company_name}  {job.job_title}  ({job.status_name})
+                    </li>
+                ))}    
+            </ol>  
+         
         </>
     )
 }
