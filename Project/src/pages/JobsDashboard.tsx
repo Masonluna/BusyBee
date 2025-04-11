@@ -11,10 +11,10 @@ import '../styles/jobsdashboard.css';
 const JobsDashboard: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const independentJobs: JobDto[] = location.state?.independentJobs;
+    const indJobs: JobDto[] = location.state?.independentJobs;
     const groupToJobsList: GroupToJobsDto[] = location.state?.groupToJobsList;
     
-
+    const [independentJobs, setIndependentJobs] = useState<JobDto[] | null>(null);
     const [selectedGroupIndex, setSelectedGroupIndex] = useState<number | null>(null);
     const [user, setUser] = useState<User | null>(null);
     const [creatingJob, setCreatingJob] = useState<boolean>(false);
@@ -86,7 +86,7 @@ const JobsDashboard: React.FC = () => {
 
             {creatingJob && (
                 <>
-                    <CreateJobForm setCreatingJob={setCreatingJob} />
+                    {user && <CreateJobForm setCreatingJob={setCreatingJob} userId={user.user_id} independentJobs={independentJobs} setIndependentJobs={setIndependentJobs} />}
                 </>
             )}
             

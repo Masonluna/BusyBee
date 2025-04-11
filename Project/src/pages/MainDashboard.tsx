@@ -85,10 +85,11 @@ const HomePage: React.FC = () => {
             setGroupJobs(actualGroupJobs);
             
             if ( jobs && groupJobs){
-                const independentJobs: JobDto[] = compileIndependentJobs(jobs, groupJobs);
-                setIndependentJobs(independentJobs);
+                const actualIndependentJobs: JobDto[] = compileIndependentJobs(jobs, groupJobs);
+                setIndependentJobs(actualIndependentJobs);
             }
             //here we have all the data processes and loaded into state
+            //can use it to process stats
         }
             
         if (!user){
@@ -97,7 +98,7 @@ const HomePage: React.FC = () => {
         else{
             fetchUsersData(user.user_id);
         }
-    }, [user, jobs, groupJobs]);
+    }, [jobs, groupJobs]);
 
 
     useEffect(() => {

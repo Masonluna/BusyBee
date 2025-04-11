@@ -1,25 +1,18 @@
 import { useState, SetStateAction, ChangeEvent } from "react";
+import { JobDto, JobInsertDto, JobFormData } from "../../utils/types";
+import { createJob } from '../../service/supabaseService';
+import { compileJobInsertDto } from "../../service/objectConversionService";
 
 type CreateJobFormProps = {
   setCreatingJob: React.Dispatch<SetStateAction<boolean>>;
+  userId: string;
+  independentJobs: JobDto[] | null;
+  setIndependentJobs: React.Dispatch<SetStateAction<JobDto[] | null>>;
 };
 
-type JobFormData = {
-  companyNameInput: string;
-  jobTitleInput: string;
-  remoteInput: string;
-  jobCityInput: string;
-  jobStateInput: string;
-  jobCountryInput: string;
-  datePostedInput: string;
-  dateAppliedInput: string;
-  platformInput: string;
-  estimatedSalaryInput: number | undefined;
-  notesInput: string;
-  statusInput: string;
-};
 
-const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob }) => {
+
+const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob, userId, independentJobs, setIndependentJobs }) => {
   const [jobData, setJobData] = useState<JobFormData>({
     companyNameInput: "",
     jobTitleInput: "",
@@ -34,6 +27,7 @@ const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob }) => {
     notesInput: "",
     statusInput: "applied",
   });
+  
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -45,12 +39,30 @@ const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob }) => {
     }));
   };
 
-  const handleNewJobSubmission = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleNewJobSubmission = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    console.log("Submitting new job:", jobData);
+    console.log("Submitting new job: ", jobData);
     // call supabaseService after validating input to have the job entry created and receive the new job
     // then we need to update our states and our dto lists to show the new job
+    
+    const jobInsertDto: JobInsertDto = compileJobInsertDto(jobData, userId);
+    const newJob: JobDto | null = await createJob(jobInsertDto);
+    if(!newJob){
+        console.log("Error getting new job while creating");
+    }
+    else{
+        //ADD THIS NEW JOB TO THE STATE OF EVERYTHING ELSE
+        console.log(`new job = ${newJob.company_name}`);
+        if(independentJobs){
+            independentJobs.push(newJob);
+            setIndependentJobs(independentJobs);
+        }
+        
+    }
+    
+
+
 
     // Reset the form after submission if needed
     setJobData({

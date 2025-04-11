@@ -1,6 +1,6 @@
 import supabase from '../utils/supabase';
-import {User, Job, Group, GroupJob} from '../utils/types';
-
+import {User, Job, Group, GroupJob, JobInsertDto, JobDto} from '../utils/types';
+import { compileJobDtos } from './objectConversionService';
 
 
 
@@ -148,4 +148,28 @@ export async function getGroupJobsByGroupIds(groupIds: number[]){
     }
     return null;
 }
+
+export async function createJob(jobInsertDto: JobInsertDto) {
+    try {
+      const { data, error } = await supabase
+        .from('jobs') 
+        .insert([jobInsertDto])
+        .select();
+  
+      if (error) {
+        console.error("Error creating job:", error);
+      }
+  
+      if (data && data.length > 0) {
+        const job: Job = data[0] as Job;
+        const jobDtos: JobDto[] | null = await compileJobDtos([job]);
+        if (jobDtos && jobDtos.length > 0){
+            return jobDtos[0];
+        }
+      } 
+    } catch (error: any) {
+      console.error("An unexpected error occurred while creating the job:", error);
+    }
+    return null;
+  }
 
