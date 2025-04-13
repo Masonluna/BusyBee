@@ -94,6 +94,7 @@ const HomePage: React.FC = () => {
 
             if ( jobs && user ) {
                 const userStats = calculateUserStats(jobs, user);
+                console.log('userStats: ', userStats);
                 setStats(userStats);
             }
         }
@@ -136,7 +137,7 @@ const HomePage: React.FC = () => {
 
             </header>
             <DashboardLabel/>
-            <EasyNav groups={groups} independentJobs={independentJobs} groupToJobsList={groupsToJobsList} />
+            <EasyNav groups={groups} independentJobs={independentJobs} groupToJobsList={groupsToJobsList} stats={stats} />
             { jobs && <JobsQuickView  jobs={jobs} /> }
             { stats && <StatsQuickView stats={stats} /> }
             <Footer></Footer>
