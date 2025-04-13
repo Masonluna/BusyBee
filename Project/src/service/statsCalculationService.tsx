@@ -7,13 +7,15 @@ export function calculateUserStats(jobs: JobDto[], user: User) {
         const yearMap: Map<number, number[]> = new Map();
         
         for (const job of jobs) {
-            const year = parseInt(job.date_applied.substring(0, 4));
-            const month = parseInt(job.date_applied.substring(5, 7)) - 1;
-            if (!yearMap.has(year)) {
-                yearMap.set(year, new Array(12).fill(0));
+            if (job.date_applied){
+                const year = parseInt(job.date_applied.substring(0, 4));
+                const month = parseInt(job.date_applied.substring(5, 7)) - 1;
+                if (!yearMap.has(year)) {
+                    yearMap.set(year, new Array(12).fill(0));
+                }
+                
+                yearMap.get(year)![month]++;
             }
-            
-            yearMap.get(year)![month]++;
         }
 
         return yearMap;
