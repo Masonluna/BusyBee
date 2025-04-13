@@ -3,7 +3,7 @@ import { useNavigate} from 'react-router-dom';
 import EasyNav from '../components/EasyNav';
 import Footer from '../components/Footer';
 import ErrorMessage from '../components/ErrorMessage';
-import type { User, Job, JobDto, Group, GroupJob, GroupToJobsDto } from '../utils/types';
+import { type User, type Job, type JobDto, type Group, type GroupJob, type GroupToJobsDto, UserStats } from '../utils/types';
 import JobsQuickView from '../components/JobsQuickView';
 import image from '../assets/Busybee-logo.png';
 import '../styles/header.css';
@@ -11,6 +11,8 @@ import profile from '../assets/PFP.png';
 import DashboardLabel from '../components/DashboardLabel';
 import { getUserWithAuthenticationCheck, getJobs, getGroups, getGroupJobsByGroupIds } from '../service/supabaseService';
 import { compileJobDtos, compileGroupToJobsList, compileIndependentJobs } from '../service/objectConversionService';
+import StatsQuickView from '../components/StatsQuickView';
+import { calculateUserStats } from '../service/statsCalculationService';
 
 
 
@@ -27,7 +29,7 @@ const HomePage: React.FC = () => {
     const [groupJobs, setGroupJobs] = useState<GroupJob[] | null>(null);
     const [independentJobs, setIndependentJobs] = useState<JobDto[] | null>(null);
     const [groupsToJobsList, setGroupsToJobsList] = useState<GroupToJobsDto[] | null>(null);
-    
+    const [stats, setStats] = useState<UserStats | null>(null)
 
     //this hook runs onMount, checks the authentication, and sets the user state variable
     useEffect(() => {
@@ -89,6 +91,11 @@ const HomePage: React.FC = () => {
                 setIndependentJobs(independentJobs);
             }
             //here we have all the data processes and loaded into state
+
+            if ( jobs && user ) {
+                const userStats = calculateUserStats(jobs, user);
+                setStats(userStats);
+            }
         }
             
         if (!user){
@@ -131,7 +138,7 @@ const HomePage: React.FC = () => {
             <DashboardLabel/>
             <EasyNav groups={groups} independentJobs={independentJobs} groupToJobsList={groupsToJobsList} />
             { jobs && <JobsQuickView  jobs={jobs} /> }
-
+            { stats && <StatsQuickView stats={stats} /> }
             <Footer></Footer>
         </div>
     )

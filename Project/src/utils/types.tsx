@@ -4,7 +4,8 @@ export type User = {
     last_name: string,
     email: string,
     date_created: number,
-    last_accessed: number
+    last_accessed: number,
+    monthly_goal: number
 }
 
 export type Job = {
@@ -15,8 +16,8 @@ export type Job = {
     job_city: string,
     job_state: string,
     job_country: string,
-    date_posted: string,
-    date_applied: string,
+    date_posted: string,    //yyyy-mm-dd
+    date_applied: string,   //yyyy-mm-dd
     platform: string,
     estimated_annual_salary: number,
     status_id: number,
@@ -31,8 +32,8 @@ export type JobDto = {
     job_city: string,
     job_state: string,
     job_country: string,
-    date_posted: string,
-    date_applied: string,
+    date_posted: string,    //yyyy-mm-dd
+    date_applied: string,   //yyyy-mm-dd
     platform: string,
     estimated_annual_salary: number,
     status_name: string, //status name is here, instead of the ID
@@ -67,4 +68,11 @@ export type GroupJob = {
 export type GroupToJobsDto = {
     groupDto: GroupDto,
     jobs: JobDto[]
+}
+
+export type UserStats = {
+    totalApps: number,
+    appsPerMonth: number,
+    appsThisMonth: number,
+    appsNeededForGoal: number
 }
