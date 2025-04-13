@@ -1,4 +1,4 @@
-import { Job, JobDto, Group, GroupJob, GroupToJobsDto } from '../utils/types';
+import { Job, JobDto, JobInsertDto, Group, GroupJob, GroupToJobsDto, JobFormData } from '../utils/types';
 import { getStatusMap } from './supabaseService';
 
 async function fetchStatusMap(){
@@ -11,6 +11,68 @@ async function fetchStatusMap(){
     return actualStatusMap;
 }
 
+export function compileJobInsertDto(jobData: JobFormData, userId: string){
+    let statusId: number = 1;
+        switch (jobData.statusInput){
+            case 'applied': 
+                statusId = 1;
+                break;
+            case 'assessment':
+                statusId = 2;
+                break;
+            case 'interview':
+                statusId = 3;
+                break;
+            case 'offer':
+                statusId = 4;
+                break;
+            case 'counter offer':
+                statusId = 5;
+                break;
+            case 'rejected':
+                statusId = 6;
+                break;
+            case 'no response':
+                statusId = 7;
+                break;
+            case 'offer accepted':
+                statusId = 8;
+                break;
+        }
+        let isRemote = false;
+        switch (jobData.remoteInput){
+            case 'remote':
+                isRemote = true;
+                break;
+            case 'in person':
+                isRemote = false;
+                break;
+        }
+        const jobCity = jobData.jobCityInput !== "" ? jobData.jobCityInput : null;
+        const jobState = jobData.jobStateInput !== "" ? jobData.jobStateInput : null;
+        const jobCountry = jobData.jobCountryInput !== "" ? jobData.jobCountryInput : null;
+        const datePosted = jobData.datePostedInput !== "" ? jobData.datePostedInput : null;
+        const dateApplied = jobData.dateAppliedInput !== "" ? jobData.dateAppliedInput : null;
+        const platform = jobData.platformInput !== "" ? jobData.platformInput : null;
+        const estAnnualSalary = jobData.estimatedSalaryInput ? jobData.estimatedSalaryInput : null;
+        const notes = jobData.notesInput ? jobData.notesInput : null;
+        const jobInsertDto: JobInsertDto = {
+            company_name: jobData.companyNameInput,
+            job_title: jobData.jobTitleInput,
+            remote: isRemote,
+            job_city: jobCity,
+            job_state: jobState,
+            job_country: jobCountry,
+            date_posted: datePosted,
+            date_applied: dateApplied,
+            platform: platform,
+            estimated_annual_salary: estAnnualSalary,
+            status_id: statusId,
+            notes: notes,
+            user_id: userId
+        }
+        return jobInsertDto;
+}
 
 export async function compileJobDtos(jobs: Job[]){
     const statusMap = await fetchStatusMap();

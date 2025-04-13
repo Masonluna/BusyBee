@@ -13,15 +13,46 @@ export type Job = {
     company_name: string,
     job_title: string,
     remote: boolean,
-    job_city: string,
-    job_state: string,
-    job_country: string,
-    date_posted: string,    //yyyy-mm-dd
-    date_applied: string,   //yyyy-mm-dd
-    platform: string,
-    estimated_annual_salary: number,
+    job_city: string | null,
+    job_state: string | null,
+    job_country: string | null,
+    date_posted: string | null,
+    date_applied: string | null,
+    platform: string | null,
+    estimated_annual_salary: number | null,
     status_id: number,
-    notes: string,
+    notes: string | null,
+    user_id: string
+}
+
+export type JobFormData = {
+    companyNameInput: string;
+    jobTitleInput: string;
+    remoteInput: string;
+    jobCityInput: string;
+    jobStateInput: string;
+    jobCountryInput: string;
+    datePostedInput: string;
+    dateAppliedInput: string;
+    platformInput: string;
+    estimatedSalaryInput: number | undefined;
+    notesInput: string;
+    statusInput: string;
+  };
+
+export type JobInsertDto = {
+    company_name: string,
+    job_title: string,
+    remote: boolean,
+    job_city: string | null,
+    job_state: string | null,
+    job_country: string | null,
+    date_posted: string | null,
+    date_applied: string | null,
+    platform: string | null,
+    estimated_annual_salary: number | null,
+    status_id: number,
+    notes: string | null,
     user_id: string
 }
 export type JobDto = {
@@ -29,15 +60,15 @@ export type JobDto = {
     company_name: string,
     job_title: string,
     remote: boolean,
-    job_city: string,
-    job_state: string,
-    job_country: string,
-    date_posted: string,    //yyyy-mm-dd
-    date_applied: string,   //yyyy-mm-dd
-    platform: string,
-    estimated_annual_salary: number,
+    job_city: string | null,
+    job_state: string | null,
+    job_country: string | null,
+    date_posted: string | null,
+    date_applied: string | null,
+    platform: string | null,
+    estimated_annual_salary: number | null,
     status_name: string, //status name is here, instead of the ID
-    notes: string,
+    notes: string | null,
     user_id: string
 }
 
