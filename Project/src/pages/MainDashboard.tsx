@@ -135,7 +135,7 @@ const HomePage: React.FC = () => {
             
             
             <div className="main-container">
-                <EasyNav setSelectedDashboard={setSelectedDashboard}/>
+                <EasyNav selectedDashboard={selectedDashboard} setSelectedDashboard={setSelectedDashboard}/>
                 <div className="dashboard-container">
 
                   {/* Conditionally render the selected dashboard, summary by default. If an option is selected, verify its dependencies are loaded before rendering. */}
