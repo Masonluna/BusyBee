@@ -3,11 +3,10 @@
     display: flex;
     justify-content: space-between; 
     align-items: baseline; 
-    padding: 20px 20px 20px 20px;
-    border-bottom: 6px solid black; 
+    padding: 20px 20px 10px 20px;
 }
 .imgSizeHP{
-    width: 100px; 
+    width: 80px; 
     height: auto;
     vertical-align: middle; 
     display: inline-block;
@@ -19,7 +18,7 @@
 }
 
 .profile{
-    width: 80px; 
+    width: 60px; 
     height: auto;
 }
 
@@ -31,7 +30,12 @@
 .dashboard-label{
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 50px;
+}
+.custom-divider {
+    width: 95%;
+    margin: 15px auto; 
+    border-bottom: 1px solid black; 
 }
 
 @media (max-width: 768px) {
@@ -46,6 +50,12 @@
         height: 60px;
     }
     .dashboard-label{
-        font-size: 1rem; 
+        font-size: 1rem;
+        margin-left: 35px;
+    }
+    .custom-divider {
+        width: 95%;
+        margin: 5px auto; 
+        border-bottom: 1px solid black; 
     }
 }

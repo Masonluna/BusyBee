@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 import EasyNav from '../components/EasyNav';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 import ErrorMessage from '../components/ErrorMessage';
 import { type User, type Job, type JobDto, type Group, type GroupJob, type GroupToJobsDto, UserStats } from '../utils/types';
 import JobsQuickView from '../components/JobsQuickView';
-import image from '../assets/Busybee-logo.png';
-import '../styles/header.css';
-import profile from '../assets/PFP.png';
+import '../styles/jobs-quickview.css';
 import DashboardLabel from '../components/DashboardLabel';
 import { getUserWithAuthenticationCheck, getJobs, getGroups, getGroupJobsByGroupIds } from '../service/supabaseService';
 import { compileJobDtos, compileGroupToJobsList, compileIndependentJobs } from '../service/objectConversionService';
@@ -122,15 +121,14 @@ const HomePage: React.FC = () => {
         <div>
             { errorMessage !== "" && <ErrorMessage message={errorMessage} /> }
             
-            <header className="header">
-                
-                <div className='left-container'>
-                  <img src={image} alt='yellow bee' className="imgSizeHP"></img>
+            {user && <Header user={user}/>}
+            <DashboardLabel/>
             
-                    <span>
-                        { user &&
-                            (user.date_created !== user.last_accessed ? <h1 className="welcomeText">Welcome to Busybee {user.first_name}</h1> : <h1 className="welcomeText">Welcome back {user.first_name}</h1>)}
-                    </span>
+            
+            <div className="main-container">
+                <EasyNav independentJobs={independentJobs} groupToJobsList={groupsToJobsList} groups={groups} />
+                <div className="dashboard-container">
+                { jobs && jobs.length > 0 && <JobsQuickView jobs={jobs} /> }
                 </div>
 
                 <img src={profile} alt='profile picture icon' className="profile"></img>
