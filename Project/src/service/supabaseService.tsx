@@ -1,5 +1,5 @@
 import supabase from '../utils/supabase';
-import {User, Job, Group, GroupJob, JobInsertDto, JobDto} from '../utils/types';
+import {User, Job, Group, GroupJob, JobInsertDto, JobDto, GroupInsertDto} from '../utils/types';
 import { compileJobDtos } from './objectConversionService';
 
 
@@ -167,9 +167,49 @@ export async function createJob(jobInsertDto: JobInsertDto) {
             return jobDtos[0];
         }
       } 
-    } catch (error: any) {
+    } catch (error) {
       console.error("An unexpected error occurred while creating the job:", error);
     }
     return null;
-  }
+}
+
+
+export async function createGroup(groupInsertDto: GroupInsertDto){
+    try{
+        const { data, error } = await supabase
+            .from('groups')
+            .insert([groupInsertDto])
+            .select();
+
+        if (error){
+            console.error("Error creating group: ", error);
+        }
+
+        if (data && data.length > 0){
+            const group: Group = data[0] as Group;
+            return group;
+        }
+    }
+    catch (err){
+        console.log("Error creating group: ", err);
+    }
+    return null;
+}
+
+export async function deleteGroup(groupId: number){
+    try{
+        const { error } = await supabase
+            .from('groups')
+            .delete()
+            .eq('group_id', groupId);
+        if (error){
+            console.log("Error deleting group: ", error);
+        }
+    }
+    catch(err){
+        console.log("Error deleting group:", err);
+    }
+    return null;
+}
+
 
