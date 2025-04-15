@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EasyNav from '../components/EasyNav';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 import ErrorMessage from '../components/ErrorMessage';
 import {
   type User,
@@ -13,9 +14,7 @@ import {
   type UserStats
 } from '../utils/types';
 import JobsQuickView from '../components/JobsQuickView';
-import image from '../assets/Busybee-logo.png';
-import '../styles/header.css';
-import profile from '../assets/PFP.png';
+import '../styles/jobs-quickview.css';
 import DashboardLabel from '../components/DashboardLabel';
 import {
   getUserWithAuthenticationCheck,
@@ -123,37 +122,28 @@ const HomePage: React.FC = () => {
     }
   }, [jobs, groups, groupJobs]);
 
-  return (
-    <div>
-      {errorMessage !== '' && <ErrorMessage message={errorMessage} />}
 
-      <header className="header">
-        <div className="left-container">
-          <img src={image} alt="yellow bee" className="imgSizeHP" />
-          <span>
-            {user &&
-              (user.date_created !== user.last_accessed ? (
-                <h1 className="welcomeText">Welcome to Busybee {user.first_name}</h1>
-              ) : (
-                <h1 className="welcomeText">Welcome back {user.first_name}</h1>
-              ))}
-          </span>
+    //only one return element (div)
+    return (
+        <div>
+            { errorMessage !== "" && <ErrorMessage message={errorMessage} /> }
+            
+            {user && <Header user={user}/>}
+            <DashboardLabel/>
+            
+            
+            <div className="main-container">
+                <EasyNav independentJobs={independentJobs} groupToJobsList={groupsToJobsList} groups={groups} stats={stats}/>
+                <div className="dashboard-container">
+                { jobs && jobs.length > 0 && <JobsQuickView jobs={jobs} /> }
+                { stats && <StatsQuickView stats={stats} /> }
+
+                </div>
+            </div>
+            
+            <Footer></Footer>
         </div>
-        <img src={profile} alt="profile picture icon" className="profile" />
-      </header>
-
-      <DashboardLabel />
-      <EasyNav
-        groups={groups}
-        independentJobs={independentJobs}
-        groupToJobsList={groupsToJobsList}
-        stats={stats}
-      />
-      {jobs && <JobsQuickView jobs={jobs} />}
-      {stats && <StatsQuickView stats={stats} />}
-      <Footer />
-    </div>
-  );
-};
+    )
+}
 
 export default HomePage;

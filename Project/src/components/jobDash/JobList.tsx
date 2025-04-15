@@ -1,4 +1,5 @@
-import { JobDto } from "../utils/types";
+import { JobDto } from  '../../utils/types';
+import '../../styles/jobsdashboard.css'
 
 type JobListProps = {
     jobs: JobDto[];
@@ -10,13 +11,20 @@ const JobList: React.FC<JobListProps> = ({jobs, jobListTitle}) => {
 
     return <>
         <div className="jobListContainer">
-            <h2>{jobListTitle}</h2>
+            <h2 className="job-list-title">{jobListTitle}</h2>
             <ul className='jobList'>
                 {jobs && jobs.map(job => (
                     <li key={job.job_id}
                         className='jobListing'
                     >
-                        <p>{job.company_name}</p><p>{job.job_title}</p><p>{job.status_name}</p>
+                        <div className='jobs-flex-display'>
+                            <div className= 'left-info'>
+                                <span>{job.company_name}</span>
+                                <span>{job.job_title}</span>
+                            </div>
+
+                             <span>{job.status_name}</span>
+                        </div>
                     </li>
                 ))}
             </ul>

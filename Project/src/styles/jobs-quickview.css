@@ -1,0 +1,130 @@
+.plus-sign-size{
+    width: 20px;
+    height: auto;
+}
+
+.jobs-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    gap: 16px; 
+    margin-left: 30px;
+}
+.dashboard-container {
+    flex-grow: 1;
+    padding-right: 70px; 
+}
+
+.add-job-CTA {
+    width: 100%;
+}
+
+.add-job-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.main-container{
+    display: flex;
+}
+
+.jobs-list{
+    margin: 10px;
+    padding: 10px;
+    background-color: white; 
+    border: 2px solid #ffd679;    
+    border-radius: 30px;
+    padding: 5px 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    list-style: none;
+}
+.jobs-list-container {
+    max-height: 140px; 
+    overflow-y:scroll;
+    padding: 8px;
+    border-radius: 8px;
+    width: 100%;
+    background-color: #f4f4f4;
+}
+.jobs-list {
+    padding: 0.5rem 1rem;
+}
+  
+.jobs-flex-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.left-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+  
+.status {
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .main-container{
+        flex-direction: column;
+      }
+    .plus-sign-size{
+        width: 20px;
+        height: auto;
+    }
+    
+    .jobs-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+        gap: 16px; 
+    }
+    
+    .add-job-CTA {
+        width: 100%; 
+    }
+    
+    .add-job-content {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .jobs-list{
+        margin: 10px;
+        padding: 10px;
+        background-color: transparent; 
+        border: 2px solid #ffd679;    
+        border-radius: 30px;
+        padding: 5px 20px;
+        margin-left: 10px;
+        margin-bottom: 20px;
+        list-style: none;
+    }
+    .jobs-list-container {
+        max-height: 140px;
+        overflow-y: scroll;
+        border-radius: 8px;
+        width: calc(100% - 32px);
+        background-color: #f4f4f4;
+        padding: 8px 16px;
+        margin: 0 auto;
+    }
+    .jobs-flex-display {
+        display: flex;
+        align-items: center;
+    }
+    .left-info {
+        display: flex;
+        gap: 30px;
+        padding-right: 30px
+    }
+    .dashboard-container {
+        flex-grow: 1;
+        padding-right: 30px; 
+      }
+    
+}
