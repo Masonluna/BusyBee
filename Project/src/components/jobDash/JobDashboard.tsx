@@ -1,43 +1,26 @@
-import Header from '../components/Header';
 import {useEffect, useState} from 'react';
-import { getUserWithAuthenticationCheck } from '../service/supabaseService';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { User, GroupToJobsDto, JobDto } from '../utils/types';
-import JobList from '../components/jobDash/JobList';
-import CreateJobForm from '../components/jobDash/CreateJobForm';
-import '../styles/jobsdashboard.css';
-import plusSign from '../assets/Busybee-plus-02.png';
-import Footer from '../components/Footer'
+import { User, GroupToJobsDto, JobDto } from '../../utils/types';
+import JobList from './JobList';
+import CreateJobForm from './CreateJobForm';
+import '../../styles/jobsdashboard.css';
+import plusSign from '../../assets/Busybee-plus-02.png';
 
 
+type JobsDashboardProps = {
+    user: User,
+    ungroupedJobs: JobDto[],
+    groupToJobsList: GroupToJobsDto[]
+};
 
-const JobsDashboard: React.FC = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const indJobs: JobDto[] = location.state?.independentJobs;
-    const groupToJobsList: GroupToJobsDto[] = location.state?.groupToJobsList;
-    
+const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, ungroupedJobs, groupToJobsList }) => {
+
     const [independentJobs, setIndependentJobs] = useState<JobDto[] | null>(null);
     const [selectedGroupIndex, setSelectedGroupIndex] = useState<number | null>(null);
-    const [user, setUser] = useState<User | null>(null);
     const [creatingJob, setCreatingJob] = useState<boolean>(false);
     
-    
-
     useEffect(() => {
-        const checkUserAuth = async () => {
-            const potentialUserObj: User | null = await getUserWithAuthenticationCheck();
-            if (!potentialUserObj) {
-                console.log("Could not verify authentication on JobsDashboard, navigating to login");
-                navigate("/");
-                return;
-            }
-            const user: User = potentialUserObj;
-            setUser(user);
-        }
-        checkUserAuth();
-    },[navigate]);
-
+        setIndependentJobs(ungroupedJobs);
+    }, [ungroupedJobs]);
 
     const updateSelectedGroupIndex = (groupId: number) => {
         for (let i = 0; i < groupToJobsList.length; i++){
@@ -48,17 +31,12 @@ const JobsDashboard: React.FC = () => {
         }
     }
 
-
     return (
-
-        <div>
-            {user && <Header user={user}/>}
-            
+        <div> 
             {!creatingJob && (
                 <>
-                    
                     <div>
-                        {user && <h1  className="hired-CTA">Let's get you hired—{user.first_name}!</h1>}
+                        <h1  className="hired-CTA">Let's get you hired!</h1>
                     </div>
                     
                     <div className='your-jobs-container'>
@@ -109,7 +87,6 @@ const JobsDashboard: React.FC = () => {
                     {user && <CreateJobForm setCreatingJob={setCreatingJob} userId={user.user_id} independentJobs={independentJobs} setIndependentJobs={setIndependentJobs} />}
                 </>
             )}
-            <Footer/>
 
         </div>
     );

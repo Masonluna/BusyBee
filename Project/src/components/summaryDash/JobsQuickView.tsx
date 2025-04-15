@@ -1,6 +1,6 @@
-import '../styles/jobs-quickview.css';
-import plusSign from '../assets/Busybee-plus-02.png';
-import type { JobDto } from '../utils/types';
+import '../../styles/jobs-quickview.css';
+import plusSign from '../../assets/Busybee-plus-02.png';
+import type { JobDto } from '../../utils/types';
 
 
 type JobsQuickViewProps = {
