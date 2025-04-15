@@ -126,18 +126,14 @@ const HomePage: React.FC = () => {
             
             
             <div className="main-container">
-                <EasyNav independentJobs={independentJobs} groupToJobsList={groupsToJobsList} groups={groups} />
+                <EasyNav independentJobs={independentJobs} groupToJobsList={groupsToJobsList} groups={groups} stats={stats}/>
                 <div className="dashboard-container">
                 { jobs && jobs.length > 0 && <JobsQuickView jobs={jobs} /> }
+                { stats && <StatsQuickView stats={stats} /> }
+
                 </div>
-
-                <img src={profile} alt='profile picture icon' className="profile"></img>
-
-            </header>
-            <DashboardLabel/>
-            <EasyNav groups={groups} independentJobs={independentJobs} groupToJobsList={groupsToJobsList} stats={stats} />
-            { jobs && <JobsQuickView  jobs={jobs} /> }
-            { stats && <StatsQuickView stats={stats} /> }
+            </div>
+            
             <Footer></Footer>
         </div>
     )
