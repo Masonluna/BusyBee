@@ -1,62 +1,257 @@
 
 .jobDashboardContainer{
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+.hired-CTA{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    font-size: 25px;
+    font-weight: 300;
+}
 .createButton{
-    background-color: green;
-    color: white;
+    background: none;
     padding: 5px;
-    margin: 10px;
-    border-radius: 10px;
-    border: 1px solid green;
+    margin-left: 10px;
+    border-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 .createButton:hover{
-    background-color: #00c000;
     cursor: pointer;
+    border-style: none;
+}
+.groupBar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    list-style: none;
+    width: calc(100% - 32px);
+    margin: 0 auto;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    align-items: flex-start;
+    margin-left: 40px;
+    margin-top: 10px;
 }
 
-.groupBar{
-    display: flex;
-    list-style: none;
+.groupBarScroll {
+    max-height: 140px;
+    overflow-y: auto;
+    background-color: #f4f4f4;
+}
+
+.groups{
+   display: flex;
 }
 
 .selectedGroup{
-    background-color: black;
-    color: white;
-    padding: 10px;
+    background-color: #ffd679;
     width: 100px;
-    height: 50px;
+    height: 60px;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    border-color: transparent;
 }
+
 .unselectedGroup{
-    background-color: white;
-    color: black;
-    padding: 10px;
+    background-color: transparent; 
+    border: 2px solid #ffd679;  
     width: 100px;
-    height: 50px;
+    height: 60px;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
 }
+
 .selectedGroup:hover, .unselectedGroup:hover{
     cursor: pointer;
-    border: 1px solid gray;
+    background: #ffd679;
 }
+
 
 .jobListContainer{
     width: 90%;
 }
-
+.your-jobs-container{
+    display: flex;  
+    margin-bottom: 10px;
+    margin-left: 50px;
+}
 .jobList{
-    list-style: none;
+    max-height: 300px; 
+    overflow-y:scroll;
+    padding: 8px;
+    border-radius: 8px;
     width: 100%;
+    background-color: #f4f4f4;
+    margin-bottom: 20px;
+    margin-left: 55px;
+}
+.your-jobs{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin-right: 10px;
+}
+.job-list-title{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 30px;
+    margin-left: 55px;
 }
 .jobListing{
+    margin: 10px;
+    padding: 10px;
+    background-color: white; 
+    border: 2px solid #ffd679;    
+    border-radius: 30px;
+    padding: 5px 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    list-style: none;
+    justify-content: space-between;
+}
+.select-group-CTA{
+    font-weight: 300;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+.jobs-flex-display {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+  
+.left-info {
     display: flex;
     align-items: center;
-    width: 90%;
-    border-bottom: 1px solid yellow;
-    justify-content: space-evenly;
-    margin: 10px;
+    gap: 16px;
 }
 
+@media (max-width: 768px) {
+    .jobDashboardContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hired-CTA {
+        margin-top: 30px;
+        margin-bottom: 10px;
+        margin-left: 30px;
+        font-size: 20px;
+    }
+    .select-group-CTA{
+        font-weight: 300;
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+
+    .createButton {
+        background: none;
+        padding: 5px;
+        border-style: none;
+        display: flex;
+        gap: 8px;
+        margin-left: 5px;
+    }
+
+    .job-list-title{
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 30px;
+        margin-left: 30px;
+    }
+    .createButton:hover {
+        cursor: pointer;
+    }
+
+    .groupBar {
+        margin-left: 16px;
+    }
+
+    .groups {
+        display: flex;
+    }
+
+    .selectedGroup {
+        background-color: #ffd679;
+        color: black;
+        width: 100px;
+        height: 50px;
+        padding-top: 2px;
+    }
+
+    .unselectedGroup {
+        background-color: transparent; 
+        border: 2px solid #ffd679;  
+        width: 100px;
+        height: 50px;
+        padding-top: 2px;
+    }
+
+    .selectedGroup:hover, .unselectedGroup:hover {
+        cursor: pointer;
+        background: #ffd679;
+    }
+
+    .jobs-flex-display {
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+    }
+      
+    .left-info {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .jobListContainer {
+        width: 90%;
+    }
+
+    .jobList {
+        max-height: 300px; 
+        overflow-y:scroll;
+        padding: 8px;
+        border-radius: 8px;
+        width: 100%;
+        background-color: #f4f4f4;
+        margin: 0 30px 25px 20px; 
+    }
+    .jobListing{
+        margin: 10px;
+        padding: 10px;
+        background-color: white; 
+        border: 2px solid #ffd679;    
+        border-radius: 30px;
+        padding: 5px 20px;
+        margin-bottom: 20px;
+        list-style: none;
+        justify-content: space-between;
+    }
+    .your-jobs{
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        margin-right: 10px;
+    }
+    .your-jobs-container{
+        display: flex;  
+        margin-bottom: 10px;
+        margin-left: 30px;
+    }
+}

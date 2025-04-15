@@ -2,16 +2,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 import EasyNav from '../components/EasyNav';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 import ErrorMessage from '../components/ErrorMessage';
 import type { User, Job, JobDto, Group, GroupJob, GroupToJobsDto } from '../utils/types';
 import JobsQuickView from '../components/JobsQuickView';
-import '../styles/header.css';
-import profile from '../assets/PFP.png';
+import '../styles/jobs-quickview.css';
 import DashboardLabel from '../components/DashboardLabel';
 import { getUserWithAuthenticationCheck, getJobs, getGroups, getGroupJobsByGroupIds } from '../service/supabaseService';
 import { compileJobDtos, compileGroupToJobsList, compileIndependentJobs } from '../service/objectConversionService';
-
-
 
 
 const HomePage: React.FC = () => {
@@ -113,14 +111,15 @@ const HomePage: React.FC = () => {
         <div>
             { errorMessage !== "" && <ErrorMessage message={errorMessage} /> }
             
-            <Header user={user}/>
+            {user && <Header user={user}/>}
             <DashboardLabel/>
             
             
             <div className="main-container">
-                
-            <EasyNav jobs={jobs} groups={groups} />
-            { renderJobs && <JobsQuickView jobs={jobs} groups={groups} statusMap={statusMap} /> }
+                <EasyNav independentJobs={independentJobs} groupToJobsList={groupsToJobsList} groups={groups} />
+                <div className="dashboard-container">
+                { jobs && jobs.length > 0 && <JobsQuickView jobs={jobs} /> }
+                </div>
             </div>
             
             <Footer></Footer>

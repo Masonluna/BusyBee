@@ -21,8 +21,9 @@ const Header: React.FC<HeaderProps> = ({user}) => {
                 </div>
 
                 <img src={profile} alt='profile picture icon' className="profile"></img>
-
+                
             </header>
+            <div className="custom-divider"></div>
         </>
     )
 }

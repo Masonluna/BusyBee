@@ -1,0 +1,245 @@
+.add-new-job-header {
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+
+.job-create-CTA {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    margin: 20px;
+}
+.job-form-container {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.job-form-left {
+    flex: 1;
+    max-width: 300px;
+}
+
+.job-form-right {
+    flex: auto;
+}
+
+.backButton {
+    background-color: #ffd679;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 20px;
+    cursor: pointer;
+    display: block;
+}
+
+.company-name {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+
+.job-title {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+
+.remote-input {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+
+.job-city {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+
+.job-country {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+
+.date-posted {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+
+.date-applied {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+
+.platform-input {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+.job-state{
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+
+.est-salary {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+
+.notes {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+
+.status-input {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+    border: 1px solid black;
+    box-shadow: inset 0 0 0 1px #ffd679;
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: black;
+    background-color: transparent;
+    display: block;
+    margin: 20px;
+}
+
+
+select {
+    border: 1px solid black;
+    box-shadow: inset 0 0 0 1px #ffd679;
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: black;
+    background-color: transparent;
+    display: block;
+    margin: 20px;
+}
+
+.submit-button {
+    background-color: #ffd679;
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 20px;
+    cursor: pointer;
+    display: block;
+}
+.cancel-button{
+    background-color: #ffd679;
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 20px;
+    cursor: pointer;
+    display: block;
+}
+@media (max-width: 768px) {
+    .add-new-job-header,
+    .job-create-CTA,
+    .company-name,
+    .job-title,
+    .remote-input,
+    .job-city,
+    .job-country,
+    .date-posted,
+    .date-applied,
+    .platform-input,
+    .est-salary,
+    .notes,
+    .status-input,
+    .backButton,
+    .submit-button,
+    .job-state {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+    .job-form-container {
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    select {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 12px;
+        font-size: 16px;
+        width: calc(100% - 40px);
+    }
+    .add-new-job-header {
+        margin-bottom: 4px;
+    }
+
+    .job-create-CTA {
+        font-size: 14px;
+    }
+
+    
+    .submit-button {
+        font-size: 14px;
+        padding: 10px 20px;
+        width: auto;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 15px;
+    }
+
+    .backButton{
+        font-size: 14px;
+        width: auto;
+    }
+    form {
+        padding-bottom: 60px;
+    }
+
+    .cancel-button{
+        font-size: 14px;
+        padding: 10px 20px;
+        width: auto;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 15px;
+
+    }
+}

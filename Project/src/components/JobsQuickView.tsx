@@ -1,4 +1,3 @@
-import type { Job, Group } from '../utils/types';
 import '../styles/jobs-quickview.css';
 import plusSign from '../assets/Busybee-plus-02.png';
 import type { JobDto } from '../utils/types';
@@ -27,31 +26,19 @@ const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs}) => {
                     <ol>
                         {jobs && jobs.map(job => (
                             <li key={job.job_id} className="jobs-list">
-                                {job.company_name} {job.job_title} ({statusMap[job.status_id]})
-                            </li>
+                            <div className="jobs-flex-display">
+                              <div className="left-info">
+                                <span>{job.company_name}</span>
+                                <span>{job.job_title}</span>
+                              </div>
+                              <span className="status">{job.status_name}</span>
+                            </div>
+                          </li>
                         ))}
                     </ol>
                 </div>
             </div> 
-            
-            {/*This second list is temporary, groups should be incorporated in the job list*/}
-        <h3>Your Groups</h3>
-            <ol>
-                { groups && groups.map(group => (
-                    <li key={group.group_id}>
-                        {group.group_name}
-                    </li>
-                ))}
-            </ol>  
-        <h3>Your Jobs</h3>
-            <ol>
-                { jobs && jobs.map(job => (
-                    <li key={job.job_id}>
-                        {job.company_name}  {job.job_title}  ({job.status_name})
-                    </li>
-                ))}    
-            </ol>  
-         
+           
         </>
     )
 }

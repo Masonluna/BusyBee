@@ -4,7 +4,6 @@
     justify-content: space-between; 
     align-items: baseline; 
     padding: 20px 20px 10px 20px;
-    border-bottom: 3px solid black; 
 }
 .imgSizeHP{
     width: 80px; 
@@ -33,6 +32,11 @@
     margin-bottom: 20px;
     margin-left: 50px;
 }
+.custom-divider {
+    width: 95%;
+    margin: 15px auto; 
+    border-bottom: 1px solid black; 
+}
 
 @media (max-width: 768px) {
     .imgSizeHP {
@@ -47,6 +51,11 @@
     }
     .dashboard-label{
         font-size: 1rem;
-        margin-left: 25px;
+        margin-left: 35px;
+    }
+    .custom-divider {
+        width: 95%;
+        margin: 5px auto; 
+        border-bottom: 1px solid black; 
     }
 }
