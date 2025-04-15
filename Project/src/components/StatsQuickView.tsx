@@ -11,7 +11,7 @@ const StatsQuickView: React.FC<StatsQuickViewProps> = ({ stats }) => {
             { stats && (
                 <div>
                     <p>Total Applications: {stats.totalApps}</p>
-                    <p>Applications Per Month: {stats.appsPerMonth}</p>
+                    <p>Applications This Month: {stats.appsThisMonth}</p>
                     <p>Applications Left For Monthly Goal: {stats.appsNeededForGoal}</p>
                 </div>
             )}
