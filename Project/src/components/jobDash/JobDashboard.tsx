@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {SetStateAction, useEffect, useState} from 'react';
 import { User, GroupToJobsDto, JobDto } from '../../utils/types';
 import JobList from './JobList';
 import CreateJobForm from './CreateJobForm';
@@ -9,10 +9,11 @@ import plusSign from '../../assets/Busybee-plus-02.png';
 type JobsDashboardProps = {
     user: User,
     ungroupedJobs: JobDto[],
-    groupToJobsList: GroupToJobsDto[]
+    groupToJobsList: GroupToJobsDto[],
+    setJobs: React.Dispatch<SetStateAction<JobDto[] | null>>;
 };
 
-const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, ungroupedJobs, groupToJobsList }) => {
+const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, ungroupedJobs, groupToJobsList, setJobs }) => {
 
     const [independentJobs, setIndependentJobs] = useState<JobDto[] | null>(null);
     const [selectedGroupIndex, setSelectedGroupIndex] = useState<number | null>(null);
@@ -84,7 +85,7 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, ungroupedJobs, grou
 
             {creatingJob && (
                 <>
-                    {user && <CreateJobForm setCreatingJob={setCreatingJob} userId={user.user_id} independentJobs={independentJobs} setIndependentJobs={setIndependentJobs} />}
+                    {user && <CreateJobForm setCreatingJob={setCreatingJob} userId={user.user_id} independentJobs={independentJobs} setIndependentJobs={setIndependentJobs} setJobs={setJobs} />}
                 </>
             )}
 

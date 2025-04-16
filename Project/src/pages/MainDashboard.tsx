@@ -140,9 +140,9 @@ const HomePage: React.FC = () => {
 
                   {/* Conditionally render the selected dashboard, summary by default. If an option is selected, verify its dependencies are loaded before rendering. */}
                   {selectedDashboard === 'summary' && jobs && stats && <SummaryDashboard jobs={jobs} stats={stats} />}
-                  {selectedDashboard === 'jobs' && user && independentJobs && groupsToJobsList && <JobsDashboard user={user} ungroupedJobs={independentJobs} groupToJobsList={groupsToJobsList} />}
+                  {selectedDashboard === 'jobs' && user && independentJobs && groupsToJobsList && <JobsDashboard user={user} ungroupedJobs={independentJobs} groupToJobsList={groupsToJobsList} setJobs={setJobs} />}
                   {selectedDashboard === 'stats' && user && stats && <StatDashboard user={user} stats={stats} />}
-                  {selectedDashboard === 'groups' && user && groups && <GroupDashboard user={user} groups={groups} />}
+                  {selectedDashboard === 'groups' && user && groups && <GroupDashboard user={user} groups={groups} setGroups={setGroups} />}
 
                 </div>
             </div>

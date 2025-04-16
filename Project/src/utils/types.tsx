@@ -83,6 +83,10 @@ export type GroupDto = {
     group_id: number,
     group_name: string
 }
+export type GroupInsertDto = {
+    group_name: string,
+    user_id: string
+}
 
 export type Status = {
     status_id: number,
@@ -91,6 +95,10 @@ export type Status = {
 
 export type GroupJob = {
     group_job_id: number,
+    group_id: number,
+    job_id: number
+}
+export type GroupJobInsertDto = {
     group_id: number,
     job_id: number
 }
