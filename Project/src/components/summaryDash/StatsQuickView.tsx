@@ -1,4 +1,4 @@
-import type { UserStats } from '../utils/types';
+import type { UserStats } from '../../utils/types';
 
 type StatsQuickViewProps = {
     stats: UserStats | null;
@@ -7,8 +7,8 @@ type StatsQuickViewProps = {
 const StatsQuickView: React.FC<StatsQuickViewProps> = ({ stats }) => {
     return (
         <>
-        <h3>Your Stats</h3>
-            { stats && (
+            <h3>Your Stats</h3>
+            {stats && (
                 <div>
                     <p>Total Applications: {stats.totalApps}</p>
                     <p>Applications This Month: {stats.appsThisMonth}</p>
