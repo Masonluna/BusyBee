@@ -102,9 +102,9 @@ export async function compileJobDtos(jobs: Job[]){
 }
 
 export function compileGroupToJobsList(groups: Group[], jobs: JobDto[], groupJobs: GroupJob[]){
-    let groupToJobsList: GroupToJobsDto[] = []
+    const groupToJobsList: GroupToJobsDto[] = []
     for(let i = 0; i < groups.length; i++){
-        let groupToJobsDto: GroupToJobsDto = {
+        const groupToJobsDto: GroupToJobsDto = {
             groupDto: {
                 group_id: groups[i].group_id,
                 group_name: groups[i].group_name
@@ -125,18 +125,23 @@ export function compileGroupToJobsList(groups: Group[], jobs: JobDto[], groupJob
 
 }
 
-export function compileIndependentJobs(jobs: JobDto[], groupJobs: GroupJob[]){
-    let independentJobs: JobDto[] = []
-    for(let i = 0; i < jobs.length; i++){
-        let found = false;
-        for(let j = 0; j < groupJobs.length; j++){
-            if (jobs[i].job_id === groupJobs[j].job_id){
-                found = true;
+export function compileIndependentJobs(jobs: JobDto[], groupJobs: GroupJob[]): JobDto[] {
+    const groupJobIds = new Set(groupJobs.map(groupJob => groupJob.job_id));
+    return jobs.filter(job => !groupJobIds.has(job.job_id));
+  }
+
+export function createGroupToGroupJobsMap(groups: Group[], groupToJobsList: GroupToJobsDto[]): number[] {
+    const resultMapping = new Array(groups.length);
+    for (let i = 0; i < groups.length; i++) {
+        for (let j = 0; j < groupToJobsList.length; j++) {
+            if (groups[i].group_id === groupToJobsList[j].groupDto.group_id) {
+                resultMapping[i] = groupToJobsList[j].groupDto.group_id;
+                break;
             }
         }
-        if(!found){
-            independentJobs.push(jobs[i]);
-        }
     }
-    return independentJobs;
+    
+    // resultMapping is of the form [10, 13, ...], where the ith group in groups has the group_id at the ith position
+    return resultMapping;
 }
+

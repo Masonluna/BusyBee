@@ -1,4 +1,4 @@
-import '../styles/ProfileMenu.css'
+import '../styles/profilemenu.css'
 import { useEffect, useRef, useState } from "react";
 import profile from '../assets/PFP-icon.png';
 

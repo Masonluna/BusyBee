@@ -118,6 +118,15 @@ const HomePage: React.FC = () => {
     setGroupsToJobsList(groupsToJobs);
   }, [jobs, groups, groupJobs]);
 
+  // Updates independentJobs when groupsToJobsList changes
+  useEffect(() => {
+    if (!jobs || !groupJobs) return;
+    if (jobs.length === 0) return;
+
+    const actualIndependentJobs: JobDto[] = compileIndependentJobs(jobs, groupJobs);
+    setIndependentJobs(actualIndependentJobs);
+  }, [groupsToJobsList]);
+
   // clear error if everything has loaded successfully
   useEffect(() => {
     if (jobs && groups && groupJobs) {
@@ -125,31 +134,47 @@ const HomePage: React.FC = () => {
     }
   }, [jobs, groups, groupJobs]);
 
-
-    return (
-        <div>
-            { errorMessage !== "" && <ErrorMessage message={errorMessage} /> }
+  return (
+    <div>
+      {errorMessage !== "" && <ErrorMessage message={errorMessage} />}
+        
+      {user && <Header user={user}/>}
+      <DashboardLabel/>
             
-            {user && <Header user={user}/>}
-            <DashboardLabel/>
+      <div className="main-container">
+        <EasyNav selectedDashboard={selectedDashboard} setSelectedDashboard={setSelectedDashboard}/>
+        <div className="dashboard-container">
+          {/* Conditionally render the selected dashboard, summary by default. If an option is selected, verify its dependencies are loaded before rendering. */}
+          {selectedDashboard === 'summary' && jobs && stats && 
+            <SummaryDashboard jobs={jobs} stats={stats} />}
             
+          {selectedDashboard === 'jobs' && user && independentJobs && groupsToJobsList && jobs &&
+            <JobsDashboard 
+              user={user}
+              allJobs={jobs}
+              ungroupedJobs={independentJobs} 
+              groupToJobsList={groupsToJobsList} 
+              setJobs={setJobs} 
+            />}
             
-            <div className="main-container">
-                <EasyNav selectedDashboard={selectedDashboard} setSelectedDashboard={setSelectedDashboard}/>
-                <div className="dashboard-container">
-
-                  {/* Conditionally render the selected dashboard, summary by default. If an option is selected, verify its dependencies are loaded before rendering. */}
-                  {selectedDashboard === 'summary' && jobs && stats && <SummaryDashboard jobs={jobs} stats={stats} />}
-                  {selectedDashboard === 'jobs' && user && independentJobs && groupsToJobsList && <JobsDashboard user={user} ungroupedJobs={independentJobs} groupToJobsList={groupsToJobsList} setJobs={setJobs} />}
-                  {selectedDashboard === 'stats' && user && stats && <StatDashboard user={user} stats={stats} />}
-                  {selectedDashboard === 'groups' && user && groups && <GroupDashboard user={user} groups={groups} setGroups={setGroups} />}
-
-                </div>
-            </div>
+          {selectedDashboard === 'stats' && user && stats && 
+            <StatDashboard user={user} stats={stats} />}
             
-            <Footer></Footer>
+          {selectedDashboard === 'groups' && user && groups && groupsToJobsList && jobs && 
+            <GroupDashboard 
+              user={user} 
+              groups={groups} 
+              groupToJobsList={groupsToJobsList} 
+              setGroups={setGroups} 
+              jobs={jobs}
+              setGroupsToJobsList={setGroupsToJobsList}
+            />}
         </div>
-    )
+      </div>
+            
+      <Footer></Footer>
+    </div>
+  );
 }
 
 export default HomePage;
