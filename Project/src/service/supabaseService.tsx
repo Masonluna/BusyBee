@@ -1,5 +1,5 @@
 import supabase from '../utils/supabase';
-import {User, Job, Group, GroupJob, JobInsertDto, JobDto, GroupInsertDto} from '../utils/types';
+import {User, Job, Group, GroupJob, JobInsertDto, JobDto, GroupInsertDto, GroupJobInsertDto} from '../utils/types';
 import { compileJobDtos } from './objectConversionService';
 
 
@@ -211,5 +211,85 @@ export async function deleteGroup(groupId: number){
     }
     return null;
 }
+
+// Add these functions to your supabaseService.ts file
+
+export async function addJobToGroup(groupJobDto: GroupJobInsertDto): Promise<boolean> {
+    try {
+      const { data, error } = await supabase
+        .from('group_jobs')
+        .insert([
+          {
+            group_id: groupJobDto.group_id,
+            job_id: groupJobDto.job_id
+          }
+        ]);
+  
+      if (error) {
+        console.error('Error adding job to group:', error);
+        return false;
+      }
+      console.log('successfully added job to group: ', data);
+  
+      return true;
+    } catch (err) {
+      console.error('Exception adding job to group:', err);
+      return false;
+    }
+}
+  
+export async function removeJobFromGroup(groupId: number, jobId: number): Promise<boolean> {
+    try {
+      const { error } = await supabase
+        .from('group_jobs')
+        .delete()
+        .match({ 
+          group_id: groupId,
+          job_id: jobId 
+        });
+  
+      if (error) {
+        console.error('Error removing job from group:', error);
+        return false;
+      }
+  
+      return true;
+    } catch (err) {
+      console.error('Exception removing job from group:', err);
+      return false;
+    }
+}
+
+export async function deleteJob(jobId: number): Promise<boolean> {
+    try {
+      // First, remove any group_jobs entries for this job
+      const { error: groupJobsError } = await supabase
+        .from('group_jobs')
+        .delete()
+        .eq('job_id', jobId);
+      
+      if (groupJobsError) {
+        console.error('Error removing job from group_jobs:', groupJobsError);
+        return false;
+      }
+      
+      // Then delete the job itself
+      const { error } = await supabase
+        .from('jobs')
+        .delete()
+        .eq('job_id', jobId);
+      
+      if (error) {
+        console.error('Error deleting job:', error);
+        return false;
+      }
+      
+      return true;
+    } catch (err) {
+      console.error('Exception deleting job:', err);
+      return false;
+    }
+}
+
 
 

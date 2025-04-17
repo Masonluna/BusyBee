@@ -4,8 +4,29 @@
     padding: 10px 30px;
     font-size: 16px;
     font-weight: 600;
-    border: none; 
+    border: 1px solid #ffd679; 
     font-family: 'Poppins', sans-serif;
     text-align: center;
     margin-top: 20px;
+}
+.button:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #ffd679;
+    border:1px solid #ffd679;
+    transition-duration: .3s;
+}
+
+/* CHANGE PLS! -> make look better! */
+.deleteButton{
+    background-color: #ff2233;
+    border-radius: 5px;
+    padding: 7px;
+}
+.deleteButton:hover{
+    background-color: white;
+    border-color: #ff2233;
+    color: #ff2233;
+    cursor: pointer;
+    transition-duration: .3s;
 }

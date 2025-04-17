@@ -37,6 +37,7 @@
 .listItem:hover{
     cursor: pointer;
     background-color: #ffd679;
+    transition-duration: .3s;
 }
 .link{
     font-size: 20px;
