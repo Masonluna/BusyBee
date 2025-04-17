@@ -114,7 +114,7 @@ const HomePage: React.FC = () => {
     const groupsToJobs: GroupToJobsDto[] = compileGroupToJobsList(groups, jobs, groupJobs);
     setGroupsToJobsList(groupsToJobs);
   }, [jobs, groups, groupJobs]);
-
+  
   // clear error if everything has loaded successfully
   useEffect(() => {
     if (jobs && groups && groupJobs) {

@@ -1,4 +1,5 @@
 import type { UserStats } from '../utils/types';
+import '../styles/stats-quickview.css';
 
 type StatsQuickViewProps = {
     stats: UserStats | null;
