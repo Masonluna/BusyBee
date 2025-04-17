@@ -31,7 +31,7 @@ export function calculateUserStats(jobs: JobDto[], user: User) {
     const totalApps = jobs.length;
     const appsPerMonth = totalApps / numMonths;
     const appsThisMonth = yearMap.get(now.getFullYear())?.at(now.getMonth()) || 0;
-    const appsNeededForGoal = Math.max(appsThisMonth - user.monthly_goal, 0);
+    const appsNeededForGoal = Math.max(user.monthly_goal - appsThisMonth, 0);
 
     const applicationStats: UserStats = {
         totalApps: totalApps,

@@ -1,27 +1,24 @@
-import { Link } from 'react-router-dom';
 import '../styles/easynavstyles.css';
-import { Group, GroupToJobsDto, JobDto, UserStats } from '../utils/types';
+import { SetStateAction } from 'react';
+
 
 
 type EasyNavProps = {
-    groups: Group[] | null;
-    independentJobs: JobDto[] | null;
-    groupToJobsList: GroupToJobsDto[] | null;
-    stats: UserStats | null;
+    selectedDashboard: string,
+    setSelectedDashboard: React.Dispatch<SetStateAction<string>>;
 };
 
 
-const EasyNav: React.FC<EasyNavProps> = ({ groups, independentJobs, groupToJobsList, stats }) => {
-    console.log(`groupToJobsList=${groupToJobsList}`);
+const EasyNav: React.FC<EasyNavProps> = ({ selectedDashboard, setSelectedDashboard }) => {
 
     return (
         <div className="navContainer">
             <nav>
                 <ul className='linkList'>
-                    <li className='listItem'><Link className='link' to="/jobs" state={{independentJobs: independentJobs, groupToJobsList: groupToJobsList}}>Jobs</Link></li>
-                    <li className='listItem'><Link className='link' to="/stats" state= {{stats: stats}}>Stats</Link></li>
-                    <li className='listItem'><Link className='link' to="/docs">Docs</Link></li>
-                    <li className='listItem'><Link className='link' to="/groups" state={{groups}}>Groups</Link></li>
+                    <li className={selectedDashboard==='summary' ? 'listItemActive' : 'listItem'} onClick={() => setSelectedDashboard("summary")}>Summary</li>
+                    <li className={selectedDashboard==='jobs' ? 'listItemActive' : 'listItem'} onClick={() => setSelectedDashboard("jobs")}>Jobs</li>
+                    <li className={selectedDashboard==='stats' ? 'listItemActive' : 'listItem'} onClick={() => setSelectedDashboard("stats")}>Stats</li>
+                    <li className={selectedDashboard==='groups' ? 'listItemActive' : 'listItem'} onClick={() => setSelectedDashboard("groups")}>Groups</li>
                 </ul>
             </nav>
         </div>

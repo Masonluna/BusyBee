@@ -4,6 +4,9 @@ import EasyNav from '../components/EasyNav';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ErrorMessage from '../components/ErrorMessage';
+import JobsDashboard from '../components/jobDash/JobDashboard';
+import DashboardLabel from '../components/DashboardLabel';
+import SummaryDashboard from '../components/summaryDash/SummaryDashboard';
 import {
   type User,
   type Job,
@@ -13,9 +16,7 @@ import {
   type GroupToJobsDto,
   type UserStats
 } from '../utils/types';
-import JobsQuickView from '../components/JobsQuickView';
 import '../styles/jobs-quickview.css';
-import DashboardLabel from '../components/DashboardLabel';
 import {
   getUserWithAuthenticationCheck,
   getJobs,
@@ -27,8 +28,9 @@ import {
   compileGroupToJobsList,
   compileIndependentJobs
 } from '../service/objectConversionService';
-import StatsQuickView from '../components/StatsQuickView';
 import { calculateUserStats } from '../service/statsCalculationService';
+import StatDashboard from '../components/statDash/StatDashboard';
+import GroupDashboard from '../components/groupDash/GroupDashboard';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -43,6 +45,7 @@ const HomePage: React.FC = () => {
   const [groupsToJobsList, setGroupsToJobsList] = useState<GroupToJobsDto[] | null>(null);
   const [stats, setStats] = useState<UserStats | null>(null);
   const [hasLoaded, setHasLoaded] = useState<boolean>(false);
+  const [selectedDashboard, setSelectedDashboard] = useState<string>("summary");
 
   // runs onMount: checks authentication
   useEffect(() => {
@@ -80,8 +83,8 @@ const HomePage: React.FC = () => {
         setGroupJobs(potentialGroupJobs);
 
         setHasLoaded(true); // mark successful fetch
-      } catch (err: any) {
-        console.error(err.message);
+      } catch (err) {
+        console.error(err);
         setErrorMessage(
           'There was an error retrieving your data. Please refresh. If the problem persists, contact us.'
         );
@@ -114,7 +117,16 @@ const HomePage: React.FC = () => {
     const groupsToJobs: GroupToJobsDto[] = compileGroupToJobsList(groups, jobs, groupJobs);
     setGroupsToJobsList(groupsToJobs);
   }, [jobs, groups, groupJobs]);
-  
+
+  // Updates independentJobs when groupsToJobsList changes
+  useEffect(() => {
+    if (!jobs || !groupJobs) return;
+    if (jobs.length === 0) return;
+
+    const actualIndependentJobs: JobDto[] = compileIndependentJobs(jobs, groupJobs);
+    setIndependentJobs(actualIndependentJobs);
+  }, [groupsToJobsList]);
+
   // clear error if everything has loaded successfully
   useEffect(() => {
     if (jobs && groups && groupJobs) {
@@ -122,28 +134,47 @@ const HomePage: React.FC = () => {
     }
   }, [jobs, groups, groupJobs]);
 
-
-    //only one return element (div)
-    return (
-        <div>
-            { errorMessage !== "" && <ErrorMessage message={errorMessage} /> }
+  return (
+    <div>
+      {errorMessage !== "" && <ErrorMessage message={errorMessage} />}
+        
+      {user && <Header user={user}/>}
+      <DashboardLabel/>
             
-            {user && <Header user={user}/>}
-            <DashboardLabel/>
+      <div className="main-container">
+        <EasyNav selectedDashboard={selectedDashboard} setSelectedDashboard={setSelectedDashboard}/>
+        <div className="dashboard-container">
+          {/* Conditionally render the selected dashboard, summary by default. If an option is selected, verify its dependencies are loaded before rendering. */}
+          {selectedDashboard === 'summary' && jobs && stats && 
+            <SummaryDashboard jobs={jobs} stats={stats} />}
             
+          {selectedDashboard === 'jobs' && user && independentJobs && groupsToJobsList && jobs &&
+            <JobsDashboard 
+              user={user}
+              allJobs={jobs}
+              ungroupedJobs={independentJobs} 
+              groupToJobsList={groupsToJobsList} 
+              setJobs={setJobs} 
+            />}
             
-            <div className="main-container">
-                <EasyNav independentJobs={independentJobs} groupToJobsList={groupsToJobsList} groups={groups} stats={stats}/>
-                <div className="dashboard-container">
-                { jobs && jobs.length > 0 && <JobsQuickView jobs={jobs} /> }
-                { stats && <StatsQuickView stats={stats} /> }
-
-                </div>
-            </div>
+          {selectedDashboard === 'stats' && user && stats && 
+            <StatDashboard user={user} stats={stats} />}
             
-            <Footer></Footer>
+          {selectedDashboard === 'groups' && user && groups && groupsToJobsList && jobs && 
+            <GroupDashboard 
+              user={user} 
+              groups={groups} 
+              groupToJobsList={groupsToJobsList} 
+              setGroups={setGroups} 
+              jobs={jobs}
+              setGroupsToJobsList={setGroupsToJobsList}
+            />}
         </div>
-    )
+      </div>
+            
+      <Footer></Footer>
+    </div>
+  );
 }
 
 export default HomePage;

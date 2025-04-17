@@ -38,5 +38,11 @@ a:hover{
 .successNotificationText {
   color: var(--success-color)
 }
-
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  
+}
 

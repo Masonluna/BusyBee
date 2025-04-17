@@ -9,11 +9,12 @@ type CreateJobFormProps = {
   userId: string;
   independentJobs: JobDto[] | null;
   setIndependentJobs: React.Dispatch<SetStateAction<JobDto[] | null>>;
+  setJobs: React.Dispatch<SetStateAction<JobDto[] | null>>;
 };
 
 
 
-const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob, userId, independentJobs, setIndependentJobs }) => {
+const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob, userId, independentJobs, setIndependentJobs, setJobs }) => {
   const [jobData, setJobData] = useState<JobFormData>({
     companyNameInput: "",
     jobTitleInput: "",
@@ -56,10 +57,12 @@ const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob, userId, i
         //ADD THIS NEW JOB TO THE STATE OF EVERYTHING ELSE
         console.log(`new job = ${newJob.company_name}`);
         if(independentJobs){
-            independentJobs.push(newJob);
-            setIndependentJobs(independentJobs);
+          setIndependentJobs([...independentJobs, newJob]);
         }
-        
+        else{
+          setIndependentJobs([newJob]);
+        }
+        setJobs(prev => [...(prev ?? []), newJob]);
     }
     
 
