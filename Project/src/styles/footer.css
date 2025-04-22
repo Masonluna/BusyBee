@@ -9,22 +9,15 @@
     text-align: left;
     display: flex;
     gap: 20px;
-    margin-top: auto; 
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 
 @media (max-width: 768px){
     .footer{
-        background-color: #ffd679;
         width: 100vw;
-        font-family: 'Poppins', sans-serif;
-        font-size: 15px;
         padding: 30px 40px;
-        text-align: left;
-        position: fixed;  
-        bottom: 0;        
-        left: 0;          
-        display: flex;
-        gap: 20px;
-        background-color: #ffd679; 
     }
 }
