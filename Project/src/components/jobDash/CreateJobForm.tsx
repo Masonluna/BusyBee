@@ -91,7 +91,7 @@ const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob, userId, i
       <div className="job-form-container">
         <div className="job-form-left">
           <h1 className="add-new-job-header">Add a new job</h1>
-          <h2 className="job-create-CTA">Let's start getting you on track</h2>
+          <h2 className="job-create-CTA">Let's get your job hunt on track</h2>
         </div>
         <div className="job-form-right">
           <form onSubmit={handleNewJobSubmission}>
