@@ -6,9 +6,9 @@
     justify-content: center;
 }
 .hired-CTA{
-    margin-top: 20px;
+    margin-top: 5px;
     margin-bottom: 10px;
-    margin-left: 50px;
+    margin-left: 55px;
     font-size: 25px;
     font-weight: 300;
 }
@@ -16,6 +16,7 @@
     background: none;
     padding: 5px;
     margin-left: 10px;
+    margin-right: 95px;
     border-style: none;
     display: flex;
     align-items: center;
@@ -25,64 +26,14 @@
     cursor: pointer;
     border-style: none;
 }
-.groupBar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    list-style: none;
-    width: calc(100% - 32px);
-    margin: 0 auto;
-    padding: 8px 16px;
-    box-sizing: border-box;
-    border-radius: 8px;
-    align-items: flex-start;
-    margin-left: 40px;
-    margin-top: 10px;
-}
-
-.groupBarScroll {
-    max-height: 140px;
-    overflow-y: auto;
-    background-color: #f4f4f4;
-}
-
-.groups{
-   display: flex;
-}
-
-.selectedGroup{
-    background-color: #ffd679;
-    width: 100px;
-    height: 60px;
-    border-radius: 30px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    border-color: transparent;
-}
-
-.unselectedGroup{
-    background-color: transparent; 
-    border: 2px solid #ffd679;  
-    width: 100px;
-    height: 60px;
-    border-radius: 30px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-}
-
-.selectedGroup:hover, .unselectedGroup:hover{
-    cursor: pointer;
-    background: #ffd679;
-}
-
 
 .jobListContainer{
     width: 90%;
+    margin-bottom: 50px;
 }
 .your-jobs-container{
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
     flex-wrap: wrap;
     gap: 10px;
 }
@@ -103,6 +54,7 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     margin-right: 10px;
+    margin-left: 55px;
 }
 .job-list-title{
     margin-top: 15px;
@@ -139,6 +91,46 @@
     gap: 16px;
 }
 
+.delete-job-container {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  gap: 5px;
+}
+
+.job-select {
+  padding: 8px 12px;
+  border-radius: 4px;
+  background-color: white;
+  min-width: 250px;
+  font-size: 14px;
+}
+
+.delete-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: #ffd679;
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 25px;
+}
+
+.delete-button:hover {
+  background-color: black;
+  color: #ffd679;
+}
+
+.delete-button:disabled {
+  background-color: #e0e0e0;
+  color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+
 @media (max-width: 768px) {
     .jobDashboardContainer {
         display: flex;
@@ -148,17 +140,11 @@
     }
 
     .hired-CTA {
-        margin-top: 30px;
+        margin-top: 10px;
         margin-bottom: 10px;
         margin-left: 30px;
         font-size: 20px;
     }
-    .select-group-CTA{
-        font-weight: 300;
-        margin-left: 30px;
-        margin-top: 10px;
-    }
-
     .createButton {
         background: none;
         padding: 5px;
@@ -177,36 +163,7 @@
     .createButton:hover {
         cursor: pointer;
     }
-
-    .groupBar {
-        margin-left: 16px;
-    }
-
-    .groups {
-        display: flex;
-    }
-
-    .selectedGroup {
-        background-color: #ffd679;
-        color: black;
-        width: 100px;
-        height: 50px;
-        padding-top: 2px;
-    }
-
-    .unselectedGroup {
-        background-color: transparent; 
-        border: 2px solid #ffd679;  
-        width: 100px;
-        height: 50px;
-        padding-top: 2px;
-    }
-
-    .selectedGroup:hover, .unselectedGroup:hover {
-        cursor: pointer;
-        background: #ffd679;
-    }
-
+    
     .jobs-flex-display {
         display: flex;
         justify-content: space-between; 
@@ -221,6 +178,7 @@
 
     .jobListContainer {
         width: 90%;
+        margin-bottom: 100px;
     }
 
     .jobList {
@@ -250,6 +208,7 @@
         font-family: 'Poppins', sans-serif;
         font-weight: 700;
         margin-right: 10px;
+        margin-left: 30px;
     }
     .your-jobs-container{
         display: flex;
@@ -258,289 +217,9 @@
         flex-wrap: wrap;
         gap: 10px;
     }
+    .filter-CTA{
+      font-size: 15px;
+      margin-left: 30px;
+    }
 }
-/* Add these styles to your jobsdashboard.css file */
 
-.delete-job-container {
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
-    gap: 10px;
-  }
-  
-  .job-select {
-    padding: 8px 12px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    background-color: white;
-    min-width: 250px;
-    font-size: 14px;
-  }
-  
-  .delete-button {
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: none;
-    background-color: #f44336;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: bold;
-    font-size: 14px;
-  }
-  
-  .delete-button:hover {
-    background-color: #d32f2f;
-  }
-  
-  .delete-button:disabled {
-    background-color: #e0e0e0;
-    color: #9e9e9e;
-    cursor: not-allowed;
-  }
-
-  /* Add these styles to your CSS file (could be included in your jobsdashboard.css) */
-
-/* Group Dashboard Styles */
-.group-list {
-    list-style: none;
-    padding: 0;
-    margin: 20px 50px;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .group-item {
-    margin-bottom: 25px;
-    border: 2px solid #ffd679;
-    border-radius: 30px;
-    overflow: hidden;
-  }
-  
-  .group-header {
-    padding: 15px 20px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-  }
-  
-  .expand-button {
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 0 10px 0 0;
-    color: #555;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .group-name {
-    margin: 0;
-    flex-grow: 1;
-    font-size: 18px;
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .group-controls {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-  }
-  
-  .group-controls select {
-    padding: 8px 15px;
-    border-radius: 30px;
-    border: 1px solid black;
-    box-shadow: inset 0 0 0 1px #ffd679;
-    font-family: 'Poppins', sans-serif;
-    background-color: transparent;
-    font-size: 14px;
-  }
-  
-  .deleteButton {
-    background-color: #ff2233;
-    border-radius: 30px;
-    padding: 8px 20px;
-    color: white;
-    border: 1px solid #ff2233;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    cursor: pointer;
-    transition-duration: .3s;
-  }
-  
-  .deleteButton:hover {
-    background-color: white;
-    border-color: #ff2233;
-    color: #ff2233;
-  }
-  
-  .group-job-list {
-    padding: 0 20px;
-    background-color: white;
-  }
-  
-  /* Style for JobList component when inside a group */
-  .group-job-list .jobListContainer {
-    width: 100%;
-    margin: 0;
-  }
-  
-  .group-job-list .job-list-title {
-    font-size: 22px;
-    margin: 15px 0;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .group-job-list .jobList {
-    max-height: 250px;
-    overflow-y: auto;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    padding: 8px;
-    margin: 0 0 20px 0;
-    width: calc(100% - 16px);
-  }
-  
-  .group-job-list .jobListing {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: white;
-    border: 2px solid #ffd679;
-    border-radius: 30px;
-    list-style: none;
-  }
-  
-  .no-jobs-message {
-    padding: 15px 20px;
-    color: #666;
-    font-style: italic;
-    background-color: white;
-    margin-bottom: 20px;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .create-group-button {
-    background-color: #ffd679;
-    border-radius: 30px;
-    padding: 10px 30px;
-    font-size: 16px;
-    font-weight: 600;
-    border: 1px solid #ffd679;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    margin: 20px 50px;
-    cursor: pointer;
-  }
-  
-  .create-group-button:hover {
-    background-color: white;
-    color: #ffd679;
-    transition-duration: .3s;
-  }
-  
-  /* Form styling */
-  .group-form {
-    margin: 20px 50px;
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-  }
-  
-  .group-form label {
-    margin-bottom: 8px;
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .group-form input {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid black;
-    box-shadow: inset 0 0 0 1px #ffd679;
-    border-radius: 10px;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .group-form button[type="submit"] {
-    background-color: #ffd679;
-    border-radius: 30px;
-    padding: 10px 30px;
-    font-size: 16px;
-    font-weight: 600;
-    border: 1px solid #ffd679;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    cursor: pointer;
-    align-self: flex-start;
-  }
-  
-  .group-form button[type="submit"]:hover {
-    background-color: white;
-    color: #ffd679;
-    transition-duration: .3s;
-  }
-  
-  .backButton {
-    background-color: #ffd679;
-    border-radius: 30px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: 600;
-    border: 1px solid #ffd679;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    margin: 20px 50px;
-    cursor: pointer;
-    display: inline-block;
-  }
-  
-  .backButton:hover {
-    background-color: white;
-    color: #ffd679;
-    transition-duration: .3s;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .group-list {
-      margin: 15px 30px;
-    }
-    
-    .group-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    .group-name {
-      margin-bottom: 10px;
-    }
-    
-    .group-controls {
-      flex-direction: column;
-      width: 100%;
-      gap: 10px;
-    }
-    
-    .group-controls select {
-      width: 100%;
-    }
-    
-    .deleteButton {
-      width: 100%;
-    }
-    
-    .create-group-button,
-    .backButton {
-      margin: 15px 30px;
-      width: calc(100% - 60px);
-    }
-    
-    .group-job-list .jobList {
-      max-height: 200px;
-    }
-  }
-  
-
-  

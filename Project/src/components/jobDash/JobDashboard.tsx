@@ -66,7 +66,7 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
 
                     {groupToJobsList && groupToJobsList.length > 0 && (
                         <>
-                            <h3>Your jobs by group</h3>
+                            <h3 className="filter-CTA">Filter By Groups</h3>
                             <ul className={`groupBar ${groupToJobsList.length > 5 ? 'groupBarScroll' : ''}`}>
                                 <li className='groups'>
                                     <button 
