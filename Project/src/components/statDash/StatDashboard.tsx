@@ -20,7 +20,6 @@ const StatDashboard: React.FC<StatDashboardProps> = ({ user, stats }) => {
     <span className="welcome-message">{user && `Welcome to your personalized stats dashboard, ${user.first_name}`}</span>
     
 
-<<<<<<< HEAD
     <div className="stats-grid">
       <div className="stat-box total-apps-box">
         <span className="stat-label total-apps-label">Total Applications</span>
@@ -43,53 +42,25 @@ const StatDashboard: React.FC<StatDashboardProps> = ({ user, stats }) => {
       </div>
       
       <div className="stat-box response-rate-box">
-        <span className="stat-label response-rate-label">Response Rate</span>
+        <span className="stat-label response-rate-label">Interviews per Applications</span>
+        <span className="stat-value goal-remaining-value">{user && stats ? stats.interviewsPerApp : ''}</span>
         <span className="stat-value response-rate-value"></span>
       </div>
       
       <div className="stat-box interviews-box">
-        <span className="stat-label interviews-label">Interviews</span>
+        <span className="stat-label interviews-label">Rejected Per Application</span>
+        <span className="stat-value goal-remaining-value">{user && stats ? stats.rejectionsPerApp : ''}</span>
         <span className="stat-value interviews-value"></span>
       </div>
       
       <div className="stat-box days-active-box">
-        <span className="stat-label days-active-label">Days Active</span>
+        <span className="stat-label days-active-label">Offers Per Interview</span>
+        <span className="stat-value goal-remaining-value">{user && stats ? stats.offersPerInterview : ''}</span>
         <span className="stat-value days-active-value"></span>
-      </div>
-      
-      <div className="stat-box longest-streak-box">
-        <span className="stat-label longest-streak-label">Longest Streak</span>
-        <span className="stat-value longest-streak-value"></span>
-      </div>
-      
-      <div className="stat-box current-streak-box">
-        <span className="stat-label current-streak-label">Current Streak</span>
-        <span className="stat-value current-streak-value"></span>
-      </div>
-      
-      <div className="stat-box offers-box">
-        <span className="stat-label offers-label">Offers Received</span>
-        <span className="stat-value offers-value"></span>
       </div>
     </div>
   </div>
 </>
-=======
-            {/*Example of accessing user fields. Remove*/}
-            {user && <h2>Welcome to your personalized stats dashboard, {user.first_name}</h2>}
-            {user && stats &&
-                <div>
-                    <p>Total Applications Submitted: {stats.totalApps}</p>
-                    <p>Number of applications submitted this month: {stats.appsThisMonth}</p>
-                    <p>Average applications submitted per month: {stats.appsPerMonth}</p>
-                    <p>Applications left to hit your monthly goal: {stats.appsNeededForGoal}</p>
-                    <p>Interviews-per-application: {stats.interviewsPerApp[0]} interview(s) for every {stats.interviewsPerApp[1]} application(s)</p>
-                    <p>Rejections-per-application: {stats.rejectionsPerApp[0]} rejection(s) for every {stats.rejectionsPerApp[1]} application(s)</p>
-                    <p>Offers-per-interview: {stats.offersPerInterview[0]} offer(s) for every {stats.offersPerInterview[1]} interview(s)</p>
-                </div>
-            }
-        </>
->>>>>>> 195c8e406a63007fbed589fe1fc6da9c1ae36979
     )
 }
 
