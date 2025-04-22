@@ -2,7 +2,6 @@ import {SetStateAction, useEffect, useState} from 'react';
 import { User, GroupToJobsDto, JobDto } from '../../utils/types';
 import JobList from './JobList';
 import CreateJobForm from './CreateJobForm';
-import DeleteJobButton from '../jobDash/DeleteJobButton';
 import JobDetailsModal from './JobDetailsModal';
 import '../../styles/jobsdashboard.css';
 import plusSign from '../../assets/Busybee-plus-02.png';
@@ -67,14 +66,10 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
                     
                     <div className='your-jobs-container'>
                         <h3 className="your-jobs">Your Jobs</h3>
-                    
                         <button className="createButton" onClick={() => setCreatingJob(true)}>
                             <img src={plusSign} alt="yellow plus sign" className="plus-sign-size" />
                             <h4>Add a job...</h4>
                         </button>
-                        
-                        
-                        <DeleteJobButton allJobs={allJobs} setJobs={setJobs} />
                     </div>
                     
 

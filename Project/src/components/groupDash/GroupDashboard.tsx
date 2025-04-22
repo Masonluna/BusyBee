@@ -2,8 +2,7 @@ import { SetStateAction, useState } from "react";
 import type { User, Group, GroupInsertDto, GroupToJobsDto, JobDto, GroupJobInsertDto } from "../../utils/types";
 import { createGroup, deleteGroup, addJobToGroup, removeJobFromGroup } from "../../service/supabaseService";
 import JobList from "../jobDash/JobList"; // Import the JobList component
-import '../../styles/groupdashboard.css';
-import plusSign from '../../assets/Busybee-plus-02.png';
+import JobDetailsModal from "../jobDash/JobDetailsModal";
 
 type GroupDashboardProps = {
     user: User,
@@ -25,6 +24,10 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
     const [creatingGroup, setCreatingGroup] = useState(false);
     // State to track expanded groups to show their job lists
     const [expandedGroups, setExpandedGroups] = useState<number[]>([]);
+
+    const [showingJobDetails, setShowingJobDetails] = useState<boolean>(false);
+    const [selectedJob, setSelectedJob] = useState<JobDto | null>(null);
+
     
     const handleNewGroupSubmission = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -145,6 +148,15 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
         );
     }
 
+    const handleJobClick = (job: JobDto) => {
+        setSelectedJob(job);
+        setShowingJobDetails(true);
+    }
+
+    const closeModal = () => {
+        setShowingJobDetails(false);
+    }
+
     return (
     <>
         {!creatingGroup && 
@@ -236,6 +248,7 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
                                             <JobList 
                                                 jobs={jobsInGroup} 
                                                 jobListTitle={group.group_name} 
+                                                onItemClick={handleJobClick}
                                             />
                                         ) : (
                                             <div className="no-jobs-message">
@@ -249,7 +262,13 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
                     })}
                 </ul>
 
-                
+                <button onClick={() => setCreatingGroup(true)} className="create-group-button">Create Group</button>
+
+                {showingJobDetails && selectedJob && (
+                    <>
+                        <JobDetailsModal job={selectedJob} onClose={closeModal} />                
+                    </>
+                )}
             </div>
         }
 
