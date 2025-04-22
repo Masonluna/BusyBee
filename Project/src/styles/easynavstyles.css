@@ -73,6 +73,16 @@
         margin-left: 10px;
         margin-bottom: 20px;
     }
+    .listItemActive{
+        margin: 5px;
+        padding: 5px;
+        background-color: #ffd679; 
+        border: 2px solid #ffd679;  
+        border-radius: 30px;
+        padding: 10px 13px;
+        margin-left: 10px;
+        margin-bottom: 20px;
+    }
     .link{
         font-size: 1rem;
         text-decoration: none
