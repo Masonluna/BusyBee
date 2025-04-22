@@ -158,10 +158,9 @@ select {
   color: black;
 }
 
-.group-job-list {
+.group-job-list-2 {
   padding: 0 20px;
   background-color: #ffd679;
-  margin-left: 20px;
 }
 
 .jobListContainer {
@@ -222,7 +221,7 @@ select {
 }
 .create-group{
   margin-left: 20px !important;
-  flex: 1; /* allow header to grow and fill remaining space */
+  flex: 1; 
   min-width: 150px;
 }
 
@@ -295,6 +294,12 @@ select {
   color: #ffd679;
   transition-duration: .3s;
 }
+#newGroupName{
+  margin-left: 0px;
+  margin-bottom: 30px;
+  margin-top: 5px;
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
@@ -365,6 +370,23 @@ select {
     cursor: pointer;
     transition-duration: .3s;
     width: 150px;
+  }
+  .create-group{
+    font-size: 25px;
+  }
+  .backButton-group{
+    margin-left: 25px;
+  }
+  .back-button-header-container{
+    margin-top: 10px;
+  }
+  .group-form{
+    margin-right: 25px;
+    margin-left: 25px;
+  }
+  
+  #newGroupName{
+    margin-left: 0px;
   }
 
 }
