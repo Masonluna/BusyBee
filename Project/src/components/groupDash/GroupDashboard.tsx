@@ -4,6 +4,7 @@ import { createGroup, deleteGroup, addJobToGroup, removeJobFromGroup } from "../
 import JobList from "../jobDash/JobList"; // Import the JobList component
 import '../../styles/groupdashboard.css';
 import plusSign from '../../assets/Busybee-plus-02.png';
+import JobDetailsModal from "../jobDash/JobDetailsModal";
 
 type GroupDashboardProps = {
     user: User,
@@ -28,6 +29,7 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
 
     const [showingJobDetails, setShowingJobDetails] = useState<boolean>(false);
     const [selectedJob, setSelectedJob] = useState<JobDto | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string>("");
 
     
     const handleNewGroupSubmission = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -262,7 +264,13 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
                         );
                     })}
                 </ul>
+                    {showingJobDetails && selectedJob && (
+                        <>
+                            <JobDetailsModal job={selectedJob} onClose={closeModal} setErrorMessage={setErrorMessage}  />
+                        </>
+                    )
 
+                    }
                 
             </div>
         }

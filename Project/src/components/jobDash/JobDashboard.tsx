@@ -5,6 +5,7 @@ import CreateJobForm from './CreateJobForm';
 import JobDetailsModal from './JobDetailsModal';
 import '../../styles/jobsdashboard.css';
 import plusSign from '../../assets/Busybee-plus-02.png';
+import ErrorMessage from '../ErrorMessage';
 
 
 type JobsDashboardProps = {
@@ -22,14 +23,17 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
     const [creatingJob, setCreatingJob] = useState<boolean>(false);
     const [showingJobDetails, setShowingJobDetails] = useState<boolean>(false);
     const [selectedJob, setSelectedJob] = useState<JobDto | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string>("");
     
     // This useEffect keeps independentJobs in sync with the ungroupedJobs prop
     useEffect(() => {
         setIndependentJobs(ungroupedJobs);
+        setErrorMessage("");
     }, [ungroupedJobs]);
 
     // Reset selectedGroupIndex when groupToJobsList changes to prevent out of range issues
     useEffect(() => {
+        setErrorMessage("");
         if (selectedGroupIndex !== null && 
             (groupToJobsList.length === 0 || selectedGroupIndex >= groupToJobsList.length)) {
             setSelectedGroupIndex(null);
@@ -37,6 +41,7 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
     }, [groupToJobsList, selectedGroupIndex]);
 
     const updateSelectedGroupIndex = (groupId: number) => {
+        setErrorMessage("");
         for (let i = 0; i < groupToJobsList.length; i++){
             if (groupToJobsList[i].groupDto.group_id === groupId){
                 setSelectedGroupIndex(i);
@@ -48,11 +53,13 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
     // now handle modal opening and closing when a job is clicked...
 
     const handleJobClick = (job: JobDto) => {
+        setErrorMessage("");
         setSelectedJob(job);
         setShowingJobDetails(true);
     }
 
     const closeModal = () => {
+        setErrorMessage("");
         setShowingJobDetails(false);
     }
 
@@ -129,7 +136,7 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
 
                     {/* This modal will pop up when they click a job  */}
                     {showingJobDetails && selectedJob && (
-                        <JobDetailsModal job={selectedJob} onClose={closeModal} />
+                        <JobDetailsModal job={selectedJob} onClose={closeModal} setErrorMessage={setErrorMessage} />
                     )}
                 </>
             )}
@@ -147,6 +154,8 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
                     )}
                 </>
             )}
+
+            {errorMessage !== "" && <ErrorMessage message={errorMessage} />}
         </div>
     );
 }
