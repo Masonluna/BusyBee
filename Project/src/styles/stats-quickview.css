@@ -1,0 +1,140 @@
+.stats-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    gap: 16px; 
+    margin-left: 35px !important;
+    margin-top: 20px !important;
+    font-weight: 700;
+}
+
+.stats-container {
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 15px;
+    border-radius: 8px;
+    width: 60%;
+    height: 200px; 
+    background-color: #f4f4f4;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    overflow-y: auto; 
+}
+
+.stat-item {
+    background-color: #ffd679;
+    color: black;
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 80px;
+    overflow: hidden;
+}
+
+.stat-empty {
+    min-height: 80px;
+}
+
+.total-apps {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.monthly-apps {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.goal-apps {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.stat-item:nth-child(4) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.stat-item:nth-child(5) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.stat-item:nth-child(6) {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.stat-value {
+    font-weight: bold;
+    font-size: 50px;
+    margin-right: 8px;
+
+}
+
+.stat-label-total {
+    font-size: 30px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: calc(100% - 50px);
+    margin-left: 20px;
+}
+
+.stat-label {
+    font-size: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: calc(100% - 50px);
+}
+
+@media (max-width: 768px) {
+    .stats-header{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+        margin-top: 20px !important;
+        margin-left: 20px !important;
+        font-weight: 700;
+    }
+    .stats-container {
+        width: 93%;
+        margin-left: 15px;
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .goal-apps {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    
+    .stat-item:nth-child(4) {
+        grid-column: 2;
+        grid-row: 2;
+    }
+    
+    .stat-item:nth-child(5) {
+        grid-column: 1;
+        grid-row: 3;
+    }
+    
+    .stat-item:nth-child(6) {
+        grid-column: 2;
+        grid-row: 3;
+    }
+    
+    .stat-value {
+        font-size: 50px;
+    }
+    .stat-label-total{
+        font-size: 30px;
+    }
+    .stat-label {
+        font-size: 13px;
+    }
+}

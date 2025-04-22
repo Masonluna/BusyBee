@@ -94,9 +94,6 @@ const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob, userId, i
           <h2 className="job-create-CTA">Let's start getting you on track</h2>
         </div>
         <div className="job-form-right">
-          <button className="backButton" onClick={() => setCreatingJob(false)}>
-            ← Back
-          </button>
           <form onSubmit={handleNewJobSubmission}>
             <label htmlFor="companyNameInput" className="company-name">Company Name</label>
             <input

@@ -15,7 +15,7 @@ const EasyNav: React.FC<EasyNavProps> = ({ selectedDashboard, setSelectedDashboa
         <div className="navContainer">
             <nav>
                 <ul className='linkList'>
-                    <li className={selectedDashboard==='summary' ? 'listItemActive' : 'listItem'} onClick={() => setSelectedDashboard("summary")}>Summary</li>
+                    <li className={selectedDashboard==='summary' ? 'listItemActive' : 'listItem'} onClick={() => setSelectedDashboard("summary")}>Home</li>
                     <li className={selectedDashboard==='jobs' ? 'listItemActive' : 'listItem'} onClick={() => setSelectedDashboard("jobs")}>Jobs</li>
                     <li className={selectedDashboard==='stats' ? 'listItemActive' : 'listItem'} onClick={() => setSelectedDashboard("stats")}>Stats</li>
                     <li className={selectedDashboard==='groups' ? 'listItemActive' : 'listItem'} onClick={() => setSelectedDashboard("groups")}>Groups</li>
