@@ -135,44 +135,46 @@ const HomePage: React.FC = () => {
   }, [jobs, groups, groupJobs]);
 
   return (
-    <div>
-      {errorMessage !== "" && <ErrorMessage message={errorMessage} />}
-        
-      {user && <Header user={user}/>}
-      <DashboardLabel/>
-            
-      <div className="main-container">
-        <EasyNav selectedDashboard={selectedDashboard} setSelectedDashboard={setSelectedDashboard}/>
-        <div className="dashboard-container">
-          {/* Conditionally render the selected dashboard, summary by default. If an option is selected, verify its dependencies are loaded before rendering. */}
-          {selectedDashboard === 'summary' && jobs && stats && 
-            <SummaryDashboard jobs={jobs} stats={stats} />}
-            
-          {selectedDashboard === 'jobs' && user && independentJobs && groupsToJobsList && jobs &&
-            <JobsDashboard 
-              user={user}
-              allJobs={jobs}
-              ungroupedJobs={independentJobs} 
-              groupToJobsList={groupsToJobsList} 
-              setJobs={setJobs} 
-            />}
-            
-          {selectedDashboard === 'stats' && user && stats && 
-            <StatDashboard user={user} stats={stats} />}
-            
-          {selectedDashboard === 'groups' && user && groups && groupsToJobsList && jobs && 
-            <GroupDashboard 
-              user={user} 
-              groups={groups} 
-              groupToJobsList={groupsToJobsList} 
-              setGroups={setGroups} 
-              jobs={jobs}
-              setGroupsToJobsList={setGroupsToJobsList}
-            />}
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow">
+        {errorMessage !== "" && <ErrorMessage message={errorMessage} />}
+
+        {user && <Header user={user} />}
+        <DashboardLabel />
+
+        <div className="main-container">
+          <EasyNav selectedDashboard={selectedDashboard} setSelectedDashboard={setSelectedDashboard} />
+
+          <div className="dashboard-container">
+            {selectedDashboard === 'summary' && jobs && stats &&
+              <SummaryDashboard jobs={jobs} stats={stats} />}
+
+            {selectedDashboard === 'jobs' && user && independentJobs && groupsToJobsList && jobs &&
+              <JobsDashboard
+                user={user}
+                allJobs={jobs}
+                ungroupedJobs={independentJobs}
+                groupToJobsList={groupsToJobsList}
+                setJobs={setJobs}
+              />}
+
+            {selectedDashboard === 'stats' && user && stats &&
+              <StatDashboard user={user} stats={stats} />}
+
+            {selectedDashboard === 'groups' && user && groups && groupsToJobsList && jobs &&
+              <GroupDashboard
+                user={user}
+                groups={groups}
+                groupToJobsList={groupsToJobsList}
+                setGroups={setGroups}
+                jobs={jobs}
+                setGroupsToJobsList={setGroupsToJobsList}
+              />}
+          </div>
         </div>
       </div>
-            
-      <Footer></Footer>
+
+      <Footer />
     </div>
   );
 }

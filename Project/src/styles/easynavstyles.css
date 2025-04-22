@@ -3,8 +3,8 @@
     height: 375px;
     position:static;
     top: 250px;
-    left: 0px;
     align-items: center;
+    font-weight: 600;
 }
 .linkList{
     list-style: none;
@@ -49,29 +49,37 @@
 
 @media (max-width: 768px) {
     .navContainer{
-        width: 50px;
-        height: 80px;
-        position:static;
+        width: 100%; 
+        height: auto; 
         top: 250px;
-        left: 7px;
         align-items: center;
+        margin-bottom: 10px;
     }
+    
     .linkList{
         flex-direction: row;
         justify-content: space-evenly;
-        align-items: baseline;
-        margin-left: 40px;
-
+        align-items: center; /* Changed to center for better mobile alignment */
+        width: 100%; /* Make list take full width */
+        padding: 0; /* Remove any padding */
+        margin: 0; /* Remove any margin */
     }
-    .listItem{
+    
+    .listItem, .listItemActive{
         margin: 5px;
-        padding: 5px;
-        background-color: transparent; 
         border: 2px solid #ffd679;  
         border-radius: 30px;
         padding: 10px 13px;
-        margin-left: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 10px; /* Reduced bottom margin */
+        font-size: 1rem;
+    }
+    
+    .listItem {
+        background-color: transparent;
+    }
+    
+    .listItemActive {
+        background-color: #ffd679;
     }
     .listItemActive{
         margin: 5px;
@@ -83,8 +91,9 @@
         margin-left: 10px;
         margin-bottom: 20px;
     }
+    
     .link{
         font-size: 1rem;
-        text-decoration: none
+        text-decoration: none;
     }
 }

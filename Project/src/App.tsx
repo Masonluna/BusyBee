@@ -3,6 +3,9 @@ import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import MainDashboard from './pages/MainDashboard';
+import AboutTeamPage from './pages/AboutTeamPage';
+import ContactPage from './pages/ContactPage';
+import FAQPage from './pages/FAQPage';
 
 
 const App = () => {
@@ -14,6 +17,9 @@ const App = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/dashboard" element={<MainDashboard />} />
+      <Route path="/about-team" element={<AboutTeamPage />}/>
+      <Route path="/contact" element={<ContactPage />}/>
+      <Route path="/FAQ" element={<FAQPage />}/>
     </Routes>
   )
 }

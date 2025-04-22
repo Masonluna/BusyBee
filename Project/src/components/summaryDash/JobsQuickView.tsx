@@ -13,7 +13,7 @@ const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs}) => {
     return (
         <>
             <div className="jobs-section">
-                <h3>Your Jobs</h3>
+                <h3 className="jobs-header">Your Jobs</h3>
 
                 <div className="add-job-CTA">
                     <div className="add-job-content">

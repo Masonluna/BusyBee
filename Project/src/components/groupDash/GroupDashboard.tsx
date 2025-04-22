@@ -2,7 +2,8 @@ import { SetStateAction, useState } from "react";
 import type { User, Group, GroupInsertDto, GroupToJobsDto, JobDto, GroupJobInsertDto } from "../../utils/types";
 import { createGroup, deleteGroup, addJobToGroup, removeJobFromGroup } from "../../service/supabaseService";
 import JobList from "../jobDash/JobList"; // Import the JobList component
-import JobDetailsModal from "../jobDash/JobDetailsModal";
+import '../../styles/groupdashboard.css';
+import plusSign from '../../assets/Busybee-plus-02.png';
 
 type GroupDashboardProps = {
     user: User,
@@ -161,8 +162,13 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
     <>
         {!creatingGroup && 
             <div>
-                <h1 className="hired-CTA">Your Groups</h1>
-                
+                <div className="groups-header-containter">
+                <h1 className="groups-header">Your Groups</h1>
+                <button onClick={() => setCreatingGroup(true)} className="create-group-button">
+                    <img src={plusSign} alt="yellow plus sign" className="plus-sign-size" />
+                    <h4>Add a group...</h4>
+                </button>
+                </div>
                 <ul className="group-list">
                     {groups.map(group => {
                         // Find the corresponding group in groupToJobsList
@@ -174,7 +180,7 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
                         
                         return (
                             <li key={group.group_id} className="group-item">
-                                <div className="group-header">
+                                <div className="group-title">
                                     <div className="flex-row" style={{ width: '100%' }}>
                                         <button 
                                             className="expand-button"
@@ -187,7 +193,7 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
                                     
                                     <div className="group-controls">
                                         <select 
-                                            name="addJobToGroupDropDown" 
+                                            className="addJobToGroupDropDown" 
                                             id={`addJobToGroup-${group.group_id}`}
                                             onChange={(e) => {
                                                 const value = e.target.value;
@@ -207,7 +213,7 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
                                         </select>
                                         
                                         <select 
-                                            name="removeJobFromGroupDropDown" 
+                                            className="removeJobFromGroupDropDown" 
                                             id={`removeJobFromGroup-${group.group_id}`}
                                             onChange={(e) => {
                                                 const value = e.target.value;
@@ -238,7 +244,7 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
                                 
                                 {/* Show the JobList component when the group is expanded */}
                                 {isExpanded && (
-                                    <div className="group-job-list">
+                                    <div className="group-job-list-2">
                                         {jobsInGroup.length > 0 ? (
                                             <JobList 
                                                 jobs={jobsInGroup} 
@@ -257,20 +263,16 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
                     })}
                 </ul>
 
-                <button onClick={() => setCreatingGroup(true)} className="create-group-button">Create Group</button>
-
-                {showingJobDetails && selectedJob && (
-                    <>
-                        <JobDetailsModal job={selectedJob} onClose={closeModal} />                
-                    </>
-                )}
+                
             </div>
         }
 
         {creatingGroup &&
             <div>
-                <button className="backButton" onClick={() => setCreatingGroup(false)}>← Back</button>
-                <h1 className="hired-CTA">Create Group</h1>
+                <div className="back-button-header-container">
+                    <button className="backButton-group" onClick={() => setCreatingGroup(false)}>← Back</button>
+                    <h1 className="create-group">Create Group</h1>
+                </div>
                 <form onSubmit={(event) => handleNewGroupSubmission(event)} className="group-form">
                     <label htmlFor="newGroupName">Group Name</label>
                     <input type="text" id="newGroupName" name="newGroupName" />
