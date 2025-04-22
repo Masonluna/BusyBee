@@ -25,6 +25,10 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
     const [creatingGroup, setCreatingGroup] = useState(false);
     // State to track expanded groups to show their job lists
     const [expandedGroups, setExpandedGroups] = useState<number[]>([]);
+
+    const [showingJobDetails, setShowingJobDetails] = useState<boolean>(false);
+    const [selectedJob, setSelectedJob] = useState<JobDto | null>(null);
+
     
     const handleNewGroupSubmission = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -145,6 +149,15 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
         );
     }
 
+    const handleJobClick = (job: JobDto) => {
+        setSelectedJob(job);
+        setShowingJobDetails(true);
+    }
+
+    const closeModal = () => {
+        setShowingJobDetails(false);
+    }
+
     return (
     <>
         {!creatingGroup && 
@@ -231,11 +244,12 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
                                 
                                 {/* Show the JobList component when the group is expanded */}
                                 {isExpanded && (
-                                    <div className="group-job-list">
+                                    <div className="group-job-list-2">
                                         {jobsInGroup.length > 0 ? (
                                             <JobList 
                                                 jobs={jobsInGroup} 
                                                 jobListTitle={group.group_name} 
+                                                onItemClick={handleJobClick}
                                             />
                                         ) : (
                                             <div className="no-jobs-message">
