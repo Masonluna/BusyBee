@@ -20,6 +20,7 @@ const StatDashboard: React.FC<StatDashboardProps> = ({ user, stats }) => {
     <span className="welcome-message">{user && `Welcome to your personalized stats dashboard, ${user.first_name}`}</span>
     
 
+<<<<<<< HEAD
     <div className="stats-grid">
       <div className="stat-box total-apps-box">
         <span className="stat-label total-apps-label">Total Applications</span>
@@ -73,6 +74,22 @@ const StatDashboard: React.FC<StatDashboardProps> = ({ user, stats }) => {
     </div>
   </div>
 </>
+=======
+            {/*Example of accessing user fields. Remove*/}
+            {user && <h2>Welcome to your personalized stats dashboard, {user.first_name}</h2>}
+            {user && stats &&
+                <div>
+                    <p>Total Applications Submitted: {stats.totalApps}</p>
+                    <p>Number of applications submitted this month: {stats.appsThisMonth}</p>
+                    <p>Average applications submitted per month: {stats.appsPerMonth}</p>
+                    <p>Applications left to hit your monthly goal: {stats.appsNeededForGoal}</p>
+                    <p>Interviews-per-application: {stats.interviewsPerApp[0]} interview(s) for every {stats.interviewsPerApp[1]} application(s)</p>
+                    <p>Rejections-per-application: {stats.rejectionsPerApp[0]} rejection(s) for every {stats.rejectionsPerApp[1]} application(s)</p>
+                    <p>Offers-per-interview: {stats.offersPerInterview[0]} offer(s) for every {stats.offersPerInterview[1]} interview(s)</p>
+                </div>
+            }
+        </>
+>>>>>>> 195c8e406a63007fbed589fe1fc6da9c1ae36979
     )
 }
 

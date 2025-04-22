@@ -38,7 +38,7 @@ export type JobFormData = {
     estimatedSalaryInput: number | undefined;
     notesInput: string;
     statusInput: string;
-  };
+};
 
 export type JobInsertDto = {
     company_name: string,
@@ -109,9 +109,14 @@ export type GroupToJobsDto = {
     jobs: JobDto[]
 }
 
+// NOTE: For all ratios, the first number is foo[0] and the second is foo[1].
+// Example: In interviewsPerApp. interviewsPerApp[0] is interviews, interviewsPerApp[1] is applications.
 export type UserStats = {
     totalApps: number,
     appsPerMonth: number,
     appsThisMonth: number,
-    appsNeededForGoal: number
+    appsNeededForGoal: number,
+    interviewsPerApp: [number, number],
+    rejectionsPerApp: [number, number],
+    offersPerInterview: [number, number]
 }

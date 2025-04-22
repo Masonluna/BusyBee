@@ -74,6 +74,9 @@
     list-style: none;
     justify-content: space-between; 
 }
+.jobListing:hover{
+  cursor: pointer;
+}
 .select-group-CTA{
     font-weight: 300;
     margin-left: 50px;

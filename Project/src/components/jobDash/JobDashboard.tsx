@@ -3,6 +3,7 @@ import { User, GroupToJobsDto, JobDto } from '../../utils/types';
 import JobList from './JobList';
 import CreateJobForm from './CreateJobForm';
 import DeleteJobButton from '../jobDash/DeleteJobButton';
+import JobDetailsModal from './JobDetailsModal';
 import '../../styles/jobsdashboard.css';
 import plusSign from '../../assets/Busybee-plus-02.png';
 
@@ -20,13 +21,15 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
     const [independentJobs, setIndependentJobs] = useState<JobDto[] | null>(null);
     const [selectedGroupIndex, setSelectedGroupIndex] = useState<number | null>(null);
     const [creatingJob, setCreatingJob] = useState<boolean>(false);
+    const [showingJobDetails, setShowingJobDetails] = useState<boolean>(false);
+    const [selectedJob, setSelectedJob] = useState<JobDto | null>(null);
     
     // This useEffect keeps independentJobs in sync with the ungroupedJobs prop
     useEffect(() => {
         setIndependentJobs(ungroupedJobs);
     }, [ungroupedJobs]);
 
-    // Reset selectedGroupIndex when groupToJobsList changes to prevent out-of-range issues
+    // Reset selectedGroupIndex when groupToJobsList changes to prevent out of range issues
     useEffect(() => {
         if (selectedGroupIndex !== null && 
             (groupToJobsList.length === 0 || selectedGroupIndex >= groupToJobsList.length)) {
@@ -41,6 +44,17 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
                 break;
             }
         }
+    }
+
+    // now handle modal opening and closing when a job is clicked...
+
+    const handleJobClick = (job: JobDto) => {
+        setSelectedJob(job);
+        setShowingJobDetails(true);
+    }
+
+    const closeModal = () => {
+        setShowingJobDetails(false);
     }
 
     return (
@@ -59,7 +73,7 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
                             <h4>Add a job...</h4>
                         </button>
                         
-                        {/* Add the DeleteJobButton component here */}
+                        
                         <DeleteJobButton allJobs={allJobs} setJobs={setJobs} />
                     </div>
                     
@@ -100,20 +114,27 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
                         <JobList 
                             jobs={groupToJobsList[selectedGroupIndex].jobs} 
                             jobListTitle={groupToJobsList[selectedGroupIndex].groupDto.group_name} 
+                            onItemClick={handleJobClick}
                         />
                     )}
                     {selectedGroupIndex === null &&
                         <JobList 
                             jobs={allJobs}
                             jobListTitle="All Jobs"
+                            onItemClick={handleJobClick}
                         />
                     }
                     
                     {independentJobs && independentJobs.length > 0 && (
                         <>
                             <h3>Your ungrouped jobs</h3>
-                            <JobList jobs={independentJobs} jobListTitle='Non-Grouped Jobs' />
+                            <JobList jobs={independentJobs} jobListTitle='Non-Grouped Jobs' onItemClick={handleJobClick} />
                         </>
+                    )}
+
+                    {/* This modal will pop up when they click a job  */}
+                    {showingJobDetails && selectedJob && (
+                        <JobDetailsModal job={selectedJob} onClose={closeModal} />
                     )}
                 </>
             )}
