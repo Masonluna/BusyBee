@@ -33,13 +33,13 @@ const StatsQuickView: React.FC<StatsQuickViewProps> = ({ stats }) => {
             </div>
 
             <div className="stat-item stat-empty">
-              <span className="stat-value">{stats.rejectionsPerApp}</span>
-              <span className="stat-label">Rejected per Application</span>
+              <span className="stat-value">{stats.interviewRate}</span>
+              <span className="stat-label">Interview Rate</span>
             </div>
 
             <div className="stat-item stat-empty">
-              <span className="stat-value">{stats.offersPerInterview}</span>
-              <span className="stat-label">Offers Per Interview</span>
+              <span className="stat-value">{stats.offerRate}</span>
+              <span className="stat-label">Offer Rate</span>
             </div>
           </>
         )}

@@ -7,13 +7,11 @@ export function calculateUserStats(jobs: JobDto[], user: User) {
     let numInterviews = 0;
     let numRejections = 0;
     let numOffers = 0;
-    // Calculate the GCD according to Euclid's Algorithm
-    var gcd = function (a: number, b: number): number {
-        if (b == 0) {
-            return a;
-        }
-        return gcd(b, a % b);
-    };
+
+    function formatToPercent(num: number): string {
+        const percent = Math.floor(num * 100);
+        return percent.toString().slice(0, 2) + '%';
+    }
 
     function initializeMap(jobs: JobDto[]): Map<number, number[]> {
         const yearMap: Map<number, number[]> = new Map();
@@ -66,34 +64,29 @@ export function calculateUserStats(jobs: JobDto[], user: User) {
     const appsThisMonth = yearMap.get(now.getFullYear())?.at(now.getMonth()) || 0;
     const appsNeededForGoal = Math.max(user.monthly_goal - appsThisMonth, 0);
 
-    // Ratio Stats
+    // Percentage Stats
     // ==========
     const appsPerMonth = totalApps / numMonths;
 
     // Interviews-per-Application
-    const intPerAppGCD = gcd(numInterviews, totalApps);
-    const interviewsPerAppNum = numInterviews / intPerAppGCD;
-    const interviewsPerAppDen = totalApps / intPerAppGCD;
+    const interviewRate = formatToPercent(numInterviews / jobs.length);
 
-    // Rejections-per-Application
-    const rejPerAppGCD = gcd(numRejections, totalApps);
-    const rejectionsPerAppNum = numRejections / rejPerAppGCD;
-    const rejectionsPerAppDen = totalApps / rejPerAppGCD;
+    // Offer Rate
+    const offerRate = formatToPercent(numOffers / jobs.length);
 
-    // Offers-per-Interview
-    const offPerIntGCD = gcd(numOffers, numInterviews);
-    const offersPerInterviewNum = numOffers / offPerIntGCD;
-    const offersPerInterviewDen = numInterviews / offPerIntGCD;
-
+    // Interview success rate
+    const intSuccessRate = formatToPercent(numOffers / numInterviews);
 
     const applicationStats: UserStats = {
         totalApps: totalApps,
+        totalInterviews: numInterviews,
+        totalOffers: numOffers,
         appsPerMonth: appsPerMonth,
         appsThisMonth: appsThisMonth,
         appsNeededForGoal: appsNeededForGoal,
-        interviewsPerApp: [interviewsPerAppNum, interviewsPerAppDen],
-        rejectionsPerApp: [rejectionsPerAppNum, rejectionsPerAppDen],
-        offersPerInterview: [offersPerInterviewNum, offersPerInterviewDen]
+        interviewRate: interviewRate,
+        offerRate: offerRate,
+        interviewSuccessRate: intSuccessRate
     };
     return applicationStats;
 }

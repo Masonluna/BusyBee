@@ -15,11 +15,7 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
     };
 
     const handleLogoClick = () => {
-        if (user) {
-            navigate('/dashboard');
-        } else {
-            navigate('/login');
-        }
+        navigate('*');
     };
 
     return (

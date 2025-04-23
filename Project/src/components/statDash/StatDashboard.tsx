@@ -25,6 +25,17 @@ const StatDashboard: React.FC<StatDashboardProps> = ({ user, stats }) => {
         <span className="stat-label total-apps-label">Total Applications</span>
         <span className="stat-value total-apps-value">{user && stats ? stats.totalApps : ''}</span>
       </div>
+
+      <div className="stat-box longest-streak-box">
+        <span className="stat-label longest-streak-label">Total Interviews</span>
+        <span className="stat-value longest-streak-value">{user && stats ? stats.totalInterviews : ''}</span>
+        <span className="stat=value longest-streak-value"></span>
+      </div>
+
+      <div className="stat-box offers-box">
+        <span className="stat-label offers-label">Total Offers</span>
+        <span className="stat-value offers-value">{user && stats ? stats.totalOffers : ''}</span>
+      </div>
       
       <div className="stat-box monthly-apps-box">
         <span className="stat-label monthly-apps-label">Apps This Month</span>
@@ -42,20 +53,20 @@ const StatDashboard: React.FC<StatDashboardProps> = ({ user, stats }) => {
       </div>
       
       <div className="stat-box response-rate-box">
-        <span className="stat-label response-rate-label">Interviews per Applications</span>
-        <span className="stat-value goal-remaining-value">{user && stats ? stats.interviewsPerApp : ''}</span>
+        <span className="stat-label response-rate-label">Interview Rate</span>
+        <span className="stat-value goal-remaining-value">{user && stats ? stats.interviewRate : ''}</span>
         <span className="stat-value response-rate-value"></span>
       </div>
       
       <div className="stat-box interviews-box">
-        <span className="stat-label interviews-label">Rejected Per Application</span>
-        <span className="stat-value goal-remaining-value">{user && stats ? stats.rejectionsPerApp : ''}</span>
+        <span className="stat-label interviews-label">Offer Rate</span>
+        <span className="stat-value goal-remaining-value">{user && stats ? stats.offerRate : ''}</span>
         <span className="stat-value interviews-value"></span>
       </div>
       
       <div className="stat-box days-active-box">
-        <span className="stat-label days-active-label">Offers Per Interview</span>
-        <span className="stat-value goal-remaining-value">{user && stats ? stats.offersPerInterview : ''}</span>
+        <span className="stat-label days-active-label">Interview Success Rate</span>
+        <span className="stat-value goal-remaining-value">{user && stats ? stats.interviewSuccessRate : ''}</span>
         <span className="stat-value days-active-value"></span>
       </div>
     </div>

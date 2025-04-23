@@ -142,7 +142,7 @@ const HomePage: React.FC = () => {
         {user && <Header user={user} />}
         <DashboardLabel />
 
-        <div className="main-container">
+        <div className="main-container" style={{paddingBottom: '80px'}}>
           <EasyNav selectedDashboard={selectedDashboard} setSelectedDashboard={setSelectedDashboard} />
 
           <div className="dashboard-container">
