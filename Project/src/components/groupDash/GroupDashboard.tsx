@@ -183,7 +183,7 @@ const GroupDashboard: React.FC<GroupDashboardProps> = ({
                         return (
                             <li key={group.group_id} className="group-item">
                                 <div className="group-title">
-                                    <div className="flex-row" style={{ width: '100%' }}>
+                                    <div className="flex-row expand-button" style={{ width: '100%' }}>
                                         <button 
                                             className="expand-button"
                                             onClick={() => toggleGroupExpansion(group.group_id)}
