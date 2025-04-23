@@ -1,41 +1,30 @@
 import { Job, JobDto, JobInsertDto, Group, GroupJob, GroupToJobsDto, JobFormData } from '../utils/types';
-import { getStatusMap } from './supabaseService';
-
-async function fetchStatusMap(){
-    const potentialStatusMap: {[key: number] : string} | null = await getStatusMap();
-    if (!potentialStatusMap) {
-        console.log('Error fetching statuses');
-        return null;
-    }
-    const actualStatusMap: {[key: number] : string} = potentialStatusMap;
-    return actualStatusMap;
-}
 
 export function compileJobInsertDto(jobData: JobFormData, userId: string){
     let statusId: number = 1;
         switch (jobData.statusInput){
-            case 'applied': 
+            case 'Applied': 
                 statusId = 1;
                 break;
-            case 'assessment':
+            case 'Assessment':
                 statusId = 2;
                 break;
-            case 'interview':
+            case 'Interview':
                 statusId = 3;
                 break;
-            case 'offer':
+            case 'Offer':
                 statusId = 4;
                 break;
-            case 'counter offer':
+            case 'Counter Offer':
                 statusId = 5;
                 break;
-            case 'rejected':
+            case 'Rejected':
                 statusId = 6;
                 break;
-            case 'no response':
+            case 'No Response':
                 statusId = 7;
                 break;
-            case 'offer accepted':
+            case 'Offer Accepted':
                 statusId = 8;
                 break;
         }
@@ -74,13 +63,43 @@ export function compileJobInsertDto(jobData: JobFormData, userId: string){
         return jobInsertDto;
 }
 
-export async function compileJobDtos(jobs: Job[]){
-    const statusMap = await fetchStatusMap();
-    if (!statusMap){
-        console.log("Unable to compile Job Dtos because statusMap is null...");
-        return null;
+export function compileJobDtos(jobs: Job[]){
+    const statusNames: string[] = new Array(jobs.length);
+    for (let i = 0; i < jobs.length; i++){
+        let statusName: string;
+        switch (jobs[i].status_id){
+            case 1:
+                statusName = "Applied"
+                break;
+            case 2:
+                statusName = "Assessment"
+                break;
+            case 3:
+                statusName = "Interview"
+                break;
+            case 4:
+                statusName = "Offer"
+                break;
+            case 5:
+                statusName = "Counter Offer"
+                break;
+            case 6:
+                statusName = "Rejected"
+                break;
+            case 7:
+                statusName = "No Response"
+                break;
+            case 8:
+                statusName = "Offer Accepted"
+                break;
+            default:
+                statusName = ""
+                break;
+        }
+        statusNames[i] = statusName;
     }
-    const jobDtos: JobDto[] = jobs.map(job => (
+    
+    const jobDtos: JobDto[] = jobs.map((job, index) => (
         {
             job_id: job.job_id,
             company_name: job.company_name,
@@ -93,7 +112,7 @@ export async function compileJobDtos(jobs: Job[]){
             date_applied: job.date_applied,
             platform: job.platform,
             estimated_annual_salary: job.estimated_annual_salary,
-            status_name: statusMap[job.status_id],
+            status_name: statusNames[index],
             notes: job.notes,
             user_id: job.user_id
         }

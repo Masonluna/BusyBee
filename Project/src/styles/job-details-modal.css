@@ -32,4 +32,14 @@
   
   .modal-body {
     margin-top: 10px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  #notes{
+    resize: "vertical";
+    text-align: "left";
+    vertical-align: "top";
+    padding: "8px";
+    width: 100%;
   }

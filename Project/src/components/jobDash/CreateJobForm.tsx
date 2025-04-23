@@ -27,7 +27,7 @@ const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob, userId, i
     platformInput: "",
     estimatedSalaryInput: undefined,
     notesInput: "",
-    statusInput: "applied",
+    statusInput: "Applied",
   });
   
 
@@ -81,7 +81,7 @@ const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob, userId, i
       platformInput: "",
       estimatedSalaryInput: undefined,
       notesInput: "",
-      statusInput: "applied",
+      statusInput: "Applied",
     });
     setCreatingJob(false); // Optionally go back after submission
   };
@@ -91,7 +91,7 @@ const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob, userId, i
       <div className="job-form-container">
         <div className="job-form-left">
           <h1 className="add-new-job-header">Add a new job</h1>
-          <h2 className="job-create-CTA">Let's start getting you on track</h2>
+          <h2 className="job-create-CTA">Another application done... great work!</h2>
         </div>
         <div className="job-form-right">
           <form onSubmit={handleNewJobSubmission}>
@@ -213,14 +213,14 @@ const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob, userId, i
               onChange={handleInputChange}
               required
             >
-              <option value="applied">Applied</option>
-              <option value="assessment">Assessment</option>
-              <option value="interview">Interview</option>
-              <option value="offer">Offer</option>
-              <option value="counter offer">Counter Offer</option>
-              <option value="rejected">Rejected</option>
-              <option value="no response">No Response</option>
-              <option value="offer accepted">Offer Accepted</option>
+              <option value="Applied">Applied</option>
+              <option value="Assessment">Assessment</option>
+              <option value="Interview">Interview</option>
+              <option value="Offer">Offer</option>
+              <option value="Counter Offer">Counter Offer</option>
+              <option value="Rejected">Rejected</option>
+              <option value="No Response">No Response</option>
+              <option value="Offer Accepted">Offer Accepted</option>
             </select>
             <button type="submit" className="submit-button">Submit New Job</button>
             <button onClick={() => setCreatingJob(false)} className="cancel-button">Cancel</button>

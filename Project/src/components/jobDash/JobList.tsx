@@ -11,9 +11,9 @@ const JobList: React.FC<JobListProps> = ({jobs, jobListTitle, onItemClick}) => {
 
 
     return <>
-        <div className="jobListContainer">
-            <h2 className="job-list-title">{jobListTitle}</h2>
-            <ul className='jobList'>
+        <div className="jobListContainer-component">
+            <h2 className="job-list-title-component">{jobListTitle}</h2>
+            <ul className='jobList-component'>
                 {jobs && jobs.map(job => (
                     
                     <li key={job.job_id}
