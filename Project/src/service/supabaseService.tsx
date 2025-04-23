@@ -1,5 +1,5 @@
 import supabase from '../utils/supabase';
-import {User, Job, Group, GroupJob, JobInsertDto, JobDto, GroupInsertDto, GroupJobInsertDto} from '../utils/types';
+import {User, Job, Group, GroupJob, JobInsertDto, JobDto, GroupInsertDto, GroupJobInsertDto, JobFormData} from '../utils/types';
 import { compileJobDtos } from './objectConversionService';
 
 
@@ -162,7 +162,8 @@ export async function createJob(jobInsertDto: JobInsertDto) {
   
       if (data && data.length > 0) {
         const job: Job = data[0] as Job;
-        const jobDtos: JobDto[] | null = await compileJobDtos([job]);
+        
+        const jobDtos: JobDto[] = compileJobDtos([job]);
         if (jobDtos && jobDtos.length > 0){
             return jobDtos[0];
         }
@@ -289,6 +290,82 @@ export async function deleteJob(jobId: number): Promise<boolean> {
       console.error('Exception deleting job:', err);
       return false;
     }
+}
+
+export async function updateJob(jobData: JobFormData, jobId: number){
+    try {
+        // change the JobFormData into the shape expected by the database
+        let statusId: number;
+        switch (jobData.statusInput){
+            case 'Applied': 
+                statusId = 1;
+                break;
+            case 'Assessment':
+                statusId = 2;
+                break;
+            case 'Interview':
+                statusId = 3;
+                break;
+            case 'Offer':
+                statusId = 4;
+                break;
+            case 'Counter Offer':
+                statusId = 5;
+                break;
+            case 'Rejected':
+                statusId = 6;
+                break;
+            case 'No Response':
+                statusId = 7;
+                break;
+            case 'Offer Accepted':
+                statusId = 8;
+                break;
+            default:
+                statusId = 1;
+                break;
+        }
+        const jobUpdate = {
+            company_name: jobData.companyNameInput,
+            job_title: jobData.jobTitleInput,
+            remote: jobData.remoteInput === "Remote",
+            job_city: jobData.jobCityInput,
+            job_state: jobData.jobStateInput,
+            job_country: jobData.jobCountryInput,
+            date_posted: jobData.datePostedInput || null,
+            date_applied: jobData.dateAppliedInput || null,
+            platform: jobData.platformInput,
+            estimated_annual_salary: jobData.estimatedSalaryInput || null,
+            notes: jobData.notesInput,
+            status_id: statusId
+        };
+
+        // Update the job and return the updated record
+        const { data, error } = await supabase
+            .from("jobs")
+            .update(jobUpdate)
+            .eq('job_id', jobId)
+            .select();
+
+        if (error){
+            console.log("Error updating job with id: ", jobId, ": ", error);
+            return null;
+        }
+        
+        if (data){
+            if (data.length === 0){
+                console.log("Updated job but could not select it, data is empty");
+                return null;
+            }
+            console.log("Success getting the job: ", data[0].company_name);
+            return data[0] as Job;
+        }
+    }
+    catch(err){
+        console.log("Exception thrown from updateJob: ", err);
+    }
+    
+    return null;
 }
 
 

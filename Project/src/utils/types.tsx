@@ -109,14 +109,14 @@ export type GroupToJobsDto = {
     jobs: JobDto[]
 }
 
-// NOTE: For all ratios, the first number is foo[0] and the second is foo[1].
-// Example: In interviewsPerApp. interviewsPerApp[0] is interviews, interviewsPerApp[1] is applications.
 export type UserStats = {
     totalApps: number,
+    totalInterviews: number,
+    totalOffers: number,
     appsPerMonth: number,
     appsThisMonth: number,
     appsNeededForGoal: number,
-    interviewsPerApp: [number, number],
-    rejectionsPerApp: [number, number],
-    offersPerInterview: [number, number]
+    interviewRate: string,
+    offerRate: string,
+    interviewSuccessRate: string,
 }
