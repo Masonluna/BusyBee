@@ -17,11 +17,6 @@ const HomePage: React.FC = () => {
   // Get all necessary state from context
   const {
     user,
-    jobs,
-    groups,
-    independentJobs,
-    groupsToJobsList,
-    stats,
     hasLoaded,
     errorMessage,
     selectedDashboard,
@@ -42,23 +37,23 @@ const HomePage: React.FC = () => {
       <div className="flex-grow">
         {errorMessage !== "" && <ErrorMessage message={errorMessage} />}
 
-        {user && <Header user={user} />}
+        <Header user={user} />
         <DashboardLabel />
 
         <div className="main-container" style={{paddingBottom: '80px'}}>
           <EasyNav selectedDashboard={selectedDashboard} setSelectedDashboard={setSelectedDashboard} />
 
           <div className="dashboard-container">
-            {selectedDashboard === 'summary' && jobs && stats &&
+            {selectedDashboard === 'summary' &&
               <SummaryDashboard />}
 
-            {selectedDashboard === 'jobs' && user && independentJobs && groupsToJobsList && jobs &&
+            {selectedDashboard === 'jobs' && 
               <JobsDashboard />}
 
-            {selectedDashboard === 'stats' && user && stats &&
+            {selectedDashboard === 'stats' && 
               <StatDashboard />}
 
-            {selectedDashboard === 'groups' && user && groups && groupsToJobsList && jobs &&
+            {selectedDashboard === 'groups' &&
               <GroupDashboard />}
           </div>
         </div>

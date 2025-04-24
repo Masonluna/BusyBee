@@ -42,6 +42,11 @@ const StatsQuickView: React.FC = () => {
                         </div>
                     </>
                 )}
+                {!stats && (
+                    <div>
+                        <h5>Once you have job activity, you can reference your personal statistics here!</h5>
+                    </div>
+                )}
             </div>
         </>
     )

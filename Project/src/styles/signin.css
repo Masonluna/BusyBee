@@ -9,7 +9,8 @@
 .nameRow{
     display: flex;
     justify-content: center;
-    margin-bottom: 5px;
+    align-items: flex-start;
+    flex-wrap: nowrap; 
 }
 .registerMessage{
     margin-top: 40px;
@@ -31,47 +32,47 @@
 }
 
 .signInInput-reg{
-    width: 170px; 
+    width: 170px !important;
     height: 40px;
-    padding: 12px; 
+    padding: 12px 12px 20px 12px;
     font-family: 'Poppins', sans-serif;
     box-shadow: 0 0 0 1px black;
     border-color: #ffd679;
     border-radius: 3px !important;
     border-width: 1px;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    margin-left: 50px !important;
-    margin-right: 10px !important;
-    margin-top: 0px !important;
+    margin-top: 5px !important;
+    margin-left: 20px !important;
+    flex: 0 0 170px;
+    margin-bottom: 10px !important;
   }
 
 .signInInputLN-reg{
-    width: 170px; 
-    height: 40px;
-    padding: 12px; 
-    font-family: 'Poppins', sans-serif;
-    box-shadow: 0 0 0 1px black;
-    border-color: #ffd679;
-    border-radius: 3px  !important;
-    border-width: 1px;
-    padding-bottom: 20px;
-    margin-right: 55px !important;
-    margin-top: 0px !important;
-    margin-left: 10px !important;
+  width: 165px !important;
+  height: 40px;
+  padding: 12px 12px 20px 12px;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 0 0 1px black;
+  border-color: #ffd679;
+  border-radius: 3px !important;
+  border-width: 1px;
+  margin: 0;
+  flex: 0 0 170px;
+  margin-top: 5px !important;
+  margin-left: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 .signInPassword{
     width: 170px; 
     height: 40px;
-    padding: 12px; 
+    padding: 10px; 
     margin-bottom: 15px; 
     font-family: 'Poppins', sans-serif;
     box-shadow: 0 0 0 1px black;
     border-color: #ffd679;
     border-radius: 3px;
     border-width: 1px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     margin-right: 20px;
 }
 
@@ -85,8 +86,6 @@
     border-color: #ffd679;
     border-radius: 3px;
     border-width: 1px;
-    padding-bottom: 20px;
-    padding-top: 20px;
 }
 
 .signInEmail{
@@ -99,7 +98,7 @@
     border-color: #ffd679;
     border-radius: 3px;
     border-width: 1px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     padding-top: 20px;
 }
 
@@ -114,12 +113,14 @@
     font-weight: 400;
     margin-bottom: 20px;
     margin-top: 30px;
+    margin-left: 30px !important;
+    margin-right:115px !important;
 }
 .labelLN{
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     margin-bottom: 20px;
-    margin-right: 83px;
+    margin-right: 100px;
 }
 
 .labelEMAIL{
@@ -138,10 +139,13 @@
 .labelCPW{
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    margin-bottom: 20px;
     margin-right: 23px;
+    margin-top: 10px;
 }
-
+.password-row{
+ justify-content: center !important; 
+  align-items: flex-start;
+}
 .errorMSG{
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
@@ -153,6 +157,13 @@
     text-align: center;
     margin-bottom: 200px;
     font-weight: 600;
+}
+.signInPasswordCPW{
+    margin-bottom: 0px !important;
+    margin-top: 10px !important;
+}
+.signInPassword{
+    margin-bottom: 10px !important;
 }
 @media (max-width: 768px){
     .imgSize{
@@ -174,7 +185,7 @@
         border-radius: 3px;
         border-width: 1px;
         padding-bottom: 20px;
-        margin-left: 35px !important;
+        margin-left: 40px !important;
         margin-right: 10px !important;
       }
     .center{
