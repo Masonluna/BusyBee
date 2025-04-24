@@ -47,7 +47,7 @@ const JobsQuickView: React.FC = () => {
                         {jobs && jobs.length > 0 && (
                             <JobList 
                                 jobs={getRecentJobs()} 
-                                jobListTitle="Recent Applications" 
+                                jobListTitle="" 
                                 onItemClick={handleJobClick} 
                             />
                         )}
