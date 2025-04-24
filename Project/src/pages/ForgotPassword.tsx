@@ -39,11 +39,12 @@ const ForgotPassword: React.FC = () => {
                     )}
                     <div className="spacer-reset-pw"></div>
                      <input className="email-input-forgot-pw" type="email" id="email" name="email" placeholder="youremail@gmail.com" />
+                     {successMessage !== "" && <p style={{color: "green"}}>{successMessage}</p>}
                 </div>
                 
                 <button className="button" type="submit">Send Reset Password Link</button>
                 <button className="button" onClick={() => navigate('/login')}>← Back</button>
-                {successMessage !== "" && <p>{successMessage}</p>}
+                
                 </div>
             </form>
         </>
