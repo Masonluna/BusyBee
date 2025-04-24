@@ -70,7 +70,7 @@ const SignUpForm: React.FC = () => {
 
                 <label className='labelPW'>Password</label>
                 <label className='labelCPW'>Confirm Password</label>
-                    <p>
+                    <p className="password-row">
                          <input className="signInPassword" type="password" placeholder='Password' name="signUpPassword" />
                         <input className="signInPasswordCPW" type="password" placeholder="Confirm Password" name="signUpConfirmPassword" />
                     </p>
