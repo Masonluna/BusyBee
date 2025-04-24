@@ -48,7 +48,6 @@ const TeamInfo = () => {
 
                     <div className="team-member">
                         <h2>Jason Moss</h2>
-                        <p>Content about Jason Moss goes here...</p>
                     </div>
 
                     <p><h3>Thanks to the team!</h3></p>
