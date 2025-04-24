@@ -21,7 +21,7 @@ const LoginForm: React.FC = () => {
         const potentialUser: User | null = await login(email, password);
         if (!potentialUser){
             console.log('Error logging in.')
-            setErrorMessage("Unable to log you in with those credentials. Please try again, or make an account if you don't have one already.");
+            setErrorMessage("Invalid username or password.");
             return;
         }
         const user: User = potentialUser;
@@ -35,7 +35,7 @@ const LoginForm: React.FC = () => {
         <div className="lgnComponentLocation">
             <h1 className="welcomeMessage">Welcome to Busybee</h1>
             <form onSubmit={handleLoginSubmission} className="center">
-                <p className="errorMSG">{errorMessage !== "" && <ErrorMessage message={errorMessage}/> }</p>
+                {errorMessage !== "" && <ErrorMessage message={errorMessage}/> }
                 <p><label className="labelEmail">Email</label></p>
                 <input type="email" placeholder="Email" name="loginEmail" className="loginInput"/>
 
@@ -43,7 +43,7 @@ const LoginForm: React.FC = () => {
                     <p><label className="labelPassword">Password</label></p>
                     <input type="password" placeholder="Password" name="loginPassword" className="loginInput"/>
                     
-                    <p className='forgotPasword'><a onClick={() => navigate('')}>Forgot Password?</a></p>
+                    <p className='forgotPasword'><a onClick={() => navigate("/forgot-password")}>Forgot Password?</a></p>
                 </div>
 
                 <button type="submit" className="button">Login</button>

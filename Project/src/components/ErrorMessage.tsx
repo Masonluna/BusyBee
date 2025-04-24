@@ -9,7 +9,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
 
     return (
         <>
-            <p className="errorMessage">{message}</p>
+            <p className="errorMSG">{message}</p>
         </>
     )
 }

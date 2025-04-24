@@ -21,7 +21,7 @@ export async function login(email: string, password: string){
             return;
         }
         else if (data){
-            console.log('successful login: ', data);
+            console.log('successful login');
             console.log('fetching user from public.user');
             const user_id = data.user.id;
             const { data: userData, error: userError } = await supabase.from("users").select('*').eq('user_id', user_id);
@@ -32,6 +32,7 @@ export async function login(email: string, password: string){
             }
             else if (userData){
                 //update last_accessed
+                console.log("found user from public.user");
                 const new_last_accessed_timestamp = new Date().toISOString();
                 const { error: updateError } = await supabase.from("users").update({ last_accessed: new_last_accessed_timestamp}).eq("user_id", user_id)
                 if (updateError){
@@ -45,6 +46,49 @@ export async function login(email: string, password: string){
         console.log('Unexpected error sending login request... ', err);
     }
     return null;
+}
+
+export async function initiateResetPassword(email:string){
+    try{
+        const origin = window.location.origin;
+        const redirectUrl = `${origin}/reset-password`
+        const {data, error} = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: redirectUrl
+        });
+        if (error){
+            console.log("Error initiating reset password flow: ", error);
+            return false;
+        }
+        if (data){
+            console.log("Successfully initiated reset password flow: ", data);
+            return true;
+        }
+    }
+    catch(err){
+        console.log("Exception thrown in initiateResetPassword: ", err);
+    }
+    return false;
+}
+
+export async function resetPassword(newPassword: string){
+    try{
+        const {data, error} = await supabase.auth.updateUser({
+            password: newPassword
+        });
+        if (error){
+            console.log("Error resetting password: ", error);
+            return false;
+        }
+        if (data){
+            console.log("Password updated successfully");
+            return true;
+        }
+
+    }
+    catch(err){
+        console.log("Exception thrown in resetPassword: ", err);
+    }
+    return false;
 }
 
 
