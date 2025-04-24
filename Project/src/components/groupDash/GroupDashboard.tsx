@@ -168,6 +168,7 @@ const GroupDashboard: React.FC = () => {
 
     return (
     <>
+        
         {!creatingGroup && 
             <div>
                 <div className="groups-header-containter">
@@ -281,6 +282,11 @@ const GroupDashboard: React.FC = () => {
                         <div className="error-message">{errorMessage}</div>
                     )}
             </div>
+        }
+        {jobs && jobs.length === 0 && (
+            <>
+                <h5>It looks like you don't have any jobs yet... start by Adding some jobs and then you can group them here.</h5>
+            </>)
         }
 
         {creatingGroup &&

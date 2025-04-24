@@ -25,8 +25,8 @@ const JobsQuickView: React.FC = () => {
     const handleJobClick = (job: JobDto) => {
         setSelectedJob(job);
         // In the quick view, we might not want to show the details modal
-        console.log("selected job=", selectedJob);
         // But we could navigate to the jobs dashboard or show a mini preview
+        console.log("selected job=", selectedJob);
         console.log("Job clicked in quick view:", job.job_id);
     };
 
@@ -44,7 +44,7 @@ const JobsQuickView: React.FC = () => {
                             </div>
                         </div>
 
-                        {jobs && jobs.length > 0 && (
+                        {jobs && (
                             <JobList 
                                 jobs={getRecentJobs()} 
                                 jobListTitle="" 
