@@ -1,9 +1,9 @@
 import { SetStateAction, useState } from 'react';
-import type { Job, JobDto, JobFormData } from "../../utils/types";
+import { Job, JobDto, JobFormData } from "../../utils/types";
 import '../../styles/job-details-modal.css';
 import { compileJobDtos } from '../../service/objectConversionService';
 import { updateJob, deleteJob } from '../../service/supabaseService';
-
+import { useDashboard } from '../../context/useDashboardContext';
 
 type JobDetailsModalProps = {
     job: JobDto,
@@ -12,6 +12,15 @@ type JobDetailsModalProps = {
 }
 
 const JobDetailsModal: React.FC<JobDetailsModalProps> = ({ job, onClose, setErrorMessage }) => {
+    // Get state update functions from context
+    const { 
+        jobs,
+        setJobs, 
+        independentJobs,
+        setIndependentJobs,
+        groupJobs,
+        setGroupJobs
+    } = useDashboard();
 
     const [jobData, setJobData] = useState<JobFormData>({
         companyNameInput: job.company_name,
@@ -26,8 +35,7 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({ job, onClose, setErro
         estimatedSalaryInput: job.estimated_annual_salary ? job.estimated_annual_salary : undefined,
         notesInput: job.notes ? job.notes : "",
         statusInput: job.status_name,
-      });
-
+    });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -41,7 +49,6 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({ job, onClose, setErro
         e.preventDefault();
         setErrorMessage("");
         
-        //handle actually updating the job in the database, 
         const potentialUpdatedJob: Job | null = await updateJob(jobData, job.job_id);
         if(!potentialUpdatedJob){
             setErrorMessage("Error updating your job. Please try again");
@@ -51,24 +58,46 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({ job, onClose, setErro
 
         const updatedJobArray: JobDto[] = compileJobDtos([potentialUpdatedJob]);
         const updatedJob: JobDto = updatedJobArray[0];
-        //NEED TO: use this updatedJob to update the state of the other components
-        console.log("updated job: ", updatedJob.job_id);
+        
+        // Update context state with updated job
+        if (jobs) {
+            setJobs(jobs.map(j => j.job_id === updatedJob.job_id ? updatedJob : j));
+        }
+        
+        if (independentJobs) {
+            const jobInIndependent = independentJobs.some(j => j.job_id === updatedJob.job_id);
+            if (jobInIndependent) {
+                setIndependentJobs(independentJobs.map(j => j.job_id === updatedJob.job_id ? updatedJob : j));
+            }
+        }
         
         onClose();
     }
 
     const handleDelete = async () => {
         const deletedSuccessfully: boolean = await deleteJob(job.job_id);
-        if (deletedSuccessfully){
-            console.log("Successfully deleted job with id: ", job.job_id);
+        if (!deletedSuccessfully) {
+            setErrorMessage("Error deleting job. Please try again.");
+            onClose();
+            return;
         }
-
-        //NEED TO: update the state of other components so this job no longer shows
-
-
-        //close modal after deleting this job
+        
+        console.log("Successfully deleted job with id: ", job.job_id);
+        
+        // Update context state after deletion
+        if (jobs) {
+            setJobs(jobs.filter(j => j.job_id !== job.job_id));
+        }
+        
+        if (independentJobs) {
+            setIndependentJobs(independentJobs.filter(j => j.job_id !== job.job_id));
+        }
+        
+        if (groupJobs) {
+            setGroupJobs(groupJobs.filter(gj => gj.job_id !== job.job_id));
+        }
+        
         onClose();
-
     }
 
     return (
@@ -81,64 +110,10 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({ job, onClose, setErro
                 </button>
                 <div className="modal-body">
                     <form onSubmit={handleSubmit}>
+                        
                         <label htmlFor="companyNameInput">Company Name</label>
                         <input type="text" name="companyNameInput" placeholder={job.company_name} onChange={handleInputChange} value={jobData.companyNameInput} />
-
-                        <label htmlFor="jobTitleInput">Job Title</label>
-                        <input type="text" name="jobTitleInput" placeholder={job.job_title} onChange={handleInputChange} value={jobData.jobTitleInput} />
-
-                        <label htmlFor="statusInput">Application Status</label>
-                        <select
-                            name="statusInput"
-                            id="statusInput"
-                            value={jobData.statusInput}
-                            onChange={handleInputChange}
-                            required
-                        >
-                            <option value="Applied">Applied</option>
-                            <option value="Assessment">Assessment</option>
-                            <option value="Interview">Interview</option>
-                            <option value="Offer">Offer</option>
-                            <option value="Counter Offer">Counter Offer</option>
-                            <option value="Rejected">Rejected</option>
-                            <option value="No Response">No Response</option>
-                            <option value="Offer Accepted">Offer Accepted</option>
-                        </select>
-
-                        <label htmlFor="remoteInput">Remote</label>
-                        <input type="text" name="remoteInput" placeholder={job.remote ? "Remote" : "In Person"} onChange={handleInputChange} value={jobData.remoteInput} />
-
-                        <label htmlFor="jobCityInput">Job City</label>
-                        <input type="text" name="jobCityInput" placeholder={job.job_city ? job.job_city : "e.g. Dallas"} onChange={handleInputChange} value={jobData.jobCityInput} />
-
-                        <label htmlFor="jobStateInput">Job State</label>
-                        <input type="text" name="jobStateInput" placeholder={job.job_state ? job.job_state : "e.g. Texas"} onChange={handleInputChange} value={jobData.jobStateInput} />
-
-                        <label htmlFor="jobCountryInput">Job Country</label>
-                        <input type="text" name="jobCountryInput" placeholder={job.job_country ? job.job_country : "e.g. United States"} onChange={handleInputChange} value={jobData.jobCountryInput} />
-
-                        <label htmlFor="datePostedInput">Date Posted</label>
-                        <input type="date" name="datePostedInput" onChange={handleInputChange} value={jobData.datePostedInput} />
-
-                        <label htmlFor="dateAppliedInput">Date Applied</label>
-                        <input type="date" name="dateAppliedInput" onChange={handleInputChange} value={jobData.dateAppliedInput} />
-
-                        <label htmlFor="platformInput">Platform</label>
-                        <input type="text" name="platformInput" value={jobData.platformInput} placeholder={job.platform ? job.platform : "e.g. LinkedIn, Indeed, etc..."} onChange={handleInputChange} />
-
-                        <label htmlFor="estimatedSalaryInput">Estimated Annual Salary</label>
-                        <input type="text" name="estimatedSalaryInput" value={jobData.estimatedSalaryInput} placeholder={job.estimated_annual_salary ? `$${job.estimated_annual_salary}` : "No salary data"} onChange={handleInputChange} />
-
-                        <label htmlFor="notesInput">Notes</label>
-                        <textarea
-                            name="notesInput"
-                            id="notes"
-                            rows={5}
-                            value={jobData.notesInput}
-                            placeholder={job.notes ? job.notes : "Add notes about this job..."}
-                            onChange={handleInputChange}
-                        />
-
+                        
                         <div className='button-container'>
                             <button type='submit'>Submit Updates</button>
                             <button type='button' onClick={() => onClose()}>Cancel</button>
@@ -148,7 +123,7 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({ job, onClose, setErro
                 </div>
             </div>    
         </div>
-    )
+    );
 }
 
 export default JobDetailsModal;

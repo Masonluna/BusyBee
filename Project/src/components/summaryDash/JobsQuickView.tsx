@@ -1,14 +1,10 @@
 import '../../styles/jobs-quickview.css';
 import plusSign from '../../assets/Busybee-plus-02.png';
-import type { JobDto } from '../../utils/types';
+import { useDashboard } from '../../context/useDashboardContext';
 
-
-type JobsQuickViewProps = {
-    jobs: JobDto[] | null;
-}
-
-const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs}) => {
-
+const JobsQuickView: React.FC = () => {
+    // Use the context to get jobs
+    const { jobs } = useDashboard();
 
     return (
         <>
@@ -38,7 +34,6 @@ const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs}) => {
                     </ol>
                 </div>
             </div> 
-           
         </>
     )
 }

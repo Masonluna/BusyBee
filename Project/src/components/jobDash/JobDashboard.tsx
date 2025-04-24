@@ -1,56 +1,51 @@
-import {SetStateAction, useEffect, useState} from 'react';
-import { User, GroupToJobsDto, JobDto } from '../../utils/types';
+import { useState, useEffect } from 'react';
 import JobList from './JobList';
 import CreateJobForm from './CreateJobForm';
 import JobDetailsModal from './JobDetailsModal';
 import '../../styles/jobsdashboard.css';
 import plusSign from '../../assets/Busybee-plus-02.png';
 import ErrorMessage from '../ErrorMessage';
+import { useDashboard } from '../../context/useDashboardContext';
+import { JobDto } from '../../utils/types';
 
+const JobsDashboard: React.FC = () => {
+    // Use the context instead of props
+    const { 
+        user,
+        jobs,
+        independentJobs,
+        groupsToJobsList
+    } = useDashboard();
 
-type JobsDashboardProps = {
-    user: User,
-    allJobs: JobDto[],
-    ungroupedJobs: JobDto[],
-    groupToJobsList: GroupToJobsDto[],
-    setJobs: React.Dispatch<SetStateAction<JobDto[] | null>>;
-};
+    if (user) console.log(`user ${user.first_name}`);
 
-const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJobs, groupToJobsList, setJobs }) => {
-
-    const [independentJobs, setIndependentJobs] = useState<JobDto[] | null>(null);
     const [selectedGroupIndex, setSelectedGroupIndex] = useState<number | null>(null);
     const [creatingJob, setCreatingJob] = useState<boolean>(false);
     const [showingJobDetails, setShowingJobDetails] = useState<boolean>(false);
     const [selectedJob, setSelectedJob] = useState<JobDto | null>(null);
     const [errorMessage, setErrorMessage] = useState<string>("");
     
-    // This useEffect keeps independentJobs in sync with the ungroupedJobs prop
-    useEffect(() => {
-        setIndependentJobs(ungroupedJobs);
-        setErrorMessage("");
-    }, [ungroupedJobs]);
-
-    // Reset selectedGroupIndex when groupToJobsList changes to prevent out of range issues
+    // Reset selectedGroupIndex when groupsToJobsList changes to prevent out of range issues
     useEffect(() => {
         setErrorMessage("");
         if (selectedGroupIndex !== null && 
-            (groupToJobsList.length === 0 || selectedGroupIndex >= groupToJobsList.length)) {
+            (groupsToJobsList === null || groupsToJobsList.length === 0 || 
+             selectedGroupIndex >= groupsToJobsList.length)) {
             setSelectedGroupIndex(null);
         }
-    }, [groupToJobsList, selectedGroupIndex]);
+    }, [groupsToJobsList, selectedGroupIndex]);
 
     const updateSelectedGroupIndex = (groupId: number) => {
         setErrorMessage("");
-        for (let i = 0; i < groupToJobsList.length; i++){
-            if (groupToJobsList[i].groupDto.group_id === groupId){
+        if (!groupsToJobsList) return;
+
+        for (let i = 0; i < groupsToJobsList.length; i++){
+            if (groupsToJobsList[i].groupDto.group_id === groupId){
                 setSelectedGroupIndex(i);
                 break;
             }
         }
     }
-
-    // now handle modal opening and closing when a job is clicked...
 
     const handleJobClick = (job: JobDto) => {
         setErrorMessage("");
@@ -79,11 +74,10 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
                         </button>
                     </div>
                     
-
-                    {groupToJobsList && groupToJobsList.length > 0 && (
+                    {groupsToJobsList && groupsToJobsList.length > 0 && (
                         <>
                             <h3 className="filter-CTA">Filter By Groups</h3>
-                            <ul className={`groupBar ${groupToJobsList.length > 5 ? 'groupBarScroll' : ''}`}>
+                            <ul className={`groupBar ${groupsToJobsList.length > 5 ? 'groupBarScroll' : ''}`}>
                                 <li className='groups'>
                                     <button 
                                         onClick={() => setSelectedGroupIndex(null)}    
@@ -92,18 +86,18 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
                                         All Jobs
                                     </button>
                                 </li>
-                                {groupToJobsList.map(groupToJobEntry => (
+                                {groupsToJobsList.map(groupToJobEntry => (
                                     <li className='groups' key={groupToJobEntry.groupDto.group_id}>
                                         <button
                                             onClick={() => updateSelectedGroupIndex(groupToJobEntry.groupDto.group_id)}
                                             className={(selectedGroupIndex !== null &&
+                                                groupsToJobsList && // Added null check
                                                 groupToJobEntry.groupDto.group_id ===
-                                                groupToJobsList[selectedGroupIndex].groupDto.group_id)
+                                                groupsToJobsList[selectedGroupIndex].groupDto.group_id)
                                                 ? 'selectedGroup'
                                                 : 'unselectedGroup'}
                                         >
                                             {groupToJobEntry.groupDto.group_name}
-                                       
                                         </button>
                                     </li>
                                 ))}
@@ -111,17 +105,17 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
                         </>
                     )}
                     
-                    {groupToJobsList && selectedGroupIndex !== null && 
-                      selectedGroupIndex < groupToJobsList.length && (
+                    {groupsToJobsList && selectedGroupIndex !== null && 
+                      selectedGroupIndex < groupsToJobsList.length && (
                         <JobList 
-                            jobs={groupToJobsList[selectedGroupIndex].jobs} 
-                            jobListTitle={groupToJobsList[selectedGroupIndex].groupDto.group_name} 
+                            jobs={groupsToJobsList[selectedGroupIndex].jobs} 
+                            jobListTitle={groupsToJobsList[selectedGroupIndex].groupDto.group_name} 
                             onItemClick={handleJobClick}
                         />
                     )}
-                    {selectedGroupIndex === null &&
+                    {selectedGroupIndex === null && jobs &&
                         <JobList 
-                            jobs={allJobs}
+                            jobs={jobs}
                             jobListTitle="All Jobs"
                             onItemClick={handleJobClick}
                         />
@@ -134,7 +128,6 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
                         </>
                     )}
 
-                    {/* This modal will pop up when they click a job  */}
                     {showingJobDetails && selectedJob && (
                         <JobDetailsModal job={selectedJob} onClose={closeModal} setErrorMessage={setErrorMessage} />
                     )}
@@ -142,17 +135,7 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
             )}
 
             {creatingJob && (
-                <>
-                    {user && (
-                        <CreateJobForm 
-                            setCreatingJob={setCreatingJob} 
-                            userId={user.user_id} 
-                            independentJobs={independentJobs} 
-                            setIndependentJobs={setIndependentJobs} 
-                            setJobs={setJobs} 
-                        />
-                    )}
-                </>
+                <CreateJobForm setCreatingJob={setCreatingJob} setErrorMessage={setErrorMessage} />
             )}
 
             {errorMessage !== "" && <ErrorMessage message={errorMessage} />}

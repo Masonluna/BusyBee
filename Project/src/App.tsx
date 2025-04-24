@@ -8,6 +8,7 @@ import ContactPage from './pages/ContactPage';
 import FAQPage from './pages/FAQPage';
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import { DashboardDataProvider } from './context/DashboardDataProvider';
 
 
 const App = () => {
@@ -20,7 +21,13 @@ const App = () => {
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} /> 
-      <Route path="/dashboard" element={<MainDashboard />} />
+      <Route 
+        path="/dashboard" 
+        element={
+          <DashboardDataProvider>
+            <MainDashboard />
+          </DashboardDataProvider>
+        } />
       <Route path="/about-team" element={<AboutTeamPage />}/>
       <Route path="/contact" element={<ContactPage />}/>
       <Route path="/FAQ" element={<FAQPage />}/>
