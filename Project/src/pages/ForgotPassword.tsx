@@ -7,10 +7,12 @@ import { useNavigate } from "react-router-dom";
 const ForgotPassword: React.FC = () => {
     const navigate = useNavigate();
 
+    const [successMessage, setSuccessMessage] = useState<string>("");
     const [errorMessage, setErrorMessage] = useState<string>("");
 
     const handleForgotPasswordSubmission = async (event: React.FormEvent) => {
         event.preventDefault();
+        setSuccessMessage("")
         setErrorMessage("");
         const form = event.currentTarget as HTMLFormElement;
         const formData = new FormData(form);
@@ -21,7 +23,7 @@ const ForgotPassword: React.FC = () => {
             return;
         }
         await initiateResetPassword(email);
-
+        setSuccessMessage("A link has been sent to your email to reset your password. You may close this window.");
     }
 
     return (
@@ -38,9 +40,10 @@ const ForgotPassword: React.FC = () => {
                     <div className="spacer-reset-pw"></div>
                      <input className="email-input-forgot-pw" type="email" id="email" name="email" placeholder="youremail@gmail.com" />
                 </div>
-                <input className="email-input-forgot-pw" type="email" id="email" name="email" placeholder="youremail@gmail.com" />
+                
                 <button className="button" type="submit">Send Reset Password Link</button>
                 <button className="button" onClick={() => navigate('/login')}>← Back</button>
+                {successMessage !== "" && <p>{successMessage}</p>}
                 </div>
             </form>
         </>

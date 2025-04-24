@@ -242,14 +242,30 @@ export async function createGroup(groupInsertDto: GroupInsertDto){
 }
 
 export async function deleteGroup(groupId: number){
+    console.log("Attempting to delete group with id: ", groupId);
+    
     try{
+        //first delete all group_jobs where group_id === groupID
+        const { error: groupJobError } = await supabase
+            .from("group_jobs")
+            .delete()
+            .eq("group_id", groupId);
+        if (groupJobError){
+            console.log("Error deleting group jobs for group with id: ", groupId, ": ", groupJobError);
+            return null;
+        }
+
+
         const { error } = await supabase
             .from('groups')
             .delete()
             .eq('group_id', groupId);
         if (error){
             console.log("Error deleting group: ", error);
+            return null;
         }
+        console.log("Successfully deleted group");
+
     }
     catch(err){
         console.log("Error deleting group:", err);
