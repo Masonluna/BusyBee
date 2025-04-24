@@ -240,13 +240,14 @@ const GroupDashboard: React.FC = () => {
                                                 </option>
                                             ))}
                                         </select>
-                                        
+                                        <div className="delete-button-group-container">
                                         <button 
                                             className="deleteButton" 
                                             onClick={() => handleGroupDeletion(group.group_id)}
                                         >
                                             Delete Group
                                         </button>
+                                        </div>
                                     </div>
                                 </div>
                                 

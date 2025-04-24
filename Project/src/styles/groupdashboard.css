@@ -115,7 +115,10 @@
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
 }
-
+.delete-button-group-container{
+  align-items: flex-start;
+  margin-right: 150px;
+}
 .group-controls {
   display: flex;
   gap: 15px;
@@ -124,7 +127,6 @@
 }
 
 select {
-  padding: 8px 20px 8px 10px;
   border-radius: 10px;
   border: 1px solid black;
   box-shadow: inset 0 0 0 1px #ffd679;
