@@ -33,13 +33,13 @@ const StatDashboard: React.FC = () => {
                     </div>
                     
                     <div className="stat-box monthly-apps-box">
-                        <span className="stat-label monthly-apps-label">Apps This Month</span>
+                        <span className="stat-label monthly-apps-label">Applications This Month</span>
                         <span className="stat-value monthly-apps-value">{user && stats ? stats.appsThisMonth : ''}</span>
                     </div>
                     
                     <div className="stat-box avg-monthly-apps-box">
-                        <span className="stat-label avg-monthly-apps-label">Avg Apps Per Month</span>
-                        <span className="stat-value avg-monthly-apps-value">{user && stats ? stats.appsPerMonth : ''}</span>
+                        <span className="stat-label avg-monthly-apps-label">Application Monthly Average</span>
+                        <span className="stat-value avg-monthly-apps-value">{user && stats ? stats.appsPerMonth.toFixed(2) : ''}</span>
                     </div>
                     
                     <div className="stat-box goal-remaining-box">

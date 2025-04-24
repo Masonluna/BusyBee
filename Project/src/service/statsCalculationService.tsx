@@ -7,7 +7,8 @@ export function calculateUserStats(jobs: JobDto[], user: User) {
     let numInterviews = 0;
     let numRejections = 0;
     let numOffers = 0;
-
+    let earliestYear = 2100;
+    let earliestMonth = 13;
     function formatToPercent(num: number): string {
         const percent = Math.floor(num * 100);
         return percent.toString().slice(0, 2) + '%';
@@ -36,6 +37,14 @@ export function calculateUserStats(jobs: JobDto[], user: User) {
             if (job.date_applied) {
                 const year = parseInt(job.date_applied.substring(0, 4));
                 const month = parseInt(job.date_applied.substring(5, 7)) - 1;
+
+                if (year < earliestYear) {
+                    console.log(earliestYear);
+                    earliestYear = year;
+                }
+                if (month < earliestMonth) {
+                    earliestMonth = month;
+                }
                 if (!yearMap.has(year)) {
                     yearMap.set(year, new Array(12).fill(0));
                 }
@@ -51,12 +60,11 @@ export function calculateUserStats(jobs: JobDto[], user: User) {
         return yearMap;
     }
 
-    const dateCreated = new Date(user.date_created);
+    const yearMap = initializeMap(jobs);
+    const firstDate = new Date(earliestYear, earliestMonth);
     const now = new Date(Date.now());
     // Number of months = (current month - creation month) + (12 * (currentYear - creationYear))
-    const numMonths = (now.getMonth() - dateCreated.getMonth()) + (12 * (now.getFullYear() - dateCreated.getFullYear()));
-
-    const yearMap = initializeMap(jobs);
+    const numMonths = (now.getMonth() - firstDate.getMonth()) + (12 * (now.getFullYear() - firstDate.getFullYear()));
 
     // Tally stats
     // ==========

@@ -27,7 +27,7 @@ const StatsQuickView: React.FC = () => {
                             <span className="stat-label">Monthly Goal</span>
                         </div>
                         <div className="stat-item stat-empty">
-                            <span className="stat-value">{stats.appsPerMonth}</span>
+                            <span className="stat-value">{stats.appsPerMonth.toFixed(2)}</span>
                             <span className="stat-label">Application Monthly Average</span>
                         </div>
 

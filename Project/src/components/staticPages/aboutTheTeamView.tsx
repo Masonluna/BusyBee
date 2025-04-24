@@ -22,8 +22,15 @@ const TeamInfo = () => {
                     </div>
 
                     <div className="team-member">
-                        <h2>Mason Luna</h2>
-                        <p>Content about Mason Luna goes here...</p>
+                        <h2>Mason Luna- Full Stack Engineer</h2>
+                        <p>
+                        Responsible for the navigation and intercommunication for the front-end 
+                        React components and the Supabase back-end infrastructure. Developed a 
+                        service layer to handle the fetching and calculation of user statistics 
+                        based on their job application data. Participated in the implementation of 
+                        various React components. Served as a generalist developer responsible for 
+                        the completion of individual tasks across the technology stack.
+                        </p>
                     </div>
 
                     <div className="team-member">
