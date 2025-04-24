@@ -111,13 +111,13 @@
 .labelFN{
     font-family: 'Poppins', sans-serif;
     margin-right: 103px;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
     margin-top: 30px;
 }
 .labelLN{
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
     margin-right: 83px;
 }
@@ -125,19 +125,19 @@
 .labelEMAIL{
     font-family: 'Poppins', sans-serif;
     margin-right: 315px;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
 }
 .labelPW{
     font-family: 'Poppins', sans-serif;
     margin-right: 110px;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
     margin-top: 30px;
 }
 .labelCPW{
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
     margin-right: 23px;
 }

@@ -1,11 +1,13 @@
 import { initiateResetPassword } from "../service/supabaseService";
 import ErrorMessage from "../components/ErrorMessage";
 import { useState } from 'react';
+import '../styles/forgot-password.css';
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword: React.FC = () => {
+    const navigate = useNavigate();
 
     const [errorMessage, setErrorMessage] = useState<string>("");
-
 
     const handleForgotPasswordSubmission = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -24,12 +26,23 @@ const ForgotPassword: React.FC = () => {
 
     return (
         <>
-            <form onSubmit={(event) => handleForgotPasswordSubmission(event)}>
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="youremail@gmail.com" />
-                <button type="submit">Send Reset Password Link</button>
+            <form  onSubmit={(event) => handleForgotPasswordSubmission(event)}>
+                <div className="reset-password-div">
+                <label className="email-forgot-password" htmlFor="email">Email</label>
+                <div className="input-container-forgot-pw">
+                    {errorMessage !== "" && (
+                         <div className="error-message">
+                                <ErrorMessage message={errorMessage} />
+                        </div>
+                    )}
+                    <div className="spacer-reset-pw"></div>
+                     <input className="email-input-forgot-pw" type="email" id="email" name="email" placeholder="youremail@gmail.com" />
+                </div>
+                <input className="email-input-forgot-pw" type="email" id="email" name="email" placeholder="youremail@gmail.com" />
+                <button className="button" type="submit">Send Reset Password Link</button>
+                <button className="button" onClick={() => navigate('/login')}>← Back</button>
+                </div>
             </form>
-            {errorMessage !== "" && <ErrorMessage message={errorMessage} />}
         </>
     )
 }

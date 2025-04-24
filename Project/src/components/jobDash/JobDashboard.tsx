@@ -73,7 +73,7 @@ const JobsDashboard: React.FC<JobsDashboardProps> = ({ user, allJobs, ungroupedJ
                     
                     <div className='your-jobs-container'>
                         <h3 className="your-jobs">Your Jobs</h3>
-                        <button className="createButton-" onClick={() => setCreatingJob(true)}>
+                        <button className="createButton-dash" onClick={() => setCreatingJob(true)}>
                             <img src={plusSign} alt="yellow plus sign" className="plus-sign-size" />
                             <h4>Add a job...</h4>
                         </button>

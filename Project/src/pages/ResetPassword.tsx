@@ -2,6 +2,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import { useState } from 'react';
 import { resetPassword } from "../service/supabaseService";
 import { useNavigate } from 'react-router-dom';
+import '../styles/forgot-password.css';
 
 
 const ResetPassword: React.FC = () => {
@@ -41,18 +42,25 @@ const ResetPassword: React.FC = () => {
 
     return (
         <>
-            <h1>Reset Password</h1>
             <form onSubmit={(event) => handleResetPasswordSubmission(event)}>
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" name="password" required/>
+                <div className="reset-password-div">
 
-                <label htmlFor="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" required/>
 
-                <button type="submit">Submit</button>
+                    <label className="password-reset-label" htmlFor="password">Password</label>
+                    <input className="reset-password-input" type="password" id="password" name="password" required />
 
+                    <label className="confirm-reset-password-label" htmlFor="confirm-password">Confirm Password</label>
+                    <input className="confirm-reset-password-input" type="password" id="confirm-password" name="confirm-password" required />
+                    {errorMessage !== "" && (
+                        <div className="error-message-container">
+                            <ErrorMessage message={errorMessage} />
+                        </div>
+                    )}
+
+                    <button className="button" type="submit">Submit</button>
+                    <button className="button" onClick={() => navigate('/login')}>← Back</button>
+                </div>
             </form>
-            {errorMessage !== "" && <ErrorMessage message={errorMessage} />}
         </>
     )
 }

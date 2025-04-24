@@ -12,7 +12,7 @@
     font-size: 25px;
     font-weight: 300;
 }
-.createButton{
+.createButton-dash{
     background: none;
     padding: 5px;
     margin-left: 10px;
@@ -22,7 +22,7 @@
     align-items: center;
     gap: 8px;
 }
-.createButton:hover{
+.createButton-dash:hover{
     cursor: pointer;
     border-style: none;
 }
