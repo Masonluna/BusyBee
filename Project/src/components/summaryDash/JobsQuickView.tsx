@@ -1,6 +1,7 @@
 import '../../styles/jobs-quickview.css';
 import plusSign from '../../assets/Busybee-plus-02.png';
 import type { JobDto } from '../../utils/types';
+import {useState} from 'react';
 
 
 type JobsQuickViewProps = {
@@ -9,6 +10,7 @@ type JobsQuickViewProps = {
 
 const JobsQuickView: React.FC<JobsQuickViewProps> = ({ jobs}) => {
 
+const [setCreatingJob] = useState<boolean>(false);
 
     return (
         <>

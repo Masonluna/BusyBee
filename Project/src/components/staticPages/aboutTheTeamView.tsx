@@ -10,8 +10,15 @@ const TeamInfo = () => {
                     <h1 className="about-the-team-header">About the Team</h1>
 
                     <div className="team-member">
-                        <h2>Mason Krause</h2>
-                        <p>Content about Mason Krause goes here...</p>
+                        <h2>Mason Krause - Full Stack Engineer</h2>
+                        <p>
+                        Took ownership of the applications backend infrastructure. 
+                        This included the design and implementation of the PostgreSQL database, 
+                        with a focus on data security achieved through the implementation of 
+                        row-level security policies. Established secure user authentication using Supabase Auth. 
+                        Developed a service layer to handle CRUD operations and business logic. 
+                        Implemented Continuous Integration/Continuous Delivery pipeline 
+                        using Git for version control and Vercel for deployment and hosting.</p>
                     </div>
 
                     <div className="team-member">
@@ -20,8 +27,16 @@ const TeamInfo = () => {
                     </div>
 
                     <div className="team-member">
-                        <h2>Jacqueline Justice</h2>
-                        <p>Content about Jacqueline Justice goes here...</p>
+                        <h2>Jacqueline Justice - Lead Frontend Engineer</h2>
+                        <p>I was responsible for the front-end design, 
+                            bringing the interface to life through clean,
+                            responsive code and layout. 
+                            I also handled the product design and brand identity,
+                            ensuring a cohesive visual language that reflects 
+                            the project's goals and target audience. 
+                            My focus on UI/UX experience guided decisions around user flow, 
+                            readability, and aesthetics to create a smooth and engaging experience.
+                        </p>
                     </div>
 
                     <div className="team-member">

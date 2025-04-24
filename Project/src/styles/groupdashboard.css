@@ -141,15 +141,14 @@ select {
 
 .deleteButton {
   background-color: black;
-  border-radius: 10px;
-  padding: 4px 15px;
+  border-radius: 30px;
+  padding: 10px 30px;
   color: #ffd679;
   border: 1px solid black;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   cursor: pointer;
   transition-duration: .3s;
-  margin-left: auto;
 }
 
 .deleteButton:hover {
@@ -361,10 +360,11 @@ select {
 
   .deleteButton {
     background-color: black;
-    border-radius: 10px;
-    padding: 4px 5px;
+    border-radius: 30px;
+    padding: 10px 30px;
     color: #ffd679;
     border: 1px solid black;
+    font-size: 16px;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     cursor: pointer;

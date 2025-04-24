@@ -55,15 +55,14 @@ const SignUpForm: React.FC = () => {
         <>
         <div className="center">
             <h1 className="BBMessage">Welcome to BusyBee</h1>
-            <label className="registerMessage">Register for Busybee</label>
             <p className="errorMSG">{errorMessage !== '' && <ErrorMessage message={errorMessage}/>}</p>
             <form onSubmit={handleSignUpSubmission} className='space'>
                 <label className='labelFN'>First Name</label>
                 <label className='labelLN'>Last Name</label>
-                    <p>
-                        <input className="signInInput" type="text" placeholder="First Name" name="signUpFirstName" />
-                        <input className="signInInputLN" type="text" placeholder="Last Name" name="signUpLastName" />
-                    </p>
+                  <p  className="nameRow">
+                        <input className="signInInput-reg" type="text" placeholder="First Name" name="signUpFirstName" />
+                        <input className="signInInputLN-reg" type="text" placeholder="Last Name" name="signUpLastName" />
+                  </p>
                 <label className='labelEMAIL'>Email</label>
                 <p>
                 <input className="signInEmail" type="email" placeholder="Email" name="signUpEmail" />
