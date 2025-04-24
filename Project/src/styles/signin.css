@@ -1,22 +1,27 @@
 .imgSize{
-    width: 100px; 
+    width: 70px; 
     height: auto; 
     align-content: center;
     display: block;
     margin: 0 auto;
-    padding-top: 100px;
+    padding-top: 30px;
 }
-
+.nameRow{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
 .registerMessage{
-    margin-top: 100px;
-    font-size: 20px;
+    margin-top: 40px;
+    font-size: 17px;
     font-weight: 700;
     font-family: 'Poppins', sans-serif;
-    margin-right: 150px;
+    margin-right: 170px;
 }
 
 .BBMessage{
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    font-size: 20px;
 }
 
 .center{
@@ -25,33 +30,35 @@
     font-weight: 600;
 }
 
-.signInInput{
+.signInInput-reg{
     width: 170px; 
     height: 40px;
     padding: 12px; 
-    margin-bottom: 15px; 
     font-family: 'Poppins', sans-serif;
     box-shadow: 0 0 0 1px black;
     border-color: #ffd679;
-    border-radius: 3px;
+    border-radius: 3px !important;
     border-width: 1px;
     padding-bottom: 20px;
     padding-top: 20px;
-    margin-right: 20px;
+    margin-left: 50px !important;
+    margin-right: 10px !important;
+    margin-top: 0px !important;
   }
 
-.signInInputLN{
+.signInInputLN-reg{
     width: 170px; 
     height: 40px;
     padding: 12px; 
-    margin-bottom: 15px; 
     font-family: 'Poppins', sans-serif;
     box-shadow: 0 0 0 1px black;
     border-color: #ffd679;
-    border-radius: 3px;
+    border-radius: 3px  !important;
     border-width: 1px;
     padding-bottom: 20px;
-    padding-top: 20px;
+    margin-right: 55px !important;
+    margin-top: 0px !important;
+    margin-left: 10px !important;
 }
 
 .signInPassword{
@@ -65,7 +72,6 @@
     border-radius: 3px;
     border-width: 1px;
     padding-bottom: 20px;
-    padding-top: 20px;
     margin-right: 20px;
 }
 
@@ -87,7 +93,7 @@
     width: 360px; 
     height: 40px;
     padding: 12px; 
-    margin-bottom: 15px; 
+    margin-bottom: 30px; 
     font-family: 'Poppins', sans-serif;
     box-shadow: 0 0 0 1px black;
     border-color: #ffd679;
@@ -99,18 +105,19 @@
 
 .space{
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .labelFN{
     font-family: 'Poppins', sans-serif;
     margin-right: 103px;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
     margin-top: 30px;
 }
 .labelLN{
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
     margin-right: 83px;
 }
@@ -118,19 +125,19 @@
 .labelEMAIL{
     font-family: 'Poppins', sans-serif;
     margin-right: 315px;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
 }
 .labelPW{
     font-family: 'Poppins', sans-serif;
     margin-right: 110px;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
     margin-top: 30px;
 }
 .labelCPW{
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
     margin-right: 23px;
 }
@@ -142,5 +149,59 @@
     margin-top: 10px;
 
 }
-
+.center-message{
+    text-align: center;
+    margin-bottom: 200px;
+    font-weight: 600;
+}
+@media (max-width: 768px){
+    .imgSize{
+        width: 70px; 
+        height: auto; 
+        align-content: center;
+        display: block;
+        margin: 0 auto;
+        padding-top: 30px;
+        margin-top: 50px;
+    }
+    .signInInput-reg{
+        width: 170px !important; 
+        height: 40px;
+        margin-bottom: 15px; 
+        font-family: 'Poppins', sans-serif;
+        box-shadow: 0 0 0 1px black;
+        border-color: #ffd679;
+        border-radius: 3px;
+        border-width: 1px;
+        padding-bottom: 20px;
+        margin-left: 35px !important;
+        margin-right: 10px !important;
+      }
+    .center{
+        margin-bottom: 20px;
+    }
+    .signInInputLN-reg{
+        width: 170px; 
+        height: 40px;
+        padding: 12px; 
+        margin-bottom: 15px; 
+        font-family: 'Poppins', sans-serif;
+        box-shadow: 0 0 0 1px black;
+        border-color: #ffd679;
+        border-radius: 3px;
+        border-width: 1px;
+        padding-bottom: 20px;
+        margin-right: 35px !important;
+    }
+    .space{
+        margin-bottom: 20px !important;
+        padding-bottom: 0px;
+    }
+    .center-message{
+        text-align: center;
+        margin-bottom:20px;
+        font-weight: 600;
+    }
+    
+}
 

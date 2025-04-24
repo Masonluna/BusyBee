@@ -105,7 +105,7 @@ const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob, setErrorM
         </div>
         <div className="job-form-right">
           <form onSubmit={handleNewJobSubmission}>
-            {/* Form fields (unchanged) */}
+            
             <label htmlFor="companyNameInput" className="company-name">Company Name</label>
             <input
               type="text"
@@ -115,8 +115,126 @@ const CreateJobForm: React.FC<CreateJobFormProps> = ({ setCreatingJob, setErrorM
               onChange={handleInputChange}
               required
             />
+
+<label htmlFor="jobTitleInput" className='job-title'>Job Title</label>
+            <input
+              type="text"
+              id="jobTitleInput"
+              name="jobTitleInput"
+              value={jobData.jobTitleInput}
+              onChange={handleInputChange}
+              required
+            />
+            <label htmlFor="remoteInput" className='remote-input'>Job Type</label>
+            <select
+              name="remoteInput"
+              id="remoteInput"
+              value={jobData.remoteInput}
+              onChange={handleInputChange}
+              required
+            >
+              <option value="in person">In Person</option>
+              <option value="remote">Remote</option>
+            </select>
+
+            <label htmlFor="jobCityInput" className='job-city'>Job City (optional)</label>
+            <input
+              type="text"
+              id="jobCityInput"
+              name="jobCityInput"
+              value={jobData.jobCityInput}
+              onChange={handleInputChange}
+            />
+
+            <label htmlFor="jobStateInput" className="job-state">Job State (optional)</label>
+            <input
+              type="text"
+              id="jobStateInput"
+              name="jobStateInput"
+              value={jobData.jobStateInput}
+              onChange={handleInputChange}
+            />
+
+            <label htmlFor="jobCountryInput" className="job-country">Job Country (optional)</label>
+            <input
+              type="text"
+              id="jobCountryInput"
+              name="jobCountryInput"
+              value={jobData.jobCountryInput}
+              onChange={handleInputChange}
+            />
+
+            <label htmlFor="datePostedInput" className="date-posted">Date Posted</label>
+            <input
+              type="date"
+              id="datePostedInput"
+              name="datePostedInput"
+              value={jobData.datePostedInput}
+              onChange={handleInputChange}
+            />
+
+            <label htmlFor="dateAppliedInput" className="date-applied">Date Applied</label>
+            <input
+              type="date"
+              id="dateAppliedInput"
+              name="dateAppliedInput"
+              value={jobData.dateAppliedInput}
+              onChange={handleInputChange}
+            />
+
+            <label htmlFor="platformInput" className="platform-input">Platform Where Job Posting Found</label>
+            <input
+              type="text"
+              id="platformInput"
+              name="platformInput"
+              value={jobData.platformInput}
+              onChange={handleInputChange}
+            />
+
+            <label htmlFor="estimatedSalaryInput" className="est-salary">Estimated Annual Salary</label>
+            <input
+              type="number"
+              id="estimatedSalaryInput"
+              name="estimatedSalaryInput"
+              min="0"
+              value={jobData.estimatedSalaryInput === undefined ? "" : jobData.estimatedSalaryInput}
+              onChange={(e) => {
+                const target = e.target as HTMLInputElement;
+                setJobData((prevData) => ({
+                  ...prevData,
+                  estimatedSalaryInput: target.value === "" ? undefined : parseInt(target.value, 10),
+                }));
+              }}
+            />
+
+            <label htmlFor="notesInput" className="notes">Notes</label>
+            <input
+              type="text"
+              id="notesInput"
+              name="notesInput"
+              value={jobData.notesInput}
+              onChange={handleInputChange}
+            />
+
+            <label htmlFor="statusInput" className='status-input'>Status</label>
+            <select
+              name="statusInput"
+              id="statusInput"
+              value={jobData.statusInput}
+              onChange={handleInputChange}
+              required
+            >
+              <option value="Applied">Applied</option>
+              <option value="Assessment">Assessment</option>
+              <option value="Interview">Interview</option>
+              <option value="Offer">Offer</option>
+              <option value="Counter Offer">Counter Offer</option>
+              <option value="Rejected">Rejected</option>
+              <option value="No Response">No Response</option>
+              <option value="Offer Accepted">Offer Accepted</option>
+            </select>
             
-            {/* Include all other form fields here (unchanged) */}
+            
             
             <button type="submit" className="submit-button">Submit New Job</button>
             <button onClick={() => setCreatingJob(false)} className="cancel-button">Cancel</button>

@@ -38,14 +38,15 @@
   .labelPassword{
     font-family: 'Poppins', sans-serif;
     margin-right: 150px;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
+    margin-top: 20px;
   }
 
   .labelEmail{
     font-family: 'Poppins', sans-serif;
     margin-right: 185px;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
   }
 

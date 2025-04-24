@@ -10,7 +10,7 @@ const SignUpPage: React.FC = () => {
         <div>
             <img src={image} alt='yellow bee' className="imgSize"></img>
             <SignUpForm />
-            <p className="center">Already have an account? <a onClick={() => navigate('/login')}>Login</a> instead.</p>
+            <p className="center-message">Already have an account? <a onClick={() => navigate('/login')}>Login</a> instead.</p>
             <Footer />
         </div>
     )

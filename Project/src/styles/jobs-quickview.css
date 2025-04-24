@@ -87,6 +87,9 @@ h3 {
     align-items: center;
     gap: 8px;
 }
+.add-job-content:hover {
+    cursor: pointer;
+}
 
 .main-container{
     display: flex;

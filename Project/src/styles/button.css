@@ -7,26 +7,26 @@
     border: 1px solid #ffd679; 
     font-family: 'Poppins', sans-serif;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .button:hover{
     cursor: pointer;
     background-color: white;
-    color: #ffd679;
-    border:1px solid #ffd679;
+    color: black;
+    border:2px solid #ffd679;
     transition-duration: .3s;
 }
 
-/* CHANGE PLS! -> make look better! */
 .deleteButton{
-    background-color: #ff2233;
-    border-radius: 5px;
+    background-color: black;
+    color:  #ffd679; 
+    border-radius: 30px;
     padding: 7px;
 }
 .deleteButton:hover{
-    background-color: white;
-    border-color: #ff2233;
-    color: #ff2233;
+    background-color: #ffd679;
+    border-color: black;
+    color: black;
     cursor: pointer;
     transition-duration: .3s;
 }

@@ -68,7 +68,7 @@ const JobsDashboard: React.FC = () => {
                     
                     <div className='your-jobs-container'>
                         <h3 className="your-jobs">Your Jobs</h3>
-                        <button className="createButton" onClick={() => setCreatingJob(true)}>
+                        <button className="createButton-dash" onClick={() => setCreatingJob(true)}>
                             <img src={plusSign} alt="yellow plus sign" className="plus-sign-size" />
                             <h4>Add a job...</h4>
                         </button>
@@ -123,7 +123,7 @@ const JobsDashboard: React.FC = () => {
                     
                     {independentJobs && independentJobs.length > 0 && (
                         <>
-                            <h3>Your ungrouped jobs</h3>
+                            <h3 className="ungrouped-jobs">Your ungrouped jobs</h3>
                             <JobList jobs={independentJobs} jobListTitle='Non-Grouped Jobs' onItemClick={handleJobClick} />
                         </>
                     )}

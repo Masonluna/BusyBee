@@ -3,7 +3,8 @@ import { Job, JobDto, JobFormData } from "../../utils/types";
 import '../../styles/job-details-modal.css';
 import { compileJobDtos } from '../../service/objectConversionService';
 import { updateJob, deleteJob } from '../../service/supabaseService';
-import { useDashboard } from '../../context/useDashboardContext';
+import { useDashboard } from '../../context/useDashboardContext';import '../../styles/button.css';
+
 
 type JobDetailsModalProps = {
     job: JobDto,
@@ -111,13 +112,68 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({ job, onClose, setErro
                 <div className="modal-body">
                     <form onSubmit={handleSubmit}>
                         
-                        <label htmlFor="companyNameInput">Company Name</label>
+                        <label className="job-labels-form" htmlFor="companyNameInput">Company Name</label>
                         <input type="text" name="companyNameInput" placeholder={job.company_name} onChange={handleInputChange} value={jobData.companyNameInput} />
-                        
+
+                        <label className="job-labels-form" htmlFor="jobTitleInput">Job Title</label>
+                        <input type="text" name="jobTitleInput" placeholder={job.job_title} onChange={handleInputChange} value={jobData.jobTitleInput} />
+
+                        <label className="job-labels-form"  htmlFor="statusInput">Application Status</label>
+                        <select
+                            name="statusInput"
+                            id="statusInput"
+                            value={jobData.statusInput}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="Applied">Applied</option>
+                            <option value="Assessment">Assessment</option>
+                            <option value="Interview">Interview</option>
+                            <option value="Offer">Offer</option>
+                            <option value="Counter Offer">Counter Offer</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="No Response">No Response</option>
+                            <option value="Offer Accepted">Offer Accepted</option>
+                        </select>
+
+                        <label className="job-labels-form" htmlFor="remoteInput">Remote</label>
+                        <input type="text" name="remoteInput" placeholder={job.remote ? "Remote" : "In Person"} onChange={handleInputChange} value={jobData.remoteInput} />
+
+                        <label className="job-labels-form" htmlFor="jobCityInput">Job City</label>
+                        <input type="text" name="jobCityInput" placeholder={job.job_city ? job.job_city : "e.g. Dallas"} onChange={handleInputChange} value={jobData.jobCityInput} />
+
+                        <label className="job-labels-form" htmlFor="jobStateInput">Job State</label>
+                        <input type="text" name="jobStateInput" placeholder={job.job_state ? job.job_state : "e.g. Texas"} onChange={handleInputChange} value={jobData.jobStateInput} />
+
+                        <label className="job-labels-form" htmlFor="jobCountryInput">Job Country</label>
+                        <input type="text" name="jobCountryInput" placeholder={job.job_country ? job.job_country : "e.g. United States"} onChange={handleInputChange} value={jobData.jobCountryInput} />
+
+                        <label className="job-labels-form" htmlFor="datePostedInput">Date Posted</label>
+                        <input type="date" name="datePostedInput" onChange={handleInputChange} value={jobData.datePostedInput} />
+
+                        <label className="job-labels-form" htmlFor="dateAppliedInput">Date Applied</label>
+                        <input type="date" name="dateAppliedInput" onChange={handleInputChange} value={jobData.dateAppliedInput} />
+
+                        <label className="job-labels-form" htmlFor="platformInput">Platform</label>
+                        <input type="text" name="platformInput" value={jobData.platformInput} placeholder={job.platform ? job.platform : "e.g. LinkedIn, Indeed, etc..."} onChange={handleInputChange} />
+
+                        <label className="job-labels-form" htmlFor="estimatedSalaryInput">Estimated Annual Salary</label>
+                        <input type="text" name="estimatedSalaryInput" value={jobData.estimatedSalaryInput} placeholder={job.estimated_annual_salary ? `$${job.estimated_annual_salary}` : "No salary data"} onChange={handleInputChange} />
+
+                        <label className="job-labels-form" htmlFor="notesInput">Notes</label>
+                        <textarea
+                            name="notesInput"
+                            id="notes"
+                            rows={5}
+                            value={jobData.notesInput}
+                            placeholder={job.notes ? job.notes : "Add notes about this job..."}
+                            onChange={handleInputChange}
+                        />
+
                         <div className='button-container'>
-                            <button type='submit'>Submit Updates</button>
-                            <button type='button' onClick={() => onClose()}>Cancel</button>
-                            <button type='button' onClick={() => handleDelete()}>Delete Job</button>
+                            <button className="button" type='submit'>Submit Updates</button>
+                            <button className="button"type='button' onClick={() => onClose()}>Cancel</button>
+                            <button className="deleteButton" type='button' onClick={() => handleDelete()}>Delete Job</button>
                         </div>
                     </form>
                 </div>
