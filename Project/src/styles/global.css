@@ -3,7 +3,6 @@
 :root {
   font-family: 'Poppins', sans-serif;
   --error-color: red;
-  --success-color: green;
   
 }
 *{
@@ -32,12 +31,13 @@ a:hover{
   cursor: pointer;
 }
 
-.errorMessage {
-  color: var(--error-color)
+.errorMSG{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: small;
+  color: var(--error-color);
 }
-.successNotificationText {
-  color: var(--success-color)
-}
+
 .flex-row{
   display: flex;
   flex-direction: row;

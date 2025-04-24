@@ -6,6 +6,8 @@ import MainDashboard from './pages/MainDashboard';
 import AboutTeamPage from './pages/AboutTeamPage';
 import ContactPage from './pages/ContactPage';
 import FAQPage from './pages/FAQPage';
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 
 const App = () => {
@@ -16,6 +18,8 @@ const App = () => {
       <Route path="*" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} /> 
       <Route path="/dashboard" element={<MainDashboard />} />
       <Route path="/about-team" element={<AboutTeamPage />}/>
       <Route path="/contact" element={<ContactPage />}/>
